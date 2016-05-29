@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
     s.homepage          = "https://github.com/fengyunjue/PODSDKDemo"
     s.license           = 'MIT'
     s.author            = { "ma772528138" => "ma772528138@qq.com" }
-    s.source            = { :git => "https://github.com/fengyunjue/PODSDKDemo", :tag => s.version.to_s }
+    s.source            = { :git => "https://github.com/fengyunjue/PODSDKDemo.git", :tag => s.version.to_s }
     s.resource          = 'FengYunJue/MJRefresh/MJRefresh.bundle'
     s.platform          = :ios, '7.0'
     s.requires_arc      = true
