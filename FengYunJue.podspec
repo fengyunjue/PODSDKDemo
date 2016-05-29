@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
     s.version           = "1.0.0"
     s.summary           = "修改一些第三方库的分类的前缀"
 
-    s.homepage          = "https://github.com/fengyunjue/FengYunJue"
+    s.homepage          = "https://github.com/fengyunjue/PODSDKDemo"
     s.license           = 'MIT'
     s.author            = { "ma772528138" => "ma772528138@qq.com" }
     s.source            = { :git => "https://github.com/fengyunjue/PODSDKDemo", :tag => s.version.to_s }
