@@ -125,21 +125,21 @@
         // 状态
         if (noConstrainsOnStatusLabel) self.stateLabel.frame = self.bounds;
     } else {
-        CGFloat stateLabelH = self.mj_h * 0.5;
+        CGFloat stateLabelH = self.kf_h * 0.5;
         // 状态
         if (noConstrainsOnStatusLabel) {
-            self.stateLabel.mj_x = 0;
-            self.stateLabel.mj_y = 0;
-            self.stateLabel.mj_w = self.mj_w;
-            self.stateLabel.mj_h = stateLabelH;
+            self.stateLabel.kf_x = 0;
+            self.stateLabel.kf_y = 0;
+            self.stateLabel.kf_w = self.kf_w;
+            self.stateLabel.kf_h = stateLabelH;
         }
         
         // 更新时间
         if (self.lastUpdatedTimeLabel.constraints.count == 0) {
-            self.lastUpdatedTimeLabel.mj_x = 0;
-            self.lastUpdatedTimeLabel.mj_y = stateLabelH;
-            self.lastUpdatedTimeLabel.mj_w = self.mj_w;
-            self.lastUpdatedTimeLabel.mj_h = self.mj_h - self.lastUpdatedTimeLabel.mj_y;
+            self.lastUpdatedTimeLabel.kf_x = 0;
+            self.lastUpdatedTimeLabel.kf_y = stateLabelH;
+            self.lastUpdatedTimeLabel.kf_w = self.kf_w;
+            self.lastUpdatedTimeLabel.kf_h = self.kf_h - self.lastUpdatedTimeLabel.kf_y;
         }
     }
 }

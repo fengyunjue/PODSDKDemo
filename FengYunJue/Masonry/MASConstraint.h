@@ -147,7 +147,7 @@
 - (MASConstraint * (^)(id key))key;
 
 // NSLayoutConstraint constant Setters
-// for use outside of mas_updateConstraints/mas_makeConstraints blocks
+// for use outside of kf_updateConstraints/kf_makeConstraints blocks
 
 /**
  *	Modifies the NSLayoutConstraint constant,
@@ -212,23 +212,23 @@
 /**
  *  Convenience auto-boxing macros for MASConstraint methods.
  *
- *  Defining MAS_SHORTHAND_GLOBALS will turn on auto-boxing for default syntax.
+ *  Defining kf_SHORTHAND_GLOBALS will turn on auto-boxing for default syntax.
  *  A potential drawback of this is that the unprefixed macros will appear in global scope.
  */
-#define mas_equalTo(...)                 equalTo(MASBoxValue((__VA_ARGS__)))
-#define mas_greaterThanOrEqualTo(...)    greaterThanOrEqualTo(MASBoxValue((__VA_ARGS__)))
-#define mas_lessThanOrEqualTo(...)       lessThanOrEqualTo(MASBoxValue((__VA_ARGS__)))
+#define kf_equalTo(...)                 equalTo(MASBoxValue((__VA_ARGS__)))
+#define kf_greaterThanOrEqualTo(...)    greaterThanOrEqualTo(MASBoxValue((__VA_ARGS__)))
+#define kf_lessThanOrEqualTo(...)       lessThanOrEqualTo(MASBoxValue((__VA_ARGS__)))
 
-#define mas_offset(...)                  valueOffset(MASBoxValue((__VA_ARGS__)))
+#define kf_offset(...)                  valueOffset(MASBoxValue((__VA_ARGS__)))
 
 
-#ifdef MAS_SHORTHAND_GLOBALS
+#ifdef kf_SHORTHAND_GLOBALS
 
-#define equalTo(...)                     mas_equalTo(__VA_ARGS__)
-#define greaterThanOrEqualTo(...)        mas_greaterThanOrEqualTo(__VA_ARGS__)
-#define lessThanOrEqualTo(...)           mas_lessThanOrEqualTo(__VA_ARGS__)
+#define equalTo(...)                     kf_equalTo(__VA_ARGS__)
+#define greaterThanOrEqualTo(...)        kf_greaterThanOrEqualTo(__VA_ARGS__)
+#define lessThanOrEqualTo(...)           kf_lessThanOrEqualTo(__VA_ARGS__)
 
-#define offset(...)                      mas_offset(__VA_ARGS__)
+#define offset(...)                      kf_offset(__VA_ARGS__)
 
 #endif
 
@@ -239,13 +239,13 @@
  *  Aliases to corresponding relation methods (for shorthand macros)
  *  Also needed to aid autocompletion
  */
-- (MASConstraint * (^)(id attr))mas_equalTo;
-- (MASConstraint * (^)(id attr))mas_greaterThanOrEqualTo;
-- (MASConstraint * (^)(id attr))mas_lessThanOrEqualTo;
+- (MASConstraint * (^)(id attr))kf_equalTo;
+- (MASConstraint * (^)(id attr))kf_greaterThanOrEqualTo;
+- (MASConstraint * (^)(id attr))kf_lessThanOrEqualTo;
 
 /**
  *  A dummy method to aid autocompletion
  */
-- (MASConstraint * (^)(id offset))mas_offset;
+- (MASConstraint * (^)(id offset))kf_offset;
 
 @end

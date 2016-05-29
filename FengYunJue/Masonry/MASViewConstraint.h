@@ -30,7 +30,7 @@
 /**
  *	initialises the MASViewConstraint with the first part of the equation
  *
- *	@param	firstViewAttribute	view.mas_left, view.mas_width etc.
+ *	@param	firstViewAttribute	view.kf_left, view.kf_width etc.
  *
  *	@return	a new view constraint
  */
@@ -43,6 +43,6 @@
  *
  *  @return An array of MASViewConstraints.
  */
-+ (NSArray *)installedConstraintsForView:(MAS_VIEW *)view;
++ (NSArray *)installedConstraintsForView:(kf_VIEW *)view;
 
 @end

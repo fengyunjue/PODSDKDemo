@@ -18,7 +18,7 @@
 
 @implementation UIView (YYText)
 
-- (UIViewController *)yy_viewController {
+- (UIViewController *)kf_viewController {
     for (UIView *view = self; view; view = view.superview) {
         UIResponder *nextResponder = [view nextResponder];
         if ([nextResponder isKindOfClass:[UIViewController class]]) {
@@ -28,7 +28,7 @@
     return nil;
 }
 
-- (CGFloat)yy_visibleAlpha {
+- (CGFloat)kf_visibleAlpha {
     if ([self isKindOfClass:[UIWindow class]]) {
         if (self.hidden) return 0;
         return self.alpha;
@@ -47,7 +47,7 @@
     return alpha;
 }
 
-- (CGPoint)yy_convertPoint:(CGPoint)point toViewOrWindow:(UIView *)view {
+- (CGPoint)kf_convertPoint:(CGPoint)point toViewOrWindow:(UIView *)view {
     if (!view) {
         if ([self isKindOfClass:[UIWindow class]]) {
             return [((UIWindow *)self) convertPoint:point toWindow:nil];
@@ -65,7 +65,7 @@
     return point;
 }
 
-- (CGPoint)yy_convertPoint:(CGPoint)point fromViewOrWindow:(UIView *)view {
+- (CGPoint)kf_convertPoint:(CGPoint)point fromViewOrWindow:(UIView *)view {
     if (!view) {
         if ([self isKindOfClass:[UIWindow class]]) {
             return [((UIWindow *)self) convertPoint:point fromWindow:nil];
@@ -83,7 +83,7 @@
     return point;
 }
 
-- (CGRect)yy_convertRect:(CGRect)rect toViewOrWindow:(UIView *)view {
+- (CGRect)kf_convertRect:(CGRect)rect toViewOrWindow:(UIView *)view {
     if (!view) {
         if ([self isKindOfClass:[UIWindow class]]) {
             return [((UIWindow *)self) convertRect:rect toWindow:nil];
@@ -102,7 +102,7 @@
     return rect;
 }
 
-- (CGRect)yy_convertRect:(CGRect)rect fromViewOrWindow:(UIView *)view {
+- (CGRect)kf_convertRect:(CGRect)rect fromViewOrWindow:(UIView *)view {
     if (!view) {
         if ([self isKindOfClass:[UIWindow class]]) {
             return [((UIWindow *)self) convertRect:rect fromWindow:nil];

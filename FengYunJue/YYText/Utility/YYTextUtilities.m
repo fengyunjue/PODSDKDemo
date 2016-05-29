@@ -139,9 +139,9 @@ CGAffineTransform YYTextCGAffineTransformGetFromViews(UIView *from, UIView *to) 
     before[0] = CGPointMake(0, 0);
     before[1] = CGPointMake(0, 1);
     before[2] = CGPointMake(1, 0);
-    after[0] = [from yy_convertPoint:before[0] toViewOrWindow:to];
-    after[1] = [from yy_convertPoint:before[1] toViewOrWindow:to];
-    after[2] = [from yy_convertPoint:before[2] toViewOrWindow:to];
+    after[0] = [from kf_convertPoint:before[0] toViewOrWindow:to];
+    after[1] = [from kf_convertPoint:before[1] toViewOrWindow:to];
+    after[2] = [from kf_convertPoint:before[2] toViewOrWindow:to];
     
     return YYTextCGAffineTransformGetFromPoints(before, after);
 }

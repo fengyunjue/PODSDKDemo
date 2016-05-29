@@ -11,7 +11,7 @@
 
 @implementation UIImage (GIF)
 
-+ (UIImage *)sd_animatedGIFWithData:(NSData *)data {
++ (UIImage *)kf_animatedGIFWithData:(NSData *)data {
     if (!data) {
         return nil;
     }
@@ -36,7 +36,7 @@
                 continue;
             }
 
-            duration += [self sd_frameDurationAtIndex:i source:source];
+            duration += [self kf_frameDurationAtIndex:i source:source];
 
             [images addObject:[UIImage imageWithCGImage:image scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp]];
 
@@ -55,7 +55,7 @@
     return animatedImage;
 }
 
-+ (float)sd_frameDurationAtIndex:(NSUInteger)index source:(CGImageSourceRef)source {
++ (float)kf_frameDurationAtIndex:(NSUInteger)index source:(CGImageSourceRef)source {
     float frameDuration = 0.1f;
     CFDictionaryRef cfFrameProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil);
     NSDictionary *frameProperties = (__bridge NSDictionary *)cfFrameProperties;
@@ -86,7 +86,7 @@
     return frameDuration;
 }
 
-+ (UIImage *)sd_animatedGIFNamed:(NSString *)name {
++ (UIImage *)kf_animatedGIFNamed:(NSString *)name {
     CGFloat scale = [UIScreen mainScreen].scale;
 
     if (scale > 1.0f) {
@@ -95,7 +95,7 @@
         NSData *data = [NSData dataWithContentsOfFile:retinaPath];
 
         if (data) {
-            return [UIImage sd_animatedGIFWithData:data];
+            return [UIImage kf_animatedGIFWithData:data];
         }
 
         NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:@"gif"];
@@ -103,7 +103,7 @@
         data = [NSData dataWithContentsOfFile:path];
 
         if (data) {
-            return [UIImage sd_animatedGIFWithData:data];
+            return [UIImage kf_animatedGIFWithData:data];
         }
 
         return [UIImage imageNamed:name];
@@ -114,14 +114,14 @@
         NSData *data = [NSData dataWithContentsOfFile:path];
 
         if (data) {
-            return [UIImage sd_animatedGIFWithData:data];
+            return [UIImage kf_animatedGIFWithData:data];
         }
 
         return [UIImage imageNamed:name];
     }
 }
 
-- (UIImage *)sd_animatedImageByScalingAndCroppingToSize:(CGSize)size {
+- (UIImage *)kf_animatedImageByScalingAndCroppingToSize:(CGSize)size {
     if (CGSizeEqualToSize(self.size, size) || CGSizeEqualToSize(size, CGSizeZero)) {
         return self;
     }

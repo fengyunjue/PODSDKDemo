@@ -18,16 +18,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface UIPasteboard (YYText)
 
-@property (nullable, nonatomic, copy) NSData *yy_PNGData;    ///< PNG file data
-@property (nullable, nonatomic, copy) NSData *yy_JPEGData;   ///< JPEG file data
-@property (nullable, nonatomic, copy) NSData *yy_GIFData;    ///< GIF file data
-@property (nullable, nonatomic, copy) NSData *yy_WEBPData;   ///< WebP file data
-@property (nullable, nonatomic, copy) NSData *yy_ImageData;  ///< image file data
+@property (nullable, nonatomic, copy) NSData *kf_PNGData;    ///< PNG file data
+@property (nullable, nonatomic, copy) NSData *kf_JPEGData;   ///< JPEG file data
+@property (nullable, nonatomic, copy) NSData *kf_GIFData;    ///< GIF file data
+@property (nullable, nonatomic, copy) NSData *kf_WEBPData;   ///< WebP file data
+@property (nullable, nonatomic, copy) NSData *kf_ImageData;  ///< image file data
 
 /// Attributed string,
 /// Set this attributed will also set the string property which is copy from the attributed string.
 /// If the attributed string contains one or more image, it will also set the `images` property.
-@property (nullable, nonatomic, copy) NSAttributedString *yy_AttributedString;
+@property (nullable, nonatomic, copy) NSAttributedString *kf_AttributedString;
 
 @end
 

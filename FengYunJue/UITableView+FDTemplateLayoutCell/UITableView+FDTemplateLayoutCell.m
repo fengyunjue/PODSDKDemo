@@ -25,7 +25,7 @@
 
 @implementation UITableView (FDTemplateLayoutCell)
 
-- (__kindof UITableViewCell *)fd_templateCellForReuseIdentifier:(NSString *)identifier {
+- (__kindof UITableViewCell *)kf_templateCellForReuseIdentifier:(NSString *)identifier {
     NSAssert(identifier.length > 0, @"Expect a valid identifier - %@", identifier);
     
     NSMutableDictionary<NSString *, __kindof UITableViewCell *> *templateCellsByIdentifiers = objc_getAssociatedObject(self, _cmd);
@@ -39,21 +39,21 @@
     if (!templateCell) {
         templateCell = [self dequeueReusableCellWithIdentifier:identifier];
         NSAssert(templateCell != nil, @"Cell must be registered to table view for identifier - %@", identifier);
-        templateCell.fd_isTemplateLayoutCell = YES;
+        templateCell.kf_isTemplateLayoutCell = YES;
         templateCell.contentView.translatesAutoresizingMaskIntoConstraints = NO;
         templateCellsByIdentifiers[identifier] = templateCell;
-        [self fd_debugLog:[NSString stringWithFormat:@"layout cell created - %@", identifier]];
+        [self kf_debugLog:[NSString stringWithFormat:@"layout cell created - %@", identifier]];
     }
     
     return templateCell;
 }
 
-- (CGFloat)fd_heightForCellWithIdentifier:(NSString *)identifier configuration:(void (^)(id cell))configuration {
+- (CGFloat)kf_heightForCellWithIdentifier:(NSString *)identifier configuration:(void (^)(id cell))configuration {
     if (!identifier) {
         return 0;
     }
     
-    UITableViewCell *templateLayoutCell = [self fd_templateCellForReuseIdentifier:identifier];
+    UITableViewCell *templateLayoutCell = [self kf_templateCellForReuseIdentifier:identifier];
     
     // Manually calls to ensure consistent behavior with actual cells (that are displayed on screen).
     [templateLayoutCell prepareForReuse];
@@ -82,7 +82,7 @@
     
     CGSize fittingSize = CGSizeZero;
 
-    if (templateLayoutCell.fd_enforceFrameLayout) {
+    if (templateLayoutCell.kf_enforceFrameLayout) {
         // If not using auto layout, you have to override "-sizeThatFits:" to provide a fitting size by yourself.
         // This is the same method used in iOS8 self-sizing cell's implementation.
         // Note: fitting height should not include separator view.
@@ -110,48 +110,48 @@
         fittingSize.height += 1.0 / [UIScreen mainScreen].scale;
     }
     
-    if (templateLayoutCell.fd_enforceFrameLayout) {
-        [self fd_debugLog:[NSString stringWithFormat:@"calculate using frame layout - %@", @(fittingSize.height)]];
+    if (templateLayoutCell.kf_enforceFrameLayout) {
+        [self kf_debugLog:[NSString stringWithFormat:@"calculate using frame layout - %@", @(fittingSize.height)]];
     } else {
-        [self fd_debugLog:[NSString stringWithFormat:@"calculate using auto layout - %@", @(fittingSize.height)]];
+        [self kf_debugLog:[NSString stringWithFormat:@"calculate using auto layout - %@", @(fittingSize.height)]];
     }
 
     return fittingSize.height;
 }
 
-- (CGFloat)fd_heightForCellWithIdentifier:(NSString *)identifier cacheByIndexPath:(NSIndexPath *)indexPath configuration:(void (^)(id cell))configuration {
+- (CGFloat)kf_heightForCellWithIdentifier:(NSString *)identifier cacheByIndexPath:(NSIndexPath *)indexPath configuration:(void (^)(id cell))configuration {
     if (!identifier || !indexPath) {
         return 0;
     }
 
     // Hit cache
-    if ([self.fd_indexPathHeightCache existsHeightAtIndexPath:indexPath]) {
-        [self fd_debugLog:[NSString stringWithFormat:@"hit cache by index path[%@:%@] - %@", @(indexPath.section), @(indexPath.row), @([self.fd_indexPathHeightCache heightForIndexPath:indexPath])]];
-        return [self.fd_indexPathHeightCache heightForIndexPath:indexPath];
+    if ([self.kf_indexPathHeightCache existsHeightAtIndexPath:indexPath]) {
+        [self kf_debugLog:[NSString stringWithFormat:@"hit cache by index path[%@:%@] - %@", @(indexPath.section), @(indexPath.row), @([self.kf_indexPathHeightCache heightForIndexPath:indexPath])]];
+        return [self.kf_indexPathHeightCache heightForIndexPath:indexPath];
     }
     
-    CGFloat height = [self fd_heightForCellWithIdentifier:identifier configuration:configuration];
-    [self.fd_indexPathHeightCache cacheHeight:height byIndexPath:indexPath];
-    [self fd_debugLog:[NSString stringWithFormat: @"cached by index path[%@:%@] - %@", @(indexPath.section), @(indexPath.row), @(height)]];
+    CGFloat height = [self kf_heightForCellWithIdentifier:identifier configuration:configuration];
+    [self.kf_indexPathHeightCache cacheHeight:height byIndexPath:indexPath];
+    [self kf_debugLog:[NSString stringWithFormat: @"cached by index path[%@:%@] - %@", @(indexPath.section), @(indexPath.row), @(height)]];
     
     return height;
 }
 
-- (CGFloat)fd_heightForCellWithIdentifier:(NSString *)identifier cacheByKey:(id<NSCopying>)key configuration:(void (^)(id cell))configuration {
+- (CGFloat)kf_heightForCellWithIdentifier:(NSString *)identifier cacheByKey:(id<NSCopying>)key configuration:(void (^)(id cell))configuration {
     if (!identifier || !key) {
         return 0;
     }
     
     // Hit cache
-    if ([self.fd_keyedHeightCache existsHeightForKey:key]) {
-        CGFloat cachedHeight = [self.fd_keyedHeightCache heightForKey:key];
-        [self fd_debugLog:[NSString stringWithFormat:@"hit cache by key[%@] - %@", key, @(cachedHeight)]];
+    if ([self.kf_keyedHeightCache existsHeightForKey:key]) {
+        CGFloat cachedHeight = [self.kf_keyedHeightCache heightForKey:key];
+        [self kf_debugLog:[NSString stringWithFormat:@"hit cache by key[%@] - %@", key, @(cachedHeight)]];
         return cachedHeight;
     }
     
-    CGFloat height = [self fd_heightForCellWithIdentifier:identifier configuration:configuration];
-    [self.fd_keyedHeightCache cacheHeight:height byKey:key];
-    [self fd_debugLog:[NSString stringWithFormat:@"cached by key[%@] - %@", key, @(height)]];
+    CGFloat height = [self kf_heightForCellWithIdentifier:identifier configuration:configuration];
+    [self.kf_keyedHeightCache cacheHeight:height byKey:key];
+    [self kf_debugLog:[NSString stringWithFormat:@"cached by key[%@] - %@", key, @(height)]];
 
     return height;
 }
@@ -160,20 +160,20 @@
 
 @implementation UITableViewCell (FDTemplateLayoutCell)
 
-- (BOOL)fd_isTemplateLayoutCell {
+- (BOOL)kf_isTemplateLayoutCell {
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
-- (void)setFd_isTemplateLayoutCell:(BOOL)isTemplateLayoutCell {
-    objc_setAssociatedObject(self, @selector(fd_isTemplateLayoutCell), @(isTemplateLayoutCell), OBJC_ASSOCIATION_RETAIN);
+- (void)setKf_isTemplateLayoutCell:(BOOL)isTemplateLayoutCell {
+    objc_setAssociatedObject(self, @selector(kf_isTemplateLayoutCell), @(isTemplateLayoutCell), OBJC_ASSOCIATION_RETAIN);
 }
 
-- (BOOL)fd_enforceFrameLayout {
+- (BOOL)kf_enforceFrameLayout {
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
-- (void)setFd_enforceFrameLayout:(BOOL)enforceFrameLayout {
-    objc_setAssociatedObject(self, @selector(fd_enforceFrameLayout), @(enforceFrameLayout), OBJC_ASSOCIATION_RETAIN);
+- (void)setKf_enforceFrameLayout:(BOOL)enforceFrameLayout {
+    objc_setAssociatedObject(self, @selector(kf_enforceFrameLayout), @(enforceFrameLayout), OBJC_ASSOCIATION_RETAIN);
 }
 
 @end

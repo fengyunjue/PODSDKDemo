@@ -14,13 +14,13 @@
 
 @interface UIScrollView (MJRefresh)
 /** 下拉刷新控件 */
-@property (strong, nonatomic) MJRefreshHeader *mj_header;
-@property (strong, nonatomic) MJRefreshHeader *header MJRefreshDeprecated("使用mj_header");
+@property (strong, nonatomic) MJRefreshHeader *kf_header;
+@property (strong, nonatomic) MJRefreshHeader *header MJRefreshDeprecated("使用kf_header");
 /** 上拉刷新控件 */
-@property (strong, nonatomic) MJRefreshFooter *mj_footer;
-@property (strong, nonatomic) MJRefreshFooter *footer MJRefreshDeprecated("使用mj_footer");
+@property (strong, nonatomic) MJRefreshFooter *kf_footer;
+@property (strong, nonatomic) MJRefreshFooter *footer MJRefreshDeprecated("使用kf_footer");
 
 #pragma mark - other
-- (NSInteger)mj_totalDataCount;
-@property (copy, nonatomic) void (^mj_reloadDataBlock)(NSInteger totalDataCount);
+- (NSInteger)kf_totalDataCount;
+@property (copy, nonatomic) void (^kf_reloadDataBlock)(NSInteger totalDataCount);
 @end

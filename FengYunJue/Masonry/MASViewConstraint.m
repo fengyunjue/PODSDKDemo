@@ -13,17 +13,17 @@
 #import "View+MASAdditions.h"
 #import <objc/runtime.h>
 
-@interface MAS_VIEW (MASConstraints)
+@interface kf_VIEW (MASConstraints)
 
-@property (nonatomic, readonly) NSMutableSet *mas_installedConstraints;
+@property (nonatomic, readonly) NSMutableSet *kf_installedConstraints;
 
 @end
 
-@implementation MAS_VIEW (MASConstraints)
+@implementation kf_VIEW (MASConstraints)
 
 static char kInstalledConstraintsKey;
 
-- (NSMutableSet *)mas_installedConstraints {
+- (NSMutableSet *)kf_installedConstraints {
     NSMutableSet *constraints = objc_getAssociatedObject(self, &kInstalledConstraintsKey);
     if (!constraints) {
         constraints = [NSMutableSet set];
@@ -38,14 +38,14 @@ static char kInstalledConstraintsKey;
 @interface MASViewConstraint ()
 
 @property (nonatomic, strong, readwrite) MASViewAttribute *secondViewAttribute;
-@property (nonatomic, weak) MAS_VIEW *installedView;
+@property (nonatomic, weak) kf_VIEW *installedView;
 @property (nonatomic, weak) MASLayoutConstraint *layoutConstraint;
 @property (nonatomic, assign) NSLayoutRelation layoutRelation;
 @property (nonatomic, assign) MASLayoutPriority layoutPriority;
 @property (nonatomic, assign) CGFloat layoutMultiplier;
 @property (nonatomic, assign) CGFloat layoutConstant;
 @property (nonatomic, assign) BOOL hasLayoutRelation;
-@property (nonatomic, strong) id mas_key;
+@property (nonatomic, strong) id kf_key;
 @property (nonatomic, assign) BOOL useAnimator;
 
 @end
@@ -77,8 +77,8 @@ static char kInstalledConstraintsKey;
 
 #pragma mark - Public
 
-+ (NSArray *)installedConstraintsForView:(MAS_VIEW *)view {
-    return [view.mas_installedConstraints allObjects];
++ (NSArray *)installedConstraintsForView:(kf_VIEW *)view {
+    return [view.kf_installedConstraints allObjects];
 }
 
 #pragma mark - Private
@@ -122,7 +122,7 @@ static char kInstalledConstraintsKey;
 - (void)setSecondViewAttribute:(id)secondViewAttribute {
     if ([secondViewAttribute isKindOfClass:NSValue.class]) {
         [self setLayoutConstantWithValue:secondViewAttribute];
-    } else if ([secondViewAttribute isKindOfClass:MAS_VIEW.class]) {
+    } else if ([secondViewAttribute isKindOfClass:kf_VIEW.class]) {
         _secondViewAttribute = [[MASViewAttribute alloc] initWithView:secondViewAttribute layoutAttribute:self.firstViewAttribute.layoutAttribute];
     } else if ([secondViewAttribute isKindOfClass:MASViewAttribute.class]) {
         _secondViewAttribute = secondViewAttribute;
@@ -224,7 +224,7 @@ static char kInstalledConstraintsKey;
 
 - (MASConstraint * (^)(id))key {
     return ^id(id key) {
-        self.mas_key = key;
+        self.kf_key = key;
         return self;
     };
 }
@@ -302,13 +302,13 @@ static char kInstalledConstraintsKey;
     
     if ([self supportsActiveProperty] && self.layoutConstraint) {
         self.layoutConstraint.active = YES;
-        [self.firstViewAttribute.view.mas_installedConstraints addObject:self];
+        [self.firstViewAttribute.view.kf_installedConstraints addObject:self];
         return;
     }
     
-    MAS_VIEW *firstLayoutItem = self.firstViewAttribute.item;
+    kf_VIEW *firstLayoutItem = self.firstViewAttribute.item;
     NSLayoutAttribute firstLayoutAttribute = self.firstViewAttribute.layoutAttribute;
-    MAS_VIEW *secondLayoutItem = self.secondViewAttribute.item;
+    kf_VIEW *secondLayoutItem = self.secondViewAttribute.item;
     NSLayoutAttribute secondLayoutAttribute = self.secondViewAttribute.layoutAttribute;
 
     // alignment attributes must have a secondViewAttribute
@@ -329,10 +329,10 @@ static char kInstalledConstraintsKey;
                                          constant:self.layoutConstant];
     
     layoutConstraint.priority = self.layoutPriority;
-    layoutConstraint.mas_key = self.mas_key;
+    layoutConstraint.kf_key = self.kf_key;
     
     if (self.secondViewAttribute.view) {
-        MAS_VIEW *closestCommonSuperview = [self.firstViewAttribute.view mas_closestCommonSuperview:self.secondViewAttribute.view];
+        kf_VIEW *closestCommonSuperview = [self.firstViewAttribute.view kf_closestCommonSuperview:self.secondViewAttribute.view];
         NSAssert(closestCommonSuperview,
                  @"couldn't find a common superview for %@ and %@",
                  self.firstViewAttribute.view, self.secondViewAttribute.view);
@@ -355,7 +355,7 @@ static char kInstalledConstraintsKey;
     } else {
         [self.installedView addConstraint:layoutConstraint];
         self.layoutConstraint = layoutConstraint;
-        [firstLayoutItem.mas_installedConstraints addObject:self];
+        [firstLayoutItem.kf_installedConstraints addObject:self];
     }
 }
 
@@ -382,7 +382,7 @@ static char kInstalledConstraintsKey;
 - (void)uninstall {
     if ([self supportsActiveProperty]) {
         self.layoutConstraint.active = NO;
-        [self.firstViewAttribute.view.mas_installedConstraints removeObject:self];
+        [self.firstViewAttribute.view.kf_installedConstraints removeObject:self];
         return;
     }
     
@@ -390,7 +390,7 @@ static char kInstalledConstraintsKey;
     self.layoutConstraint = nil;
     self.installedView = nil;
     
-    [self.firstViewAttribute.view.mas_installedConstraints removeObject:self];
+    [self.firstViewAttribute.view.kf_installedConstraints removeObject:self];
 }
 
 @end

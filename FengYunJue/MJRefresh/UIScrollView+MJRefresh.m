@@ -30,44 +30,44 @@
 
 #pragma mark - header
 static const char MJRefreshHeaderKey = '\0';
-- (void)setMj_header:(MJRefreshHeader *)mj_header
+- (void)setKf_header:(MJRefreshHeader *)kf_header
 {
-    if (mj_header != self.mj_header) {
+    if (kf_header != self.kf_header) {
         // 删除旧的，添加新的
-        [self.mj_header removeFromSuperview];
-        [self insertSubview:mj_header atIndex:0];
+        [self.kf_header removeFromSuperview];
+        [self insertSubview:kf_header atIndex:0];
         
         // 存储新的
-        [self willChangeValueForKey:@"mj_header"]; // KVO
+        [self willChangeValueForKey:@"kf_header"]; // KVO
         objc_setAssociatedObject(self, &MJRefreshHeaderKey,
-                                 mj_header, OBJC_ASSOCIATION_ASSIGN);
-        [self didChangeValueForKey:@"mj_header"]; // KVO
+                                 kf_header, OBJC_ASSOCIATION_ASSIGN);
+        [self didChangeValueForKey:@"kf_header"]; // KVO
     }
 }
 
-- (MJRefreshHeader *)mj_header
+- (MJRefreshHeader *)kf_header
 {
     return objc_getAssociatedObject(self, &MJRefreshHeaderKey);
 }
 
 #pragma mark - footer
 static const char MJRefreshFooterKey = '\0';
-- (void)setMj_footer:(MJRefreshFooter *)mj_footer
+- (void)setKf_footer:(MJRefreshFooter *)kf_footer
 {
-    if (mj_footer != self.mj_footer) {
+    if (kf_footer != self.kf_footer) {
         // 删除旧的，添加新的
-        [self.mj_footer removeFromSuperview];
-        [self addSubview:mj_footer];
+        [self.kf_footer removeFromSuperview];
+        [self addSubview:kf_footer];
         
         // 存储新的
-        [self willChangeValueForKey:@"mj_footer"]; // KVO
+        [self willChangeValueForKey:@"kf_footer"]; // KVO
         objc_setAssociatedObject(self, &MJRefreshFooterKey,
-                                 mj_footer, OBJC_ASSOCIATION_ASSIGN);
-        [self didChangeValueForKey:@"mj_footer"]; // KVO
+                                 kf_footer, OBJC_ASSOCIATION_ASSIGN);
+        [self didChangeValueForKey:@"kf_footer"]; // KVO
     }
 }
 
-- (MJRefreshFooter *)mj_footer
+- (MJRefreshFooter *)kf_footer
 {
     return objc_getAssociatedObject(self, &MJRefreshFooterKey);
 }
@@ -75,26 +75,26 @@ static const char MJRefreshFooterKey = '\0';
 #pragma mark - 过期
 - (void)setFooter:(MJRefreshFooter *)footer
 {
-    self.mj_footer = footer;
+    self.kf_footer = footer;
 }
 
 - (MJRefreshFooter *)footer
 {
-    return self.mj_footer;
+    return self.kf_footer;
 }
 
 - (void)setHeader:(MJRefreshHeader *)header
 {
-    self.mj_header = header;
+    self.kf_header = header;
 }
 
 - (MJRefreshHeader *)header
 {
-    return self.mj_header;
+    return self.kf_header;
 }
 
 #pragma mark - other
-- (NSInteger)mj_totalDataCount
+- (NSInteger)kf_totalDataCount
 {
     NSInteger totalCount = 0;
     if ([self isKindOfClass:[UITableView class]]) {
@@ -114,21 +114,21 @@ static const char MJRefreshFooterKey = '\0';
 }
 
 static const char MJRefreshReloadDataBlockKey = '\0';
-- (void)setMj_reloadDataBlock:(void (^)(NSInteger))mj_reloadDataBlock
+- (void)setKf_reloadDataBlock:(void (^)(NSInteger))kf_reloadDataBlock
 {
-    [self willChangeValueForKey:@"mj_reloadDataBlock"]; // KVO
-    objc_setAssociatedObject(self, &MJRefreshReloadDataBlockKey, mj_reloadDataBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    [self didChangeValueForKey:@"mj_reloadDataBlock"]; // KVO
+    [self willChangeValueForKey:@"kf_reloadDataBlock"]; // KVO
+    objc_setAssociatedObject(self, &MJRefreshReloadDataBlockKey, kf_reloadDataBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self didChangeValueForKey:@"kf_reloadDataBlock"]; // KVO
 }
 
-- (void (^)(NSInteger))mj_reloadDataBlock
+- (void (^)(NSInteger))kf_reloadDataBlock
 {
     return objc_getAssociatedObject(self, &MJRefreshReloadDataBlockKey);
 }
 
 - (void)executeReloadDataBlock
 {
-    !self.mj_reloadDataBlock ? : self.mj_reloadDataBlock(self.mj_totalDataCount);
+    !self.kf_reloadDataBlock ? : self.kf_reloadDataBlock(self.kf_totalDataCount);
 }
 @end
 
@@ -136,12 +136,12 @@ static const char MJRefreshReloadDataBlockKey = '\0';
 
 + (void)load
 {
-    [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];
+    [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(kf_reloadData)];
 }
 
-- (void)mj_reloadData
+- (void)kf_reloadData
 {
-    [self mj_reloadData];
+    [self kf_reloadData];
     
     [self executeReloadDataBlock];
 }
@@ -151,12 +151,12 @@ static const char MJRefreshReloadDataBlockKey = '\0';
 
 + (void)load
 {
-    [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(mj_reloadData)];
+    [self exchangeInstanceMethod1:@selector(reloadData) method2:@selector(kf_reloadData)];
 }
 
-- (void)mj_reloadData
+- (void)kf_reloadData
 {
-    [self mj_reloadData];
+    [self kf_reloadData];
     
     [self executeReloadDataBlock];
 }

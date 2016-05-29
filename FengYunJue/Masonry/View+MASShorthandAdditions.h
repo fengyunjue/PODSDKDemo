@@ -8,13 +8,13 @@
 
 #import "View+MASAdditions.h"
 
-#ifdef MAS_SHORTHAND
+#ifdef kf_SHORTHAND
 
 /**
- *	Shorthand view additions without the 'mas_' prefixes,
- *  only enabled if MAS_SHORTHAND is defined
+ *	Shorthand view additions without the 'kf_' prefixes,
+ *  only enabled if kf_SHORTHAND is defined
  */
-@interface MAS_VIEW (MASShorthandAdditions)
+@interface kf_VIEW (MASShorthandAdditions)
 
 @property (nonatomic, strong, readonly) MASViewAttribute *left;
 @property (nonatomic, strong, readonly) MASViewAttribute *top;
@@ -48,52 +48,52 @@
 
 @end
 
-#define MAS_ATTR_FORWARD(attr)  \
+#define kf_ATTR_FORWARD(attr)  \
 - (MASViewAttribute *)attr {    \
-    return [self mas_##attr];   \
+    return [self kf_##attr];   \
 }
 
-@implementation MAS_VIEW (MASShorthandAdditions)
+@implementation kf_VIEW (MASShorthandAdditions)
 
-MAS_ATTR_FORWARD(top);
-MAS_ATTR_FORWARD(left);
-MAS_ATTR_FORWARD(bottom);
-MAS_ATTR_FORWARD(right);
-MAS_ATTR_FORWARD(leading);
-MAS_ATTR_FORWARD(trailing);
-MAS_ATTR_FORWARD(width);
-MAS_ATTR_FORWARD(height);
-MAS_ATTR_FORWARD(centerX);
-MAS_ATTR_FORWARD(centerY);
-MAS_ATTR_FORWARD(baseline);
+kf_ATTR_FORWARD(top);
+kf_ATTR_FORWARD(left);
+kf_ATTR_FORWARD(bottom);
+kf_ATTR_FORWARD(right);
+kf_ATTR_FORWARD(leading);
+kf_ATTR_FORWARD(trailing);
+kf_ATTR_FORWARD(width);
+kf_ATTR_FORWARD(height);
+kf_ATTR_FORWARD(centerX);
+kf_ATTR_FORWARD(centerY);
+kf_ATTR_FORWARD(baseline);
 
 #if TARGET_OS_IPHONE || TARGET_OS_TV
 
-MAS_ATTR_FORWARD(leftMargin);
-MAS_ATTR_FORWARD(rightMargin);
-MAS_ATTR_FORWARD(topMargin);
-MAS_ATTR_FORWARD(bottomMargin);
-MAS_ATTR_FORWARD(leadingMargin);
-MAS_ATTR_FORWARD(trailingMargin);
-MAS_ATTR_FORWARD(centerXWithinMargins);
-MAS_ATTR_FORWARD(centerYWithinMargins);
+kf_ATTR_FORWARD(leftMargin);
+kf_ATTR_FORWARD(rightMargin);
+kf_ATTR_FORWARD(topMargin);
+kf_ATTR_FORWARD(bottomMargin);
+kf_ATTR_FORWARD(leadingMargin);
+kf_ATTR_FORWARD(trailingMargin);
+kf_ATTR_FORWARD(centerXWithinMargins);
+kf_ATTR_FORWARD(centerYWithinMargins);
 
 #endif
 
 - (MASViewAttribute *(^)(NSLayoutAttribute))attribute {
-    return [self mas_attribute];
+    return [self kf_attribute];
 }
 
 - (NSArray *)makeConstraints:(void(^)(MASConstraintMaker *))block {
-    return [self mas_makeConstraints:block];
+    return [self kf_makeConstraints:block];
 }
 
 - (NSArray *)updateConstraints:(void(^)(MASConstraintMaker *))block {
-    return [self mas_updateConstraints:block];
+    return [self kf_updateConstraints:block];
 }
 
 - (NSArray *)remakeConstraints:(void(^)(MASConstraintMaker *))block {
-    return [self mas_remakeConstraints:block];
+    return [self kf_remakeConstraints:block];
 }
 
 @end

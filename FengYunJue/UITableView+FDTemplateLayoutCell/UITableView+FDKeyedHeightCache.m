@@ -74,7 +74,7 @@
 
 @implementation UITableView (FDKeyedHeightCache)
 
-- (FDKeyedHeightCache *)fd_keyedHeightCache {
+- (FDKeyedHeightCache *)kf_keyedHeightCache {
     FDKeyedHeightCache *cache = objc_getAssociatedObject(self, _cmd);
     if (!cache) {
         cache = [FDKeyedHeightCache new];

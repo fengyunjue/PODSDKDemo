@@ -8,7 +8,7 @@
 
 @implementation NSData (ImageContentType)
 
-+ (NSString *)sd_contentTypeForImageData:(NSData *)data {
++ (NSString *)kf_contentTypeForImageData:(NSData *)data {
     uint8_t c;
     [data getBytes:&c length:1];
     switch (c) {
@@ -43,7 +43,7 @@
 @implementation NSData (ImageContentTypeDeprecated)
 
 + (NSString *)contentTypeForImageData:(NSData *)data {
-    return [self sd_contentTypeForImageData:data];
+    return [self kf_contentTypeForImageData:data];
 }
 
 @end

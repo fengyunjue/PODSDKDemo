@@ -229,7 +229,7 @@
     UIView *hostView = mag.hostView;
     UIWindow *hostWindow = [hostView isKindOfClass:[UIWindow class]] ? (id)hostView : hostView.window;
     if (!hostView || !hostWindow) return 0;
-    CGPoint captureCenter = [self yy_convertPoint:mag.hostCaptureCenter fromViewOrWindow:hostView];
+    CGPoint captureCenter = [self kf_convertPoint:mag.hostCaptureCenter fromViewOrWindow:hostView];
     captureCenter = [self _correctedCaptureCenter:captureCenter];
     CGRect captureRect = {.size = mag.snapshotSize};
     captureRect.origin.x = captureCenter.x - captureRect.size.width / 2;
@@ -303,7 +303,7 @@
     if (mag.superview != self) [self addSubview:mag];
     [self _updateWindowLevel];
     CGFloat rotation = [self _updateMagnifier:mag];
-    CGPoint center = [self yy_convertPoint:mag.hostPopoverCenter fromViewOrWindow:mag.hostView];
+    CGPoint center = [self kf_convertPoint:mag.hostPopoverCenter fromViewOrWindow:mag.hostView];
     CGAffineTransform trans = CGAffineTransformMakeRotation(rotation);
     trans = CGAffineTransformScale(trans, 0.3, 0.3);
     mag.transform = trans;
@@ -333,7 +333,7 @@
     if (!mag) return;
     [self _updateWindowLevel];
     CGFloat rotation = [self _updateMagnifier:mag];
-    CGPoint center = [self yy_convertPoint:mag.hostPopoverCenter fromViewOrWindow:mag.hostView];
+    CGPoint center = [self kf_convertPoint:mag.hostPopoverCenter fromViewOrWindow:mag.hostView];
     if (mag.type == YYTextMagnifierTypeCaret) {
         CGPoint newCenter = CGPointMake(0, -mag.fitSize.height / 2);
         newCenter = CGPointApplyAffineTransform(newCenter, CGAffineTransformMakeRotation(rotation));
@@ -350,7 +350,7 @@
     if (!mag) return;
     if (mag.superview != self) return;
     CGFloat rotation = [self _updateMagnifier:mag];
-    CGPoint center = [self yy_convertPoint:mag.hostPopoverCenter fromViewOrWindow:mag.hostView];
+    CGPoint center = [self kf_convertPoint:mag.hostPopoverCenter fromViewOrWindow:mag.hostView];
     NSTimeInterval time = mag.type == YYTextMagnifierTypeCaret ? 0.20 : 0.15;
     [UIView animateWithDuration:time delay:0 options:UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionBeginFromCurrentState animations:^{
         
@@ -380,8 +380,8 @@
 
 - (void)_updateSelectionGrabberDot:(YYSelectionGrabberDot *)dot selection:(YYTextSelectionView *)selection{
     dot.mirror.hidden = YES;
-    if (selection.hostView.clipsToBounds == YES && dot.yy_visibleAlpha > 0.1) {
-        CGRect dotRect = [dot yy_convertRect:dot.bounds toViewOrWindow:self];
+    if (selection.hostView.clipsToBounds == YES && dot.kf_visibleAlpha > 0.1) {
+        CGRect dotRect = [dot kf_convertRect:dot.bounds toViewOrWindow:self];
         BOOL dotInKeyboard = NO;
         
         CGRect keyboardFrame = [YYTextKeyboardManager defaultManager].keyboardFrame;
@@ -403,7 +403,7 @@
             }
         }
     }
-    CGPoint center = [dot yy_convertPoint:CGPointMake(CGRectGetWidth(dot.frame) / 2, CGRectGetHeight(dot.frame) / 2) toViewOrWindow:self];
+    CGPoint center = [dot kf_convertPoint:CGPointMake(CGRectGetWidth(dot.frame) / 2, CGRectGetHeight(dot.frame) / 2) toViewOrWindow:self];
     if (isnan(center.x) || isnan(center.y) || isinf(center.x) || isinf(center.y)) {
         dot.mirror.hidden = YES;
     } else {

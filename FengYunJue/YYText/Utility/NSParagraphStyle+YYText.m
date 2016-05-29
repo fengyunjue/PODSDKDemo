@@ -20,7 +20,7 @@
 
 @implementation NSParagraphStyle (YYText)
 
-+ (NSParagraphStyle *)yy_styleWithCTStyle:(CTParagraphStyleRef)CTStyle {
++ (NSParagraphStyle *)kf_styleWithCTStyle:(CTParagraphStyleRef)CTStyle {
     if (CTStyle == NULL) return nil;
     
     NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
@@ -113,7 +113,7 @@
     return style;
 }
 
-- (CTParagraphStyleRef)yy_CTStyle CF_RETURNS_RETAINED {
+- (CTParagraphStyleRef)kf_CTStyle CF_RETURNS_RETAINED {
     CTParagraphStyleSetting set[kCTParagraphStyleSpecifierCount] = { 0 };
     int count = 0;
     

@@ -22,7 +22,7 @@
  *
  * @param url The url for the image.
  */
-- (void)sd_setHighlightedImageWithURL:(NSURL *)url;
+- (void)kf_setHighlightedImageWithURL:(NSURL *)url;
 
 /**
  * Set the imageView `highlightedImage` with an `url` and custom options.
@@ -32,7 +32,7 @@
  * @param url     The url for the image.
  * @param options The options to use when downloading the image. @see SDWebImageOptions for the possible values.
  */
-- (void)sd_setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options;
+- (void)kf_setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options;
 
 /**
  * Set the imageView `highlightedImage` with an `url`.
@@ -46,7 +46,7 @@
  *                       indicating if the image was retrieved from the local cache or from the network.
  *                       The fourth parameter is the original image url.
  */
-- (void)sd_setHighlightedImageWithURL:(NSURL *)url completed:(SDWebImageCompletionBlock)completedBlock;
+- (void)kf_setHighlightedImageWithURL:(NSURL *)url completed:(SDWebImageCompletionBlock)completedBlock;
 
 /**
  * Set the imageView `highlightedImage` with an `url` and custom options.
@@ -61,7 +61,7 @@
  *                       indicating if the image was retrieved from the local cache or from the network.
  *                       The fourth parameter is the original image url.
  */
-- (void)sd_setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options completed:(SDWebImageCompletionBlock)completedBlock;
+- (void)kf_setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options completed:(SDWebImageCompletionBlock)completedBlock;
 
 /**
  * Set the imageView `highlightedImage` with an `url` and custom options.
@@ -77,24 +77,24 @@
  *                       indicating if the image was retrieved from the local cache or from the network.
  *                       The fourth parameter is the original image url.
  */
-- (void)sd_setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletionBlock)completedBlock;
+- (void)kf_setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletionBlock)completedBlock;
 
 /**
  * Cancel the current download
  */
-- (void)sd_cancelCurrentHighlightedImageLoad;
+- (void)kf_cancelCurrentHighlightedImageLoad;
 
 @end
 
 
 @interface UIImageView (HighlightedWebCacheDeprecated)
 
-- (void)setHighlightedImageWithURL:(NSURL *)url __deprecated_msg("Method deprecated. Use `sd_setHighlightedImageWithURL:`");
-- (void)setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options __deprecated_msg("Method deprecated. Use `sd_setHighlightedImageWithURL:options:`");
-- (void)setHighlightedImageWithURL:(NSURL *)url completed:(SDWebImageCompletedBlock)completedBlock __deprecated_msg("Method deprecated. Use `sd_setHighlightedImageWithURL:completed:`");
-- (void)setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options completed:(SDWebImageCompletedBlock)completedBlock __deprecated_msg("Method deprecated. Use `sd_setHighlightedImageWithURL:options:completed:`");
-- (void)setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedBlock)completedBlock __deprecated_msg("Method deprecated. Use `sd_setHighlightedImageWithURL:options:progress:completed:`");
+- (void)setHighlightedImageWithURL:(NSURL *)url __deprecated_msg("Method deprecated. Use `kf_setHighlightedImageWithURL:`");
+- (void)setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options __deprecated_msg("Method deprecated. Use `kf_setHighlightedImageWithURL:options:`");
+- (void)setHighlightedImageWithURL:(NSURL *)url completed:(SDWebImageCompletedBlock)completedBlock __deprecated_msg("Method deprecated. Use `kf_setHighlightedImageWithURL:completed:`");
+- (void)setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options completed:(SDWebImageCompletedBlock)completedBlock __deprecated_msg("Method deprecated. Use `kf_setHighlightedImageWithURL:options:completed:`");
+- (void)setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedBlock)completedBlock __deprecated_msg("Method deprecated. Use `kf_setHighlightedImageWithURL:options:progress:completed:`");
 
-- (void)cancelCurrentHighlightedImageLoad __deprecated_msg("Use `sd_cancelCurrentHighlightedImageLoad`");
+- (void)cancelCurrentHighlightedImageLoad __deprecated_msg("Use `kf_cancelCurrentHighlightedImageLoad`");
 
 @end

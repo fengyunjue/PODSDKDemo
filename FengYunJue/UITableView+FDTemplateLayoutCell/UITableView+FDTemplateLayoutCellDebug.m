@@ -25,16 +25,16 @@
 
 @implementation UITableView (FDTemplateLayoutCellDebug)
 
-- (BOOL)fd_debugLogEnabled {
+- (BOOL)kf_debugLogEnabled {
     return [objc_getAssociatedObject(self, _cmd) boolValue];
 }
 
-- (void)setFd_debugLogEnabled:(BOOL)debugLogEnabled {
-    objc_setAssociatedObject(self, @selector(fd_debugLogEnabled), @(debugLogEnabled), OBJC_ASSOCIATION_RETAIN);
+- (void)setKf_debugLogEnabled:(BOOL)debugLogEnabled {
+    objc_setAssociatedObject(self, @selector(kf_debugLogEnabled), @(debugLogEnabled), OBJC_ASSOCIATION_RETAIN);
 }
 
-- (void)fd_debugLog:(NSString *)message {
-    if (self.fd_debugLogEnabled) {
+- (void)kf_debugLog:(NSString *)message {
+    if (self.kf_debugLogEnabled) {
         NSLog(@"** FDTemplateLayoutCell ** %@", message);
     }
 }

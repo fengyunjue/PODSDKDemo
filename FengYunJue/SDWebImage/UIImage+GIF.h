@@ -10,10 +10,10 @@
 
 @interface UIImage (GIF)
 
-+ (UIImage *)sd_animatedGIFNamed:(NSString *)name;
++ (UIImage *)kf_animatedGIFNamed:(NSString *)name;
 
-+ (UIImage *)sd_animatedGIFWithData:(NSData *)data;
++ (UIImage *)kf_animatedGIFWithData:(NSData *)data;
 
-- (UIImage *)sd_animatedImageByScalingAndCroppingToSize:(CGSize)size;
+- (UIImage *)kf_animatedImageByScalingAndCroppingToSize:(CGSize)size;
 
 @end

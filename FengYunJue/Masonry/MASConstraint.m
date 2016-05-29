@@ -30,7 +30,7 @@
     };
 }
 
-- (MASConstraint * (^)(id))mas_equalTo {
+- (MASConstraint * (^)(id))kf_equalTo {
     return ^id(id attribute) {
         return self.equalToWithRelation(attribute, NSLayoutRelationEqual);
     };
@@ -42,7 +42,7 @@
     };
 }
 
-- (MASConstraint * (^)(id))mas_greaterThanOrEqualTo {
+- (MASConstraint * (^)(id))kf_greaterThanOrEqualTo {
     return ^id(id attribute) {
         return self.equalToWithRelation(attribute, NSLayoutRelationGreaterThanOrEqual);
     };
@@ -54,7 +54,7 @@
     };
 }
 
-- (MASConstraint * (^)(id))mas_lessThanOrEqualTo {
+- (MASConstraint * (^)(id))kf_lessThanOrEqualTo {
     return ^id(id attribute) {
         return self.equalToWithRelation(attribute, NSLayoutRelationLessThanOrEqual);
     };
@@ -121,7 +121,7 @@
     };
 }
 
-- (MASConstraint * (^)(id offset))mas_offset {
+- (MASConstraint * (^)(id offset))kf_offset {
     // Will never be called due to macro
     return nil;
 }

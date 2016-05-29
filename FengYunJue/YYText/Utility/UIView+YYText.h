@@ -21,12 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Returns the view's view controller (may be nil).
  */
-@property (nullable, nonatomic, readonly) UIViewController *yy_viewController;
+@property (nullable, nonatomic, readonly) UIViewController *kf_viewController;
 
 /**
  Returns the visible alpha on screen, taking into account superview and window.
  */
-@property (nonatomic, readonly) CGFloat yy_visibleAlpha;
+@property (nonatomic, readonly) CGFloat kf_visibleAlpha;
 
 /**
  Converts a point from the receiver's coordinate system to that of the specified view or window.
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  If view is nil, this method instead converts to window base coordinates.
  @return The point converted to the coordinate system of view.
  */
-- (CGPoint)yy_convertPoint:(CGPoint)point toViewOrWindow:(UIView *)view;
+- (CGPoint)kf_convertPoint:(CGPoint)point toViewOrWindow:(UIView *)view;
 
 /**
  Converts a point from the coordinate system of a given view or window to that of the receiver.
@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
  If view is nil, this method instead converts from window base coordinates.
  @return The point converted to the local coordinate system (bounds) of the receiver.
  */
-- (CGPoint)yy_convertPoint:(CGPoint)point fromViewOrWindow:(UIView *)view;
+- (CGPoint)kf_convertPoint:(CGPoint)point fromViewOrWindow:(UIView *)view;
 
 /**
  Converts a rectangle from the receiver's coordinate system to that of another view or window.
@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param view The view or window that is the target of the conversion operation. If view is nil, this method instead converts to window base coordinates.
  @return The converted rectangle.
  */
-- (CGRect)yy_convertRect:(CGRect)rect toViewOrWindow:(UIView *)view;
+- (CGRect)kf_convertRect:(CGRect)rect toViewOrWindow:(UIView *)view;
 
 /**
  Converts a rectangle from the coordinate system of another view or window to that of the receiver.
@@ -65,7 +65,7 @@ NS_ASSUME_NONNULL_BEGIN
  If view is nil, this method instead converts from window base coordinates.
  @return The converted rectangle.
  */
-- (CGRect)yy_convertRect:(CGRect)rect fromViewOrWindow:(UIView *)view;
+- (CGRect)kf_convertRect:(CGRect)rect fromViewOrWindow:(UIView *)view;
 
 @end
 

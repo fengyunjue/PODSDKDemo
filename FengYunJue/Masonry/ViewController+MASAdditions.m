@@ -8,27 +8,27 @@
 
 #import "ViewController+MASAdditions.h"
 
-#ifdef MAS_VIEW_CONTROLLER
+#ifdef kf_VIEW_CONTROLLER
 
-@implementation MAS_VIEW_CONTROLLER (MASAdditions)
+@implementation kf_VIEW_CONTROLLER (MASAdditions)
 
-- (MASViewAttribute *)mas_topLayoutGuide {
+- (MASViewAttribute *)kf_topLayoutGuide {
     return [[MASViewAttribute alloc] initWithView:self.view item:self.topLayoutGuide layoutAttribute:NSLayoutAttributeBottom];
 }
-- (MASViewAttribute *)mas_topLayoutGuideTop {
+- (MASViewAttribute *)kf_topLayoutGuideTop {
     return [[MASViewAttribute alloc] initWithView:self.view item:self.topLayoutGuide layoutAttribute:NSLayoutAttributeTop];
 }
-- (MASViewAttribute *)mas_topLayoutGuideBottom {
+- (MASViewAttribute *)kf_topLayoutGuideBottom {
     return [[MASViewAttribute alloc] initWithView:self.view item:self.topLayoutGuide layoutAttribute:NSLayoutAttributeBottom];
 }
 
-- (MASViewAttribute *)mas_bottomLayoutGuide {
+- (MASViewAttribute *)kf_bottomLayoutGuide {
     return [[MASViewAttribute alloc] initWithView:self.view item:self.bottomLayoutGuide layoutAttribute:NSLayoutAttributeTop];
 }
-- (MASViewAttribute *)mas_bottomLayoutGuideTop {
+- (MASViewAttribute *)kf_bottomLayoutGuideTop {
     return [[MASViewAttribute alloc] initWithView:self.view item:self.bottomLayoutGuide layoutAttribute:NSLayoutAttributeTop];
 }
-- (MASViewAttribute *)mas_bottomLayoutGuideBottom {
+- (MASViewAttribute *)kf_bottomLayoutGuideBottom {
     return [[MASViewAttribute alloc] initWithView:self.view item:self.bottomLayoutGuide layoutAttribute:NSLayoutAttributeBottom];
 }
 

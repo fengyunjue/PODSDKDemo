@@ -10,12 +10,12 @@
 
 @implementation MASViewAttribute
 
-- (id)initWithView:(MAS_VIEW *)view layoutAttribute:(NSLayoutAttribute)layoutAttribute {
+- (id)initWithView:(kf_VIEW *)view layoutAttribute:(NSLayoutAttribute)layoutAttribute {
     self = [self initWithView:view item:view layoutAttribute:layoutAttribute];
     return self;
 }
 
-- (id)initWithView:(MAS_VIEW *)view item:(id)item layoutAttribute:(NSLayoutAttribute)layoutAttribute {
+- (id)initWithView:(kf_VIEW *)view item:(id)item layoutAttribute:(NSLayoutAttribute)layoutAttribute {
     self = [super init];
     if (!self) return nil;
     
@@ -40,7 +40,7 @@
 }
 
 - (NSUInteger)hash {
-    return MAS_NSUINTROTATE([self.view hash], MAS_NSUINT_BIT / 2) ^ self.layoutAttribute;
+    return kf_NSUINTROTATE([self.view hash], kf_NSUINT_BIT / 2) ^ self.layoutAttribute;
 }
 
 @end

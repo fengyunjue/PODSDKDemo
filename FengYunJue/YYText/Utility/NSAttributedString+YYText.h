@@ -32,14 +32,14 @@ NS_ASSUME_NONNULL_BEGIN
  Archive the string to data.
  @return Returns nil if an error occurs.
  */
-- (nullable NSData *)yy_archiveToData;
+- (nullable NSData *)kf_archiveToData;
 
 /**
  Unarchive string from data.
  @param data  The archived attributed string data.
  @return Returns nil if an error occurs.
  */
-+ (nullable instancetype)yy_unarchiveFromData:(NSData *)data;
++ (nullable instancetype)kf_unarchiveFromData:(NSData *)data;
 
 
 
@@ -51,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Returns the attributes at first charactor.
  */
-@property (nullable, nonatomic, copy, readonly) NSDictionary<NSString *, id> *yy_attributes;
+@property (nullable, nonatomic, copy, readonly) NSDictionary<NSString *, id> *kf_attributes;
 
 /**
  Returns the attributes for the character at a given index.
@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return The attributes for the character at index.
  */
-- (nullable NSDictionary<NSString *, id> *)yy_attributesAtIndex:(NSUInteger)index;
+- (nullable NSDictionary<NSString *, id> *)kf_attributesAtIndex:(NSUInteger)index;
 
 /**
  Returns the value for an attribute with a given name of the character at a given index.
@@ -79,7 +79,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return The value for the attribute named `attributeName` of the character at 
  index `index`, or nil if there is no such attribute.
  */
-- (nullable id)yy_attribute:(NSString *)attributeName atIndex:(NSUInteger)index;
+- (nullable id)kf_attribute:(NSString *)attributeName atIndex:(NSUInteger)index;
 
 
 #pragma mark - Get character attribute as property
@@ -94,8 +94,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:3.2  UIKit:6.0  YYText:6.0
  */
-@property (nullable, nonatomic, strong, readonly) UIFont *yy_font;
-- (nullable UIFont *)yy_fontAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) UIFont *kf_font;
+- (nullable UIFont *)kf_fontAtIndex:(NSUInteger)index;
 
 /**
  A kerning adjustment. (read-only)
@@ -109,8 +109,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:3.2  UIKit:6.0  YYText:6.0
  */
-@property (nullable, nonatomic, strong, readonly) NSNumber *yy_kern;
-- (nullable NSNumber *)yy_kernAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) NSNumber *kf_kern;
+- (nullable NSNumber *)kf_kernAtIndex:(NSUInteger)index;
 
 /**
  The foreground color. (read-only)
@@ -119,8 +119,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:3.2  UIKit:6.0  YYText:6.0
  */
-@property (nullable, nonatomic, strong, readonly) UIColor *yy_color;
-- (nullable UIColor *)yy_colorAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) UIColor *kf_color;
+- (nullable UIColor *)kf_colorAtIndex:(NSUInteger)index;
 
 /**
  The background color. (read-only)
@@ -129,8 +129,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since UIKit:6.0
  */
-@property (nullable, nonatomic, strong, readonly) UIColor *yy_backgroundColor;
-- (nullable UIColor *)yy_backgroundColorAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) UIColor *kf_backgroundColor;
+- (nullable UIColor *)kf_backgroundColorAtIndex:(NSUInteger)index;
 
 /**
  The stroke width. (read-only)
@@ -142,8 +142,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:3.2  UIKit:6.0
  */
-@property (nullable, nonatomic, strong, readonly) NSNumber *yy_strokeWidth;
-- (nullable NSNumber *)yy_strokeWidthAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) NSNumber *kf_strokeWidth;
+- (nullable NSNumber *)kf_strokeWidthAtIndex:(NSUInteger)index;
 
 /**
  The stroke color. (read-only)
@@ -152,8 +152,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:3.2  UIKit:6.0
  */
-@property (nullable, nonatomic, strong, readonly) UIColor *yy_strokeColor;
-- (nullable UIColor *)yy_strokeColorAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) UIColor *kf_strokeColor;
+- (nullable UIColor *)kf_strokeColorAtIndex:(NSUInteger)index;
 
 /**
  The text shadow. (read-only)
@@ -162,8 +162,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since UIKit:6.0  YYText:6.0
  */
-@property (nullable, nonatomic, strong, readonly) NSShadow *yy_shadow;
-- (nullable NSShadow *)yy_shadowAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) NSShadow *kf_shadow;
+- (nullable NSShadow *)kf_shadowAtIndex:(NSUInteger)index;
 
 /**
  The strikethrough style. (read-only)
@@ -172,8 +172,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since UIKit:6.0
  */
-@property (nonatomic, readonly) NSUnderlineStyle yy_strikethroughStyle;
-- (NSUnderlineStyle)yy_strikethroughStyleAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) NSUnderlineStyle kf_strikethroughStyle;
+- (NSUnderlineStyle)kf_strikethroughStyleAtIndex:(NSUInteger)index;
 
 /**
  The strikethrough color. (read-only)
@@ -182,8 +182,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since UIKit:7.0
  */
-@property (nullable, nonatomic, strong, readonly) UIColor *yy_strikethroughColor;
-- (nullable UIColor *)yy_strikethroughColorAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) UIColor *kf_strikethroughColor;
+- (nullable UIColor *)kf_strikethroughColorAtIndex:(NSUInteger)index;
 
 /**
  The underline style. (read-only)
@@ -192,8 +192,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:3.2  UIKit:6.0
  */
-@property (nonatomic, readonly) NSUnderlineStyle yy_underlineStyle;
-- (NSUnderlineStyle)yy_underlineStyleAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) NSUnderlineStyle kf_underlineStyle;
+- (NSUnderlineStyle)kf_underlineStyleAtIndex:(NSUInteger)index;
 
 /**
  The underline color. (read-only)
@@ -202,8 +202,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:3.2  UIKit:7.0
  */
-@property (nullable, nonatomic, strong, readonly) UIColor *yy_underlineColor;
-- (nullable UIColor *)yy_underlineColorAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) UIColor *kf_underlineColor;
+- (nullable UIColor *)kf_underlineColorAtIndex:(NSUInteger)index;
 
 /**
  Ligature formation control. (read-only)
@@ -217,8 +217,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:3.2  UIKit:6.0  YYText:6.0
  */
-@property (nullable, nonatomic, strong, readonly) NSNumber *yy_ligature;
-- (nullable NSNumber *)yy_ligatureAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) NSNumber *kf_ligature;
+- (nullable NSNumber *)kf_ligatureAtIndex:(NSUInteger)index;
 
 /**
  The text effect. (read-only)
@@ -228,8 +228,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since UIKit:7.0
  */
-@property (nullable, nonatomic, strong, readonly) NSString *yy_textEffect;
-- (nullable NSString *)yy_textEffectAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) NSString *kf_textEffect;
+- (nullable NSString *)kf_textEffectAtIndex:(NSUInteger)index;
 
 /**
  The skew to be applied to glyphs. (read-only)
@@ -238,8 +238,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since UIKit:7.0
  */
-@property (nullable, nonatomic, strong, readonly) NSNumber *yy_obliqueness;
-- (nullable NSNumber *)yy_obliquenessAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) NSNumber *kf_obliqueness;
+- (nullable NSNumber *)kf_obliquenessAtIndex:(NSUInteger)index;
 
 /**
  The log of the expansion factor to be applied to glyphs. (read-only)
@@ -248,8 +248,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since UIKit:7.0
  */
-@property (nullable, nonatomic, strong, readonly) NSNumber *yy_expansion;
-- (nullable NSNumber *)yy_expansionAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) NSNumber *kf_expansion;
+- (nullable NSNumber *)kf_expansionAtIndex:(NSUInteger)index;
 
 /**
  The character's offset from the baseline, in points. (read-only)
@@ -258,8 +258,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since UIKit:7.0
  */
-@property (nullable, nonatomic, strong, readonly) NSNumber *yy_baselineOffset;
-- (nullable NSNumber *)yy_baselineOffsetAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) NSNumber *kf_baselineOffset;
+- (nullable NSNumber *)kf_baselineOffsetAtIndex:(NSUInteger)index;
 
 /**
  Glyph orientation control. (read-only)
@@ -269,8 +269,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:4.3  YYText:6.0
  */
-@property (nonatomic, readonly) BOOL yy_verticalGlyphForm;
-- (BOOL)yy_verticalGlyphFormAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) BOOL kf_verticalGlyphForm;
+- (BOOL)kf_verticalGlyphFormAtIndex:(NSUInteger)index;
 
 /**
  Specifies text language. (read-only)
@@ -281,8 +281,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:7.0  YYText:7.0
  */
-@property (nullable, nonatomic, strong, readonly) NSString *yy_language;
-- (nullable NSString *)yy_languageAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) NSString *kf_language;
+- (nullable NSString *)kf_languageAtIndex:(NSUInteger)index;
 
 /**
  Specifies a bidirectional override or embedding. (read-only)
@@ -291,8 +291,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:7.0  YYText:6.0
  */
-@property (nullable, nonatomic, strong, readonly) NSArray<NSNumber *> *yy_writingDirection;
-- (nullable NSArray<NSNumber *> *)yy_writingDirectionAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) NSArray<NSNumber *> *kf_writingDirection;
+- (nullable NSArray<NSNumber *> *)kf_writingDirectionAtIndex:(NSUInteger)index;
 
 /**
  An NSParagraphStyle object which is used to specify things like
@@ -302,8 +302,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nullable, nonatomic, strong, readonly) NSParagraphStyle *yy_paragraphStyle;
-- (nullable NSParagraphStyle *)yy_paragraphStyleAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) NSParagraphStyle *kf_paragraphStyle;
+- (nullable NSParagraphStyle *)kf_paragraphStyleAtIndex:(NSUInteger)index;
 
 #pragma mark - Get paragraph attribute as property
 ///=============================================================================
@@ -319,8 +319,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readonly) NSTextAlignment yy_alignment;
-- (NSTextAlignment)yy_alignmentAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) NSTextAlignment kf_alignment;
+- (NSTextAlignment)kf_alignmentAtIndex:(NSUInteger)index;
 
 /**
  The mode that should be used to break lines (A wrapper for NSParagraphStyle). (read-only)
@@ -330,8 +330,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readonly) NSLineBreakMode yy_lineBreakMode;
-- (NSLineBreakMode)yy_lineBreakModeAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) NSLineBreakMode kf_lineBreakMode;
+- (NSLineBreakMode)kf_lineBreakModeAtIndex:(NSUInteger)index;
 
 /**
  The distance in points between the bottom of one line fragment and the top of the next.
@@ -343,8 +343,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readonly) CGFloat yy_lineSpacing;
-- (CGFloat)yy_lineSpacingAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) CGFloat kf_lineSpacing;
+- (CGFloat)kf_lineSpacingAtIndex:(NSUInteger)index;
 
 /**
  The space after the end of the paragraph (A wrapper for NSParagraphStyle). (read-only)
@@ -357,8 +357,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readonly) CGFloat yy_paragraphSpacing;
-- (CGFloat)yy_paragraphSpacingAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) CGFloat kf_paragraphSpacing;
+- (CGFloat)kf_paragraphSpacingAtIndex:(NSUInteger)index;
 
 /**
  The distance between the paragraph's top and the beginning of its text content.
@@ -370,8 +370,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readonly) CGFloat yy_paragraphSpacingBefore;
-- (CGFloat)yy_paragraphSpacingBeforeAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) CGFloat kf_paragraphSpacingBefore;
+- (CGFloat)kf_paragraphSpacingBeforeAtIndex:(NSUInteger)index;
 
 /**
  The indentation of the first line (A wrapper for NSParagraphStyle). (read-only)
@@ -383,8 +383,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readonly) CGFloat yy_firstLineHeadIndent;
-- (CGFloat)yy_firstLineHeadIndentAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) CGFloat kf_firstLineHeadIndent;
+- (CGFloat)kf_firstLineHeadIndentAtIndex:(NSUInteger)index;
 
 /**
  The indentation of the receiver's lines other than the first. (A wrapper for NSParagraphStyle). (read-only)
@@ -396,8 +396,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readonly) CGFloat yy_headIndent;
-- (CGFloat)yy_headIndentAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) CGFloat kf_headIndent;
+- (CGFloat)kf_headIndentAtIndex:(NSUInteger)index;
 
 /**
  The trailing indentation (A wrapper for NSParagraphStyle). (read-only)
@@ -409,8 +409,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readonly) CGFloat yy_tailIndent;
-- (CGFloat)yy_tailIndentAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) CGFloat kf_tailIndent;
+- (CGFloat)kf_tailIndentAtIndex:(NSUInteger)index;
 
 /**
  The receiver's minimum height (A wrapper for NSParagraphStyle). (read-only)
@@ -422,8 +422,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readonly) CGFloat yy_minimumLineHeight;
-- (CGFloat)yy_minimumLineHeightAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) CGFloat kf_minimumLineHeight;
+- (CGFloat)kf_minimumLineHeightAtIndex:(NSUInteger)index;
 
 /**
  The receiver's maximum line height (A wrapper for NSParagraphStyle). (read-only)
@@ -437,8 +437,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readonly) CGFloat yy_maximumLineHeight;
-- (CGFloat)yy_maximumLineHeightAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) CGFloat kf_maximumLineHeight;
+- (CGFloat)kf_maximumLineHeightAtIndex:(NSUInteger)index;
 
 /**
  The line height multiple (A wrapper for NSParagraphStyle). (read-only)
@@ -448,8 +448,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readonly) CGFloat yy_lineHeightMultiple;
-- (CGFloat)yy_lineHeightMultipleAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) CGFloat kf_lineHeightMultiple;
+- (CGFloat)kf_lineHeightMultipleAtIndex:(NSUInteger)index;
 
 /**
  The base writing direction (A wrapper for NSParagraphStyle). (read-only)
@@ -461,8 +461,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readonly) NSWritingDirection yy_baseWritingDirection;
-- (NSWritingDirection)yy_baseWritingDirectionAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) NSWritingDirection kf_baseWritingDirection;
+- (NSWritingDirection)kf_baseWritingDirectionAtIndex:(NSUInteger)index;
 
 /**
  The paragraph's threshold for hyphenation. (A wrapper for NSParagraphStyle). (read-only)
@@ -476,8 +476,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since UIKit:6.0
  */
-@property (nonatomic, readonly) float yy_hyphenationFactor;
-- (float)yy_hyphenationFactorAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) float kf_hyphenationFactor;
+- (float)kf_hyphenationFactorAtIndex:(NSUInteger)index;
 
 /**
  The document-wide default tab interval (A wrapper for NSParagraphStyle). (read-only)
@@ -488,8 +488,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:7.0  UIKit:7.0  YYText:7.0
  */
-@property (nonatomic, readonly) CGFloat yy_defaultTabInterval;
-- (CGFloat)yy_defaultTabIntervalAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) CGFloat kf_defaultTabInterval;
+- (CGFloat)kf_defaultTabIntervalAtIndex:(NSUInteger)index;
 
 /**
  An array of NSTextTab objects representing the receiver's tab stops.
@@ -501,8 +501,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since CoreText:7.0  UIKit:7.0  YYText:7.0
  */
-@property (nullable, nonatomic, copy, readonly) NSArray<NSTextTab *> *yy_tabStops;
-- (nullable NSArray<NSTextTab *> *)yy_tabStopsAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, copy, readonly) NSArray<NSTextTab *> *kf_tabStops;
+- (nullable NSArray<NSTextTab *> *)kf_tabStopsAtIndex:(NSUInteger)index;
 
 #pragma mark - Get YYText attribute as property
 ///=============================================================================
@@ -516,8 +516,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since YYText:6.0
  */
-@property (nullable, nonatomic, strong, readonly) YYTextShadow *yy_textShadow;
-- (nullable YYTextShadow *)yy_textShadowAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) YYTextShadow *kf_textShadow;
+- (nullable YYTextShadow *)kf_textShadowAtIndex:(NSUInteger)index;
 
 /**
  The text inner shadow. (read-only)
@@ -526,8 +526,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since YYText:6.0
  */
-@property (nullable, nonatomic, strong, readonly) YYTextShadow *yy_textInnerShadow;
-- (nullable YYTextShadow *)yy_textInnerShadowAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) YYTextShadow *kf_textInnerShadow;
+- (nullable YYTextShadow *)kf_textInnerShadowAtIndex:(NSUInteger)index;
 
 /**
  The text underline. (read-only)
@@ -536,8 +536,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since YYText:6.0
  */
-@property (nullable, nonatomic, strong, readonly) YYTextDecoration *yy_textUnderline;
-- (nullable YYTextDecoration *)yy_textUnderlineAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) YYTextDecoration *kf_textUnderline;
+- (nullable YYTextDecoration *)kf_textUnderlineAtIndex:(NSUInteger)index;
 
 /**
  The text strikethrough. (read-only)
@@ -546,8 +546,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since YYText:6.0
  */
-@property (nullable, nonatomic, strong, readonly) YYTextDecoration *yy_textStrikethrough;
-- (nullable YYTextDecoration *)yy_textStrikethroughAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) YYTextDecoration *kf_textStrikethrough;
+- (nullable YYTextDecoration *)kf_textStrikethroughAtIndex:(NSUInteger)index;
 
 /**
  The text border. (read-only)
@@ -556,8 +556,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since YYText:6.0
  */
-@property (nullable, nonatomic, strong, readonly) YYTextBorder *yy_textBorder;
-- (nullable YYTextBorder *)yy_textBorderAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) YYTextBorder *kf_textBorder;
+- (nullable YYTextBorder *)kf_textBorderAtIndex:(NSUInteger)index;
 
 /**
  The text background border. (read-only)
@@ -566,8 +566,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since YYText:6.0
  */
-@property (nullable, nonatomic, strong, readonly) YYTextBorder *yy_textBackgroundBorder;
-- (nullable YYTextBorder *)yy_textBackgroundBorderAtIndex:(NSUInteger)index;
+@property (nullable, nonatomic, strong, readonly) YYTextBorder *kf_textBackgroundBorder;
+- (nullable YYTextBorder *)kf_textBackgroundBorderAtIndex:(NSUInteger)index;
 
 /**
  The glyph transform. (read-only)
@@ -576,8 +576,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion Get this property returns the first character's attribute.
  @since YYText:6.0
  */
-@property (nonatomic, readonly) CGAffineTransform yy_textGlyphTransform;
-- (CGAffineTransform)yy_textGlyphTransformAtIndex:(NSUInteger)index;
+@property (nonatomic, readonly) CGAffineTransform kf_textGlyphTransform;
+- (CGAffineTransform)kf_textGlyphTransformAtIndex:(NSUInteger)index;
 
 
 #pragma mark - Query for YYText
@@ -593,7 +593,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param range A range in receiver.
  @return The plain text.
  */
-- (nullable NSString *)yy_plainTextForRange:(NSRange)range;
+- (nullable NSString *)kf_plainTextForRange:(NSRange)range;
 
 
 #pragma mark - Create attachment string for YYText
@@ -613,7 +613,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return An attributed string, or nil if an error occurs.
  @since YYText:6.0
  */
-+ (NSMutableAttributedString *)yy_attachmentStringWithContent:(nullable id)content
++ (NSMutableAttributedString *)kf_attachmentStringWithContent:(nullable id)content
                                                   contentMode:(UIViewContentMode)contentMode
                                                         width:(CGFloat)width
                                                        ascent:(CGFloat)ascent
@@ -647,7 +647,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return An attributed string, or nil if an error occurs.
  @since YYText:6.0
  */
-+ (NSMutableAttributedString *)yy_attachmentStringWithContent:(nullable id)content
++ (NSMutableAttributedString *)kf_attachmentStringWithContent:(nullable id)content
                                                   contentMode:(UIViewContentMode)contentMode
                                                attachmentSize:(CGSize)attachmentSize
                                                   alignToFont:(UIFont *)font
@@ -662,7 +662,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return An attributed string, or nil if an error occurs.
  @since YYText:6.0
  */
-+ (nullable NSMutableAttributedString *)yy_attachmentStringWithEmojiImage:(UIImage *)image
++ (nullable NSMutableAttributedString *)kf_attachmentStringWithEmojiImage:(UIImage *)image
                                                                  fontSize:(CGFloat)fontSize;
 
 #pragma mark - Utility
@@ -673,12 +673,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Returns NSMakeRange(0, self.length).
  */
-- (NSRange)yy_rangeOfAll;
+- (NSRange)kf_rangeOfAll;
 
 /**
  If YES, it share the same attribute in entire text range.
  */
-- (BOOL)yy_isSharedAttributesInAllRange;
+- (BOOL)kf_isSharedAttributesInAllRange;
 
 /**
  If YES, it can be drawn with the [drawWithRect:options:context:] method or displayed with UIKit.
@@ -688,7 +688,7 @@ NS_ASSUME_NONNULL_BEGIN
  which is not supported by UIKit (such as CTParagraphStyleRef). If display this string
  in UIKit, it may lose some attribute, or even crash the app.
  */
-- (BOOL)yy_canDrawWithUIKit;
+- (BOOL)kf_canDrawWithUIKit;
 
 @end
 
@@ -713,8 +713,8 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param attributes  A dictionary containing the attributes to set, or nil to remove all attributes.
  */
-- (void)yy_setAttributes:(nullable NSDictionary<NSString *, id> *)attributes;
-- (void)setYy_attributes:(nullable NSDictionary<NSString *, id> *)attributes;
+- (void)kf_setAttributes:(nullable NSDictionary<NSString *, id> *)attributes;
+- (void)setKf_attributes:(nullable NSDictionary<NSString *, id> *)attributes;
 
 /**
  Sets an attribute with the given name and value to the entire text string.
@@ -723,7 +723,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param value  The attribute value associated with name. Pass `nil` or `NSNull` to
  remove the attribute.
  */
-- (void)yy_setAttribute:(NSString *)name value:(nullable id)value;
+- (void)kf_setAttribute:(NSString *)name value:(nullable id)value;
 
 /**
  Sets an attribute with the given name and value to the characters in the specified range.
@@ -733,14 +733,14 @@ NS_ASSUME_NONNULL_BEGIN
  remove the attribute.
  @param range  The range of characters to which the specified attribute/value pair applies.
  */
-- (void)yy_setAttribute:(NSString *)name value:(nullable id)value range:(NSRange)range;
+- (void)kf_setAttribute:(NSString *)name value:(nullable id)value range:(NSRange)range;
 
 /**
  Removes all attributes in the specified range.
  
  @param range  The range of characters.
  */
-- (void)yy_removeAttributesInRange:(NSRange)range;
+- (void)kf_removeAttributesInRange:(NSRange)range;
 
 
 #pragma mark - Set character attribute as property
@@ -756,8 +756,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:3.2  UIKit:6.0  YYText:6.0
  */
-@property (nullable, nonatomic, strong, readwrite) UIFont *yy_font;
-- (void)yy_setFont:(nullable UIFont *)font range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) UIFont *kf_font;
+- (void)kf_setFont:(nullable UIFont *)font range:(NSRange)range;
 
 /**
  A kerning adjustment.
@@ -772,8 +772,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:3.2  UIKit:6.0  YYText:6.0
  */
-@property (nullable, nonatomic, strong, readwrite) NSNumber *yy_kern;
-- (void)yy_setKern:(nullable NSNumber *)kern range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) NSNumber *kf_kern;
+- (void)kf_setKern:(nullable NSNumber *)kern range:(NSRange)range;
 
 /**
  The foreground color.
@@ -783,8 +783,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:3.2  UIKit:6.0  YYText:6.0
  */
-@property (nullable, nonatomic, strong, readwrite) UIColor *yy_color;
-- (void)yy_setColor:(nullable UIColor *)color range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) UIColor *kf_color;
+- (void)kf_setColor:(nullable UIColor *)color range:(NSRange)range;
 
 /**
  The background color.
@@ -794,8 +794,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since UIKit:6.0
  */
-@property (nullable, nonatomic, strong, readwrite) UIColor *yy_backgroundColor;
-- (void)yy_setBackgroundColor:(nullable UIColor *)backgroundColor range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) UIColor *kf_backgroundColor;
+- (void)kf_setBackgroundColor:(nullable UIColor *)backgroundColor range:(NSRange)range;
 
 /**
  The stroke width.
@@ -808,8 +808,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:3.2  UIKit:6.0  YYText:6.0
  */
-@property (nullable, nonatomic, strong, readwrite) NSNumber *yy_strokeWidth;
-- (void)yy_setStrokeWidth:(nullable NSNumber *)strokeWidth range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) NSNumber *kf_strokeWidth;
+- (void)kf_setStrokeWidth:(nullable NSNumber *)strokeWidth range:(NSRange)range;
 
 /**
  The stroke color.
@@ -819,8 +819,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:3.2  UIKit:6.0  YYText:6.0
  */
-@property (nullable, nonatomic, strong, readwrite) UIColor *yy_strokeColor;
-- (void)yy_setStrokeColor:(nullable UIColor *)strokeColor range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) UIColor *kf_strokeColor;
+- (void)kf_setStrokeColor:(nullable UIColor *)strokeColor range:(NSRange)range;
 
 /**
  The text shadow.
@@ -830,8 +830,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since UIKit:6.0  YYText:6.0
  */
-@property (nullable, nonatomic, strong, readwrite) NSShadow *yy_shadow;
-- (void)yy_setShadow:(nullable NSShadow *)shadow range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) NSShadow *kf_shadow;
+- (void)kf_setShadow:(nullable NSShadow *)shadow range:(NSRange)range;
 
 /**
  The strikethrough style.
@@ -841,8 +841,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since UIKit:6.0
  */
-@property (nonatomic, readwrite) NSUnderlineStyle yy_strikethroughStyle;
-- (void)yy_setStrikethroughStyle:(NSUnderlineStyle)strikethroughStyle range:(NSRange)range;
+@property (nonatomic, readwrite) NSUnderlineStyle kf_strikethroughStyle;
+- (void)kf_setStrikethroughStyle:(NSUnderlineStyle)strikethroughStyle range:(NSRange)range;
 
 /**
  The strikethrough color.
@@ -852,8 +852,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since UIKit:7.0
  */
-@property (nullable, nonatomic, strong, readwrite) UIColor *yy_strikethroughColor;
-- (void)yy_setStrikethroughColor:(nullable UIColor *)strikethroughColor range:(NSRange)range NS_AVAILABLE_IOS(7_0);
+@property (nullable, nonatomic, strong, readwrite) UIColor *kf_strikethroughColor;
+- (void)kf_setStrikethroughColor:(nullable UIColor *)strikethroughColor range:(NSRange)range NS_AVAILABLE_IOS(7_0);
 
 /**
  The underline style.
@@ -863,8 +863,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:3.2  UIKit:6.0
  */
-@property (nonatomic, readwrite) NSUnderlineStyle yy_underlineStyle;
-- (void)yy_setUnderlineStyle:(NSUnderlineStyle)underlineStyle range:(NSRange)range;
+@property (nonatomic, readwrite) NSUnderlineStyle kf_underlineStyle;
+- (void)kf_setUnderlineStyle:(NSUnderlineStyle)underlineStyle range:(NSRange)range;
 
 /**
  The underline color.
@@ -874,8 +874,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:3.2  UIKit:7.0
  */
-@property (nullable, nonatomic, strong, readwrite) UIColor *yy_underlineColor;
-- (void)yy_setUnderlineColor:(nullable UIColor *)underlineColor range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) UIColor *kf_underlineColor;
+- (void)kf_setUnderlineColor:(nullable UIColor *)underlineColor range:(NSRange)range;
 
 /**
  Ligature formation control.
@@ -890,8 +890,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:3.2  UIKit:6.0  YYText:6.0
  */
-@property (nullable, nonatomic, strong, readwrite) NSNumber *yy_ligature;
-- (void)yy_setLigature:(nullable NSNumber *)ligature range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) NSNumber *kf_ligature;
+- (void)kf_setLigature:(nullable NSNumber *)ligature range:(NSRange)range;
 
 /**
  The text effect.
@@ -902,8 +902,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since UIKit:7.0
  */
-@property (nullable, nonatomic, strong, readwrite) NSString *yy_textEffect;
-- (void)yy_setTextEffect:(nullable NSString *)textEffect range:(NSRange)range NS_AVAILABLE_IOS(7_0);
+@property (nullable, nonatomic, strong, readwrite) NSString *kf_textEffect;
+- (void)kf_setTextEffect:(nullable NSString *)textEffect range:(NSRange)range NS_AVAILABLE_IOS(7_0);
 
 /**
  The skew to be applied to glyphs. 
@@ -913,8 +913,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since UIKit:7.0
  */
-@property (nullable, nonatomic, strong, readwrite) NSNumber *yy_obliqueness;
-- (void)yy_setObliqueness:(nullable NSNumber *)obliqueness range:(NSRange)range NS_AVAILABLE_IOS(7_0);
+@property (nullable, nonatomic, strong, readwrite) NSNumber *kf_obliqueness;
+- (void)kf_setObliqueness:(nullable NSNumber *)obliqueness range:(NSRange)range NS_AVAILABLE_IOS(7_0);
 
 /**
  The log of the expansion factor to be applied to glyphs.
@@ -924,8 +924,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since UIKit:7.0
  */
-@property (nullable, nonatomic, strong, readwrite) NSNumber *yy_expansion;
-- (void)yy_setExpansion:(nullable NSNumber *)expansion range:(NSRange)range NS_AVAILABLE_IOS(7_0);
+@property (nullable, nonatomic, strong, readwrite) NSNumber *kf_expansion;
+- (void)kf_setExpansion:(nullable NSNumber *)expansion range:(NSRange)range NS_AVAILABLE_IOS(7_0);
 
 /**
  The character's offset from the baseline, in points. 
@@ -935,8 +935,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since UIKit:7.0
  */
-@property (nullable, nonatomic, strong, readwrite) NSNumber *yy_baselineOffset;
-- (void)yy_setBaselineOffset:(nullable NSNumber *)baselineOffset range:(NSRange)range NS_AVAILABLE_IOS(7_0);
+@property (nullable, nonatomic, strong, readwrite) NSNumber *kf_baselineOffset;
+- (void)kf_setBaselineOffset:(nullable NSNumber *)baselineOffset range:(NSRange)range NS_AVAILABLE_IOS(7_0);
 
 /**
  Glyph orientation control.
@@ -947,8 +947,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:4.3  YYText:6.0
  */
-@property (nonatomic, readwrite) BOOL yy_verticalGlyphForm;
-- (void)yy_setVerticalGlyphForm:(BOOL)verticalGlyphForm range:(NSRange)range;
+@property (nonatomic, readwrite) BOOL kf_verticalGlyphForm;
+- (void)kf_setVerticalGlyphForm:(BOOL)verticalGlyphForm range:(NSRange)range;
 
 /**
  Specifies text language.
@@ -960,8 +960,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:7.0  YYText:7.0
  */
-@property (nullable, nonatomic, strong, readwrite) NSString *yy_language;
-- (void)yy_setLanguage:(nullable NSString *)language range:(NSRange)range NS_AVAILABLE_IOS(7_0);
+@property (nullable, nonatomic, strong, readwrite) NSString *kf_language;
+- (void)kf_setLanguage:(nullable NSString *)language range:(NSRange)range NS_AVAILABLE_IOS(7_0);
 
 /**
  Specifies a bidirectional override or embedding.
@@ -971,8 +971,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:7.0  YYText:6.0
  */
-@property (nullable, nonatomic, strong, readwrite) NSArray<NSNumber *> *yy_writingDirection;
-- (void)yy_setWritingDirection:(nullable NSArray<NSNumber *> *)writingDirection range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) NSArray<NSNumber *> *kf_writingDirection;
+- (void)kf_setWritingDirection:(nullable NSArray<NSNumber *> *)writingDirection range:(NSRange)range;
 
 /**
  An NSParagraphStyle object which is used to specify things like
@@ -983,8 +983,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nullable, nonatomic, strong, readwrite) NSParagraphStyle *yy_paragraphStyle;
-- (void)yy_setParagraphStyle:(nullable NSParagraphStyle *)paragraphStyle range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) NSParagraphStyle *kf_paragraphStyle;
+- (void)kf_setParagraphStyle:(nullable NSParagraphStyle *)paragraphStyle range:(NSRange)range;
 
 
 #pragma mark - Set paragraph attribute as property
@@ -1002,8 +1002,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readwrite) NSTextAlignment yy_alignment;
-- (void)yy_setAlignment:(NSTextAlignment)alignment range:(NSRange)range;
+@property (nonatomic, readwrite) NSTextAlignment kf_alignment;
+- (void)kf_setAlignment:(NSTextAlignment)alignment range:(NSRange)range;
 
 /**
  The mode that should be used to break lines (A wrapper for NSParagraphStyle).
@@ -1014,8 +1014,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readwrite) NSLineBreakMode yy_lineBreakMode;
-- (void)yy_setLineBreakMode:(NSLineBreakMode)lineBreakMode range:(NSRange)range;
+@property (nonatomic, readwrite) NSLineBreakMode kf_lineBreakMode;
+- (void)kf_setLineBreakMode:(NSLineBreakMode)lineBreakMode range:(NSRange)range;
 
 /**
  The distance in points between the bottom of one line fragment and the top of the next.
@@ -1028,8 +1028,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readwrite) CGFloat yy_lineSpacing;
-- (void)yy_setLineSpacing:(CGFloat)lineSpacing range:(NSRange)range;
+@property (nonatomic, readwrite) CGFloat kf_lineSpacing;
+- (void)kf_setLineSpacing:(CGFloat)lineSpacing range:(NSRange)range;
 
 /**
  The space after the end of the paragraph (A wrapper for NSParagraphStyle).
@@ -1043,8 +1043,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readwrite) CGFloat yy_paragraphSpacing;
-- (void)yy_setParagraphSpacing:(CGFloat)paragraphSpacing range:(NSRange)range;
+@property (nonatomic, readwrite) CGFloat kf_paragraphSpacing;
+- (void)kf_setParagraphSpacing:(CGFloat)paragraphSpacing range:(NSRange)range;
 
 /**
  The distance between the paragraph's top and the beginning of its text content.
@@ -1057,8 +1057,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readwrite) CGFloat yy_paragraphSpacingBefore;
-- (void)yy_setParagraphSpacingBefore:(CGFloat)paragraphSpacingBefore range:(NSRange)range;
+@property (nonatomic, readwrite) CGFloat kf_paragraphSpacingBefore;
+- (void)kf_setParagraphSpacingBefore:(CGFloat)paragraphSpacingBefore range:(NSRange)range;
 
 /**
  The indentation of the first line (A wrapper for NSParagraphStyle).
@@ -1071,8 +1071,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readwrite) CGFloat yy_firstLineHeadIndent;
-- (void)yy_setFirstLineHeadIndent:(CGFloat)firstLineHeadIndent range:(NSRange)range;
+@property (nonatomic, readwrite) CGFloat kf_firstLineHeadIndent;
+- (void)kf_setFirstLineHeadIndent:(CGFloat)firstLineHeadIndent range:(NSRange)range;
 
 /**
  The indentation of the receiver's lines other than the first. (A wrapper for NSParagraphStyle).
@@ -1085,8 +1085,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readwrite) CGFloat yy_headIndent;
-- (void)yy_setHeadIndent:(CGFloat)headIndent range:(NSRange)range;
+@property (nonatomic, readwrite) CGFloat kf_headIndent;
+- (void)kf_setHeadIndent:(CGFloat)headIndent range:(NSRange)range;
 
 /**
  The trailing indentation (A wrapper for NSParagraphStyle).
@@ -1099,8 +1099,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readwrite) CGFloat yy_tailIndent;
-- (void)yy_setTailIndent:(CGFloat)tailIndent range:(NSRange)range;
+@property (nonatomic, readwrite) CGFloat kf_tailIndent;
+- (void)kf_setTailIndent:(CGFloat)tailIndent range:(NSRange)range;
 
 /**
  The receiver's minimum height (A wrapper for NSParagraphStyle).
@@ -1113,8 +1113,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readwrite) CGFloat yy_minimumLineHeight;
-- (void)yy_setMinimumLineHeight:(CGFloat)minimumLineHeight range:(NSRange)range;
+@property (nonatomic, readwrite) CGFloat kf_minimumLineHeight;
+- (void)kf_setMinimumLineHeight:(CGFloat)minimumLineHeight range:(NSRange)range;
 
 /**
  The receiver's maximum line height (A wrapper for NSParagraphStyle).
@@ -1129,8 +1129,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readwrite) CGFloat yy_maximumLineHeight;
-- (void)yy_setMaximumLineHeight:(CGFloat)maximumLineHeight range:(NSRange)range;
+@property (nonatomic, readwrite) CGFloat kf_maximumLineHeight;
+- (void)kf_setMaximumLineHeight:(CGFloat)maximumLineHeight range:(NSRange)range;
 
 /**
  The line height multiple (A wrapper for NSParagraphStyle).
@@ -1141,8 +1141,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readwrite) CGFloat yy_lineHeightMultiple;
-- (void)yy_setLineHeightMultiple:(CGFloat)lineHeightMultiple range:(NSRange)range;
+@property (nonatomic, readwrite) CGFloat kf_lineHeightMultiple;
+- (void)kf_setLineHeightMultiple:(CGFloat)lineHeightMultiple range:(NSRange)range;
 
 /**
  The base writing direction (A wrapper for NSParagraphStyle).
@@ -1155,8 +1155,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:6.0  UIKit:6.0  YYText:6.0
  */
-@property (nonatomic, readwrite) NSWritingDirection yy_baseWritingDirection;
-- (void)yy_setBaseWritingDirection:(NSWritingDirection)baseWritingDirection range:(NSRange)range;
+@property (nonatomic, readwrite) NSWritingDirection kf_baseWritingDirection;
+- (void)kf_setBaseWritingDirection:(NSWritingDirection)baseWritingDirection range:(NSRange)range;
 
 /**
  The paragraph's threshold for hyphenation. (A wrapper for NSParagraphStyle).
@@ -1171,8 +1171,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since UIKit:6.0
  */
-@property (nonatomic, readwrite) float yy_hyphenationFactor;
-- (void)yy_setHyphenationFactor:(float)hyphenationFactor range:(NSRange)range;
+@property (nonatomic, readwrite) float kf_hyphenationFactor;
+- (void)kf_setHyphenationFactor:(float)hyphenationFactor range:(NSRange)range;
 
 /**
  The document-wide default tab interval (A wrapper for NSParagraphStyle).
@@ -1184,8 +1184,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:7.0  UIKit:7.0  YYText:7.0
  */
-@property (nonatomic, readwrite) CGFloat yy_defaultTabInterval;
-- (void)yy_setDefaultTabInterval:(CGFloat)defaultTabInterval range:(NSRange)range NS_AVAILABLE_IOS(7_0);
+@property (nonatomic, readwrite) CGFloat kf_defaultTabInterval;
+- (void)kf_setDefaultTabInterval:(CGFloat)defaultTabInterval range:(NSRange)range NS_AVAILABLE_IOS(7_0);
 
 /**
  An array of NSTextTab objects representing the receiver's tab stops.
@@ -1198,8 +1198,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since CoreText:7.0  UIKit:7.0  YYText:7.0
  */
-@property (nullable, nonatomic, copy, readwrite) NSArray<NSTextTab *> *yy_tabStops;
-- (void)yy_setTabStops:(nullable NSArray<NSTextTab *> *)tabStops range:(NSRange)range NS_AVAILABLE_IOS(7_0);
+@property (nullable, nonatomic, copy, readwrite) NSArray<NSTextTab *> *kf_tabStops;
+- (void)kf_setTabStops:(nullable NSArray<NSTextTab *> *)tabStops range:(NSRange)range NS_AVAILABLE_IOS(7_0);
 
 #pragma mark - Set YYText attribute as property
 ///=============================================================================
@@ -1214,8 +1214,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since YYText:6.0
  */
-@property (nullable, nonatomic, strong, readwrite) YYTextShadow *yy_textShadow;
-- (void)yy_setTextShadow:(nullable YYTextShadow *)textShadow range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) YYTextShadow *kf_textShadow;
+- (void)kf_setTextShadow:(nullable YYTextShadow *)textShadow range:(NSRange)range;
 
 /**
  The text inner shadow.
@@ -1225,8 +1225,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since YYText:6.0
  */
-@property (nullable, nonatomic, strong, readwrite) YYTextShadow *yy_textInnerShadow;
-- (void)yy_setTextInnerShadow:(nullable YYTextShadow *)textInnerShadow range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) YYTextShadow *kf_textInnerShadow;
+- (void)kf_setTextInnerShadow:(nullable YYTextShadow *)textInnerShadow range:(NSRange)range;
 
 /**
  The text underline.
@@ -1236,8 +1236,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since YYText:6.0
  */
-@property (nullable, nonatomic, strong, readwrite) YYTextDecoration *yy_textUnderline;
-- (void)yy_setTextUnderline:(nullable YYTextDecoration *)textUnderline range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) YYTextDecoration *kf_textUnderline;
+- (void)kf_setTextUnderline:(nullable YYTextDecoration *)textUnderline range:(NSRange)range;
 
 /**
  The text strikethrough.
@@ -1247,8 +1247,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since YYText:6.0
  */
-@property (nullable, nonatomic, strong, readwrite) YYTextDecoration *yy_textStrikethrough;
-- (void)yy_setTextStrikethrough:(nullable YYTextDecoration *)textStrikethrough range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) YYTextDecoration *kf_textStrikethrough;
+- (void)kf_setTextStrikethrough:(nullable YYTextDecoration *)textStrikethrough range:(NSRange)range;
 
 /**
  The text border.
@@ -1258,8 +1258,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since YYText:6.0
  */
-@property (nullable, nonatomic, strong, readwrite) YYTextBorder *yy_textBorder;
-- (void)yy_setTextBorder:(nullable YYTextBorder *)textBorder range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) YYTextBorder *kf_textBorder;
+- (void)kf_setTextBorder:(nullable YYTextBorder *)textBorder range:(NSRange)range;
 
 /**
  The text background border.
@@ -1269,8 +1269,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since YYText:6.0
  */
-@property (nullable, nonatomic, strong, readwrite) YYTextBorder *yy_textBackgroundBorder;
-- (void)yy_setTextBackgroundBorder:(nullable YYTextBorder *)textBackgroundBorder range:(NSRange)range;
+@property (nullable, nonatomic, strong, readwrite) YYTextBorder *kf_textBackgroundBorder;
+- (void)kf_setTextBackgroundBorder:(nullable YYTextBorder *)textBackgroundBorder range:(NSRange)range;
 
 /**
  The glyph transform.
@@ -1280,8 +1280,8 @@ NS_ASSUME_NONNULL_BEGIN
              Get this property returns the first character's attribute.
  @since YYText:6.0
  */
-@property (nonatomic, readwrite) CGAffineTransform yy_textGlyphTransform;
-- (void)yy_setTextGlyphTransform:(CGAffineTransform)textGlyphTransform range:(NSRange)range;
+@property (nonatomic, readwrite) CGAffineTransform kf_textGlyphTransform;
+- (void)kf_setTextGlyphTransform:(CGAffineTransform)textGlyphTransform range:(NSRange)range;
 
 
 #pragma mark - Set discontinuous attribute for range
@@ -1289,22 +1289,22 @@ NS_ASSUME_NONNULL_BEGIN
 /// @name Set discontinuous attribute for range
 ///=============================================================================
 
-- (void)yy_setSuperscript:(nullable NSNumber *)superscript range:(NSRange)range;
-- (void)yy_setGlyphInfo:(nullable CTGlyphInfoRef)glyphInfo range:(NSRange)range;
-- (void)yy_setCharacterShape:(nullable NSNumber *)characterShape range:(NSRange)range;
-- (void)yy_setRunDelegate:(nullable CTRunDelegateRef)runDelegate range:(NSRange)range;
-- (void)yy_setBaselineClass:(nullable CFStringRef)baselineClass range:(NSRange)range;
-- (void)yy_setBaselineInfo:(nullable CFDictionaryRef)baselineInfo range:(NSRange)range;
-- (void)yy_setBaselineReferenceInfo:(nullable CFDictionaryRef)referenceInfo range:(NSRange)range;
-- (void)yy_setRubyAnnotation:(nullable CTRubyAnnotationRef)ruby range:(NSRange)range NS_AVAILABLE_IOS(8_0);
-- (void)yy_setAttachment:(nullable NSTextAttachment *)attachment range:(NSRange)range NS_AVAILABLE_IOS(7_0);
-- (void)yy_setLink:(nullable id)link range:(NSRange)range NS_AVAILABLE_IOS(7_0);
-- (void)yy_setTextBackedString:(nullable YYTextBackedString *)textBackedString range:(NSRange)range;
-- (void)yy_setTextBinding:(nullable YYTextBinding *)textBinding range:(NSRange)range;
-- (void)yy_setTextAttachment:(nullable YYTextAttachment *)textAttachment range:(NSRange)range;
-- (void)yy_setTextHighlight:(nullable YYTextHighlight *)textHighlight range:(NSRange)range;
-- (void)yy_setTextBlockBorder:(nullable YYTextBorder *)textBlockBorder range:(NSRange)range;
-- (void)yy_setTextRubyAnnotation:(nullable YYTextRubyAnnotation *)ruby range:(NSRange)range NS_AVAILABLE_IOS(8_0);
+- (void)kf_setSuperscript:(nullable NSNumber *)superscript range:(NSRange)range;
+- (void)kf_setGlyphInfo:(nullable CTGlyphInfoRef)glyphInfo range:(NSRange)range;
+- (void)kf_setCharacterShape:(nullable NSNumber *)characterShape range:(NSRange)range;
+- (void)kf_setRunDelegate:(nullable CTRunDelegateRef)runDelegate range:(NSRange)range;
+- (void)kf_setBaselineClass:(nullable CFStringRef)baselineClass range:(NSRange)range;
+- (void)kf_setBaselineInfo:(nullable CFDictionaryRef)baselineInfo range:(NSRange)range;
+- (void)kf_setBaselineReferenceInfo:(nullable CFDictionaryRef)referenceInfo range:(NSRange)range;
+- (void)kf_setRubyAnnotation:(nullable CTRubyAnnotationRef)ruby range:(NSRange)range NS_AVAILABLE_IOS(8_0);
+- (void)kf_setAttachment:(nullable NSTextAttachment *)attachment range:(NSRange)range NS_AVAILABLE_IOS(7_0);
+- (void)kf_setLink:(nullable id)link range:(NSRange)range NS_AVAILABLE_IOS(7_0);
+- (void)kf_setTextBackedString:(nullable YYTextBackedString *)textBackedString range:(NSRange)range;
+- (void)kf_setTextBinding:(nullable YYTextBinding *)textBinding range:(NSRange)range;
+- (void)kf_setTextAttachment:(nullable YYTextAttachment *)textAttachment range:(NSRange)range;
+- (void)kf_setTextHighlight:(nullable YYTextHighlight *)textHighlight range:(NSRange)range;
+- (void)kf_setTextBlockBorder:(nullable YYTextBorder *)textBlockBorder range:(NSRange)range;
+- (void)kf_setTextRubyAnnotation:(nullable YYTextRubyAnnotation *)ruby range:(NSRange)range NS_AVAILABLE_IOS(8_0);
 
 
 #pragma mark - Convenience methods for text highlight
@@ -1322,7 +1322,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param tapAction       tap action when user tap the highlight (pass nil to ignore)
  @param longPressAction long press action when user long press the highlight (pass nil to ignore)
  */
-- (void)yy_setTextHighlightRange:(NSRange)range
+- (void)kf_setTextHighlightRange:(NSRange)range
                            color:(nullable UIColor *)color
                  backgroundColor:(nullable UIColor *)backgroundColor
                         userInfo:(nullable NSDictionary *)userInfo
@@ -1337,7 +1337,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param backgroundColor text background color when highlight
  @param tapAction       tap action when user tap the highlight (pass nil to ignore)
  */
-- (void)yy_setTextHighlightRange:(NSRange)range
+- (void)kf_setTextHighlightRange:(NSRange)range
                            color:(nullable UIColor *)color
                  backgroundColor:(nullable UIColor *)backgroundColor
                        tapAction:(nullable YYTextAction)tapAction;
@@ -1350,7 +1350,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param backgroundColor text background color when highlight
  @param userInfo        tap action when user tap the highlight (pass nil to ignore)
  */
-- (void)yy_setTextHighlightRange:(NSRange)range
+- (void)kf_setTextHighlightRange:(NSRange)range
                            color:(nullable UIColor *)color
                  backgroundColor:(nullable UIColor *)backgroundColor
                         userInfo:(nullable NSDictionary *)userInfo;
@@ -1369,7 +1369,7 @@ NS_ASSUME_NONNULL_BEGIN
     exceed the bounds of the receiver.
  @throw Raises an NSRangeException if the location out of bounds.
  */
-- (void)yy_insertString:(NSString *)string atIndex:(NSUInteger)location;
+- (void)kf_insertString:(NSString *)string atIndex:(NSUInteger)location;
 
 /**
  Adds to the end of the receiver the characters of a given string.
@@ -1377,7 +1377,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param string  The string to append to the receiver, must not be nil.
  */
-- (void)yy_appendString:(NSString *)string;
+- (void)kf_appendString:(NSString *)string;
 
 /**
  Set foreground color with [UIColor clearColor] in joined-emoji range.
@@ -1392,7 +1392,7 @@ NS_ASSUME_NONNULL_BEGIN
  extra glyphs above the emoji. It's a bug in CoreText, try this method to avoid.
  This bug is fixed in iOS 9.
  */
-- (void)yy_setClearColorToJoinedEmoji;
+- (void)kf_setClearColorToJoinedEmoji;
 
 /**
  Removes all discontinuous attributes in a specified range.
@@ -1400,7 +1400,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param range A text range.
  */
-- (void)yy_removeDiscontinuousAttributesInRange:(NSRange)range;
+- (void)kf_removeDiscontinuousAttributesInRange:(NSRange)range;
 
 /**
  Returns all discontinuous attribute keys, such as RunDelegate/Attachment/Ruby.
@@ -1408,7 +1408,7 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion These attributes can only set to a specified range of text, and
  should not extend to other range when editing text.
  */
-+ (NSArray<NSString *> *)yy_allDiscontinuousAttributeKeys;
++ (NSArray<NSString *> *)kf_allDiscontinuousAttributeKeys;
 
 @end
 

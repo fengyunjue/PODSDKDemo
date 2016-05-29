@@ -8,11 +8,11 @@
 
 #import "NSArray+MASAdditions.h"
 
-#ifdef MAS_SHORTHAND
+#ifdef kf_SHORTHAND
 
 /**
- *	Shorthand array additions without the 'mas_' prefixes,
- *  only enabled if MAS_SHORTHAND is defined
+ *	Shorthand array additions without the 'kf_' prefixes,
+ *  only enabled if kf_SHORTHAND is defined
  */
 @interface NSArray (MASShorthandAdditions)
 
@@ -25,15 +25,15 @@
 @implementation NSArray (MASShorthandAdditions)
 
 - (NSArray *)makeConstraints:(void(^)(MASConstraintMaker *))block {
-    return [self mas_makeConstraints:block];
+    return [self kf_makeConstraints:block];
 }
 
 - (NSArray *)updateConstraints:(void(^)(MASConstraintMaker *))block {
-    return [self mas_updateConstraints:block];
+    return [self kf_updateConstraints:block];
 }
 
 - (NSArray *)remakeConstraints:(void(^)(MASConstraintMaker *))block {
-    return [self mas_remakeConstraints:block];
+    return [self kf_remakeConstraints:block];
 }
 
 @end

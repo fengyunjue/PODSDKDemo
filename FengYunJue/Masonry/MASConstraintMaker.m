@@ -15,14 +15,14 @@
 
 @interface MASConstraintMaker () <MASConstraintDelegate>
 
-@property (nonatomic, weak) MAS_VIEW *view;
+@property (nonatomic, weak) kf_VIEW *view;
 @property (nonatomic, strong) NSMutableArray *constraints;
 
 @end
 
 @implementation MASConstraintMaker
 
-- (id)initWithView:(MAS_VIEW *)view {
+- (id)initWithView:(kf_VIEW *)view {
     self = [super init];
     if (!self) return nil;
     
@@ -89,28 +89,28 @@
     
     NSMutableArray *attributes = [NSMutableArray array];
     
-    if (attrs & MASAttributeLeft) [attributes addObject:self.view.mas_left];
-    if (attrs & MASAttributeRight) [attributes addObject:self.view.mas_right];
-    if (attrs & MASAttributeTop) [attributes addObject:self.view.mas_top];
-    if (attrs & MASAttributeBottom) [attributes addObject:self.view.mas_bottom];
-    if (attrs & MASAttributeLeading) [attributes addObject:self.view.mas_leading];
-    if (attrs & MASAttributeTrailing) [attributes addObject:self.view.mas_trailing];
-    if (attrs & MASAttributeWidth) [attributes addObject:self.view.mas_width];
-    if (attrs & MASAttributeHeight) [attributes addObject:self.view.mas_height];
-    if (attrs & MASAttributeCenterX) [attributes addObject:self.view.mas_centerX];
-    if (attrs & MASAttributeCenterY) [attributes addObject:self.view.mas_centerY];
-    if (attrs & MASAttributeBaseline) [attributes addObject:self.view.mas_baseline];
+    if (attrs & MASAttributeLeft) [attributes addObject:self.view.kf_left];
+    if (attrs & MASAttributeRight) [attributes addObject:self.view.kf_right];
+    if (attrs & MASAttributeTop) [attributes addObject:self.view.kf_top];
+    if (attrs & MASAttributeBottom) [attributes addObject:self.view.kf_bottom];
+    if (attrs & MASAttributeLeading) [attributes addObject:self.view.kf_leading];
+    if (attrs & MASAttributeTrailing) [attributes addObject:self.view.kf_trailing];
+    if (attrs & MASAttributeWidth) [attributes addObject:self.view.kf_width];
+    if (attrs & MASAttributeHeight) [attributes addObject:self.view.kf_height];
+    if (attrs & MASAttributeCenterX) [attributes addObject:self.view.kf_centerX];
+    if (attrs & MASAttributeCenterY) [attributes addObject:self.view.kf_centerY];
+    if (attrs & MASAttributeBaseline) [attributes addObject:self.view.kf_baseline];
     
 #if TARGET_OS_IPHONE || TARGET_OS_TV
     
-    if (attrs & MASAttributeLeftMargin) [attributes addObject:self.view.mas_leftMargin];
-    if (attrs & MASAttributeRightMargin) [attributes addObject:self.view.mas_rightMargin];
-    if (attrs & MASAttributeTopMargin) [attributes addObject:self.view.mas_topMargin];
-    if (attrs & MASAttributeBottomMargin) [attributes addObject:self.view.mas_bottomMargin];
-    if (attrs & MASAttributeLeadingMargin) [attributes addObject:self.view.mas_leadingMargin];
-    if (attrs & MASAttributeTrailingMargin) [attributes addObject:self.view.mas_trailingMargin];
-    if (attrs & MASAttributeCenterXWithinMargins) [attributes addObject:self.view.mas_centerXWithinMargins];
-    if (attrs & MASAttributeCenterYWithinMargins) [attributes addObject:self.view.mas_centerYWithinMargins];
+    if (attrs & MASAttributeLeftMargin) [attributes addObject:self.view.kf_leftMargin];
+    if (attrs & MASAttributeRightMargin) [attributes addObject:self.view.kf_rightMargin];
+    if (attrs & MASAttributeTopMargin) [attributes addObject:self.view.kf_topMargin];
+    if (attrs & MASAttributeBottomMargin) [attributes addObject:self.view.kf_bottomMargin];
+    if (attrs & MASAttributeLeadingMargin) [attributes addObject:self.view.kf_leadingMargin];
+    if (attrs & MASAttributeTrailingMargin) [attributes addObject:self.view.kf_trailingMargin];
+    if (attrs & MASAttributeCenterXWithinMargins) [attributes addObject:self.view.kf_centerXWithinMargins];
+    if (attrs & MASAttributeCenterYWithinMargins) [attributes addObject:self.view.kf_centerYWithinMargins];
     
 #endif
     

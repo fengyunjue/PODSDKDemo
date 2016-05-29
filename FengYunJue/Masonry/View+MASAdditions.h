@@ -14,41 +14,41 @@
  *	Provides constraint maker block
  *  and convience methods for creating MASViewAttribute which are view + NSLayoutAttribute pairs
  */
-@interface MAS_VIEW (MASAdditions)
+@interface kf_VIEW (MASAdditions)
 
 /**
  *	following properties return a new MASViewAttribute with current view and appropriate NSLayoutAttribute
  */
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_left;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_top;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_right;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_bottom;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_leading;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_trailing;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_width;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_height;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_centerX;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_centerY;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_baseline;
-@property (nonatomic, strong, readonly) MASViewAttribute *(^mas_attribute)(NSLayoutAttribute attr);
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_left;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_top;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_right;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_bottom;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_leading;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_trailing;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_width;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_height;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_centerX;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_centerY;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_baseline;
+@property (nonatomic, strong, readonly) MASViewAttribute *(^kf_attribute)(NSLayoutAttribute attr);
 
 #if TARGET_OS_IPHONE || TARGET_OS_TV
 
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_leftMargin;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_rightMargin;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_topMargin;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_bottomMargin;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_leadingMargin;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_trailingMargin;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_centerXWithinMargins;
-@property (nonatomic, strong, readonly) MASViewAttribute *mas_centerYWithinMargins;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_leftMargin;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_rightMargin;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_topMargin;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_bottomMargin;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_leadingMargin;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_trailingMargin;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_centerXWithinMargins;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf_centerYWithinMargins;
 
 #endif
 
 /**
  *	a key to associate with this view
  */
-@property (nonatomic, strong) id mas_key;
+@property (nonatomic, strong) id kf_key;
 
 /**
  *	Finds the closest common superview between this view and another view
@@ -57,7 +57,7 @@
  *
  *	@return	returns nil if common superview could not be found
  */
-- (instancetype)mas_closestCommonSuperview:(MAS_VIEW *)view;
+- (instancetype)kf_closestCommonSuperview:(kf_VIEW *)view;
 
 /**
  *  Creates a MASConstraintMaker with the callee view.
@@ -67,7 +67,7 @@
  *
  *  @return Array of created MASConstraints
  */
-- (NSArray *)mas_makeConstraints:(void(^)(MASConstraintMaker *make))block;
+- (NSArray *)kf_makeConstraints:(void(^)(MASConstraintMaker *make))block;
 
 /**
  *  Creates a MASConstraintMaker with the callee view.
@@ -78,7 +78,7 @@
  *
  *  @return Array of created/updated MASConstraints
  */
-- (NSArray *)mas_updateConstraints:(void(^)(MASConstraintMaker *make))block;
+- (NSArray *)kf_updateConstraints:(void(^)(MASConstraintMaker *make))block;
 
 /**
  *  Creates a MASConstraintMaker with the callee view.
@@ -89,6 +89,6 @@
  *
  *  @return Array of created/updated MASConstraints
  */
-- (NSArray *)mas_remakeConstraints:(void(^)(MASConstraintMaker *make))block;
+- (NSArray *)kf_remakeConstraints:(void(^)(MASConstraintMaker *make))block;
 
 @end

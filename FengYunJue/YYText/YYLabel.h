@@ -309,9 +309,9 @@ NS_ASSUME_NONNULL_BEGIN
  
         // Create attributed string.
         NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:@"Some Text"];
-        text.yy_font = [UIFont systemFontOfSize:16];
-        text.yy_color = [UIColor grayColor];
-        [text yy_setColor:[UIColor redColor] range:NSMakeRange(0, 4)];
+        text.kf_font = [UIFont systemFontOfSize:16];
+        text.kf_color = [UIColor grayColor];
+        [text kf_setColor:[UIColor redColor] range:NSMakeRange(0, 4)];
  
         // Create text container
         YYTextContainer *container = [YYTextContainer new];

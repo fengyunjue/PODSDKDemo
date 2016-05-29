@@ -32,7 +32,7 @@
 ///
 /// @param identifier Reuse identifier for cell which must be registered.
 ///
-- (__kindof UITableViewCell *)fd_templateCellForReuseIdentifier:(NSString *)identifier;
+- (__kindof UITableViewCell *)kf_templateCellForReuseIdentifier:(NSString *)identifier;
 
 /// Returns height of cell of type specifed by a reuse identifier and configured
 /// by the configuration block.
@@ -48,9 +48,9 @@
 ///        to the template cell. The configuration should be minimal for scrolling
 ///        performance yet sufficient for calculating cell's height.
 ///
-- (CGFloat)fd_heightForCellWithIdentifier:(NSString *)identifier configuration:(void (^)(id cell))configuration;
+- (CGFloat)kf_heightForCellWithIdentifier:(NSString *)identifier configuration:(void (^)(id cell))configuration;
 
-/// This method does what "-fd_heightForCellWithIdentifier:configuration" does, and
+/// This method does what "-kf_heightForCellWithIdentifier:configuration" does, and
 /// calculated height will be cached by its index path, returns a cached height
 /// when needed. Therefore lots of extra height calculations could be saved.
 ///
@@ -60,7 +60,7 @@
 ///
 /// @param indexPath where this cell's height cache belongs.
 ///
-- (CGFloat)fd_heightForCellWithIdentifier:(NSString *)identifier cacheByIndexPath:(NSIndexPath *)indexPath configuration:(void (^)(id cell))configuration;
+- (CGFloat)kf_heightForCellWithIdentifier:(NSString *)identifier cacheByIndexPath:(NSIndexPath *)indexPath configuration:(void (^)(id cell))configuration;
 
 /// This method caches height by your model entity's identifier.
 /// If your model's changed, call "-invalidateHeightForKey:(id <NSCopying>)key" to
@@ -68,7 +68,7 @@
 ///
 /// @param key model entity's identifier whose data configures a cell.
 ///
-- (CGFloat)fd_heightForCellWithIdentifier:(NSString *)identifier cacheByKey:(id<NSCopying>)key configuration:(void (^)(id cell))configuration;
+- (CGFloat)kf_heightForCellWithIdentifier:(NSString *)identifier cacheByKey:(id<NSCopying>)key configuration:(void (^)(id cell))configuration;
 
 @end
 
@@ -79,18 +79,18 @@
 /// Like:
 ///   - (void)configureCell:(FooCell *)cell atIndexPath:(NSIndexPath *)indexPath {
 ///       cell.entity = [self entityAtIndexPath:indexPath];
-///       if (!cell.fd_isTemplateLayoutCell) {
+///       if (!cell.kf_isTemplateLayoutCell) {
 ///           [self notifySomething]; // non-UI side effects
 ///       }
 ///   }
 ///
-@property (nonatomic, assign) BOOL fd_isTemplateLayoutCell;
+@property (nonatomic, assign) BOOL kf_isTemplateLayoutCell;
 
 /// Enable to enforce this template layout cell to use "frame layout" rather than "auto layout",
 /// and will ask cell's height by calling "-sizeThatFits:", so you must override this method.
 /// Use this property only when you want to manually control this template layout cell's height
 /// calculation mode, default to NO.
 ///
-@property (nonatomic, assign) BOOL fd_enforceFrameLayout;
+@property (nonatomic, assign) BOOL kf_enforceFrameLayout;
 
 @end

@@ -11,31 +11,31 @@
 #import "NSData+ImageContentType.h"
 #import <ImageIO/ImageIO.h>
 
-#ifdef SD_WEBP
+#ifdef kf_WEBP
 #import "UIImage+WebP.h"
 #endif
 
 @implementation UIImage (MultiFormat)
 
-+ (UIImage *)sd_imageWithData:(NSData *)data {
++ (UIImage *)kf_imageWithData:(NSData *)data {
     if (!data) {
         return nil;
     }
     
     UIImage *image;
-    NSString *imageContentType = [NSData sd_contentTypeForImageData:data];
+    NSString *imageContentType = [NSData kf_contentTypeForImageData:data];
     if ([imageContentType isEqualToString:@"image/gif"]) {
-        image = [UIImage sd_animatedGIFWithData:data];
+        image = [UIImage kf_animatedGIFWithData:data];
     }
-#ifdef SD_WEBP
+#ifdef kf_WEBP
     else if ([imageContentType isEqualToString:@"image/webp"])
     {
-        image = [UIImage sd_imageWithWebPData:data];
+        image = [UIImage kf_imageWithWebPData:data];
     }
 #endif
     else {
         image = [[UIImage alloc] initWithData:data];
-        UIImageOrientation orientation = [self sd_imageOrientationFromImageData:data];
+        UIImageOrientation orientation = [self kf_imageOrientationFromImageData:data];
         if (orientation != UIImageOrientationUp) {
             image = [UIImage imageWithCGImage:image.CGImage
                                         scale:image.scale
@@ -48,7 +48,7 @@
 }
 
 
-+(UIImageOrientation)sd_imageOrientationFromImageData:(NSData *)imageData {
++(UIImageOrientation)kf_imageOrientationFromImageData:(NSData *)imageData {
     UIImageOrientation result = UIImageOrientationUp;
     CGImageSourceRef imageSource = CGImageSourceCreateWithData((__bridge CFDataRef)imageData, NULL);
     if (imageSource) {
@@ -59,7 +59,7 @@
             val = CFDictionaryGetValue(properties, kCGImagePropertyOrientation);
             if (val) {
                 CFNumberGetValue(val, kCFNumberIntType, &exifOrientation);
-                result = [self sd_exifOrientationToiOSOrientation:exifOrientation];
+                result = [self kf_exifOrientationToiOSOrientation:exifOrientation];
             } // else - if it's not set it remains at up
             CFRelease((CFTypeRef) properties);
         } else {
@@ -73,7 +73,7 @@
 #pragma mark EXIF orientation tag converter
 // Convert an EXIF image orientation to an iOS one.
 // reference see here: http://sylvana.net/jpegcrop/exif_orientation.html
-+ (UIImageOrientation) sd_exifOrientationToiOSOrientation:(int)exifOrientation {
++ (UIImageOrientation) kf_exifOrientationToiOSOrientation:(int)exifOrientation {
     UIImageOrientation orientation = UIImageOrientationUp;
     switch (exifOrientation) {
         case 1:
