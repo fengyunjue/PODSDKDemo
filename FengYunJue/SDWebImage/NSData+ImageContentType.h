@@ -17,10 +17,3 @@
 + (NSString *)kf_contentTypeForImageData:(NSData *)data;
 
 @end
-
-
-@interface NSData (ImageContentTypeDeprecated)
-
-+ (NSString *)contentTypeForImageData:(NSData *)data __deprecated_msg("Use `kf_contentTypeForImageData:`");
-
-@end

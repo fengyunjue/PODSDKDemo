@@ -38,12 +38,3 @@
 }
 
 @end
-
-
-@implementation NSData (ImageContentTypeDeprecated)
-
-+ (NSString *)contentTypeForImageData:(NSData *)data {
-    return [self kf_contentTypeForImageData:data];
-}
-
-@end

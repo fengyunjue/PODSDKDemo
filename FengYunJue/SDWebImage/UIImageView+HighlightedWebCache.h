@@ -85,16 +85,3 @@
 - (void)kf_cancelCurrentHighlightedImageLoad;
 
 @end
-
-
-@interface UIImageView (HighlightedWebCacheDeprecated)
-
-- (void)setHighlightedImageWithURL:(NSURL *)url __deprecated_msg("Method deprecated. Use `kf_setHighlightedImageWithURL:`");
-- (void)setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options __deprecated_msg("Method deprecated. Use `kf_setHighlightedImageWithURL:options:`");
-- (void)setHighlightedImageWithURL:(NSURL *)url completed:(SDWebImageCompletedBlock)completedBlock __deprecated_msg("Method deprecated. Use `kf_setHighlightedImageWithURL:completed:`");
-- (void)setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options completed:(SDWebImageCompletedBlock)completedBlock __deprecated_msg("Method deprecated. Use `kf_setHighlightedImageWithURL:options:completed:`");
-- (void)setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletedBlock)completedBlock __deprecated_msg("Method deprecated. Use `kf_setHighlightedImageWithURL:options:progress:completed:`");
-
-- (void)cancelCurrentHighlightedImageLoad __deprecated_msg("Use `kf_cancelCurrentHighlightedImageLoad`");
-
-@end

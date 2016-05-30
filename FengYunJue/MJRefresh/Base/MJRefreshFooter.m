@@ -62,10 +62,6 @@
     self.state = MJRefreshStateNoMoreData;
 }
 
-- (void)noticeNoMoreData
-{
-    [self endRefreshingWithNoMoreData];
-}
 
 - (void)resetNoMoreData
 {

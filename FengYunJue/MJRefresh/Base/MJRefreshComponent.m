@@ -162,17 +162,6 @@
     return self.state == MJRefreshStateRefreshing || self.state == MJRefreshStateWillRefresh;
 }
 
-#pragma mark 自动切换透明度
-- (void)setAutoChangeAlpha:(BOOL)autoChangeAlpha
-{
-    self.automaticallyChangeAlpha = autoChangeAlpha;
-}
-
-- (BOOL)isAutoChangeAlpha
-{
-    return self.isAutomaticallyChangeAlpha;
-}
-
 - (void)setAutomaticallyChangeAlpha:(BOOL)automaticallyChangeAlpha
 {
     _automaticallyChangeAlpha = automaticallyChangeAlpha;

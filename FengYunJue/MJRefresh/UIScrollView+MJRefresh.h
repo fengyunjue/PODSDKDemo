@@ -15,10 +15,8 @@
 @interface UIScrollView (MJRefresh)
 /** 下拉刷新控件 */
 @property (strong, nonatomic) MJRefreshHeader *kf_header;
-@property (strong, nonatomic) MJRefreshHeader *header MJRefreshDeprecated("使用kf_header");
 /** 上拉刷新控件 */
 @property (strong, nonatomic) MJRefreshFooter *kf_footer;
-@property (strong, nonatomic) MJRefreshFooter *footer MJRefreshDeprecated("使用kf_footer");
 
 #pragma mark - other
 - (NSInteger)kf_totalDataCount;
