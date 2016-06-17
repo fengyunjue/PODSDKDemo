@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name              = "FengYunJue"
-    s.version           = "0.0.3"
+    s.version           = "0.0.4"
     s.summary           = "修改一些第三方库的分类的前缀"
 
     s.homepage          = "https://github.com/fengyunjue/PODSDKDemo"
@@ -19,40 +19,40 @@ Pod::Spec.new do |s|
     s.requires_arc      = true
 
     s.subspec 'AFNetworking' do |ss|
-        ss.version = "3.1.0"
+#ss.version = "3.1.0"
         ss.source_files = 'FengYunJue/AFNetworking/**/*.{h,m}'
         ss.public_header_files = 'FengYunJue/AFNetworking/**/*.h'
         ss.frameworks = 'MobileCoreServices', 'CoreGraphics','Security','SystemConfiguration'
     end
 
     s.subspec 'Masonry' do |ss|
-        ss.version = "1.0.1"
+#ss.version = "1.0.1"
         ss.source_files = 'FengYunJue/Masonry/**/*.{h,m}'
         ss.public_header_files = 'FengYunJue/Masonry/**/*.h'
         ss.frameworks = 'Foundation', 'UIKit'
     end
 
     s.subspec 'MJRefresh' do |ss|
-        ss.version = "3.1.0"
+#ss.version = "3.1.0"
         ss.source_files = 'FengYunJue/MJRefresh/**/*.{h,m}'
         ss.public_header_files = 'FengYunJue/MJRefresh/**/*.h'
         ss.resource = 'FengYunJue/MJRefresh/MJRefresh.bundle'
     end
 
     s.subspec 'SDWebImage' do |ss|
-        ss.version = "3.7.6"
+#ss.version = "3.7.6"
         ss.source_files = 'FengYunJue/SDWebImage/**/*.{h,m}'
         ss.public_header_files = 'FengYunJue/SDWebImage/**/*.h'
     end
 
     s.subspec 'UITableView+FDTemplateLayoutCell' do |ss|
-        ss.version = "1.4"
+#ss.version = "1.4"
         ss.source_files = 'FengYunJue/UITableView+FDTemplateLayoutCell/**/*.{h,m}'
         ss.public_header_files = 'FengYunJue/UITableView+FDTemplateLayoutCell/**/*.h'
     end
 
     s.subspec 'YYText' do |ss|
-        ss.version = "1.0.5"
+#ss.version = "1.0.5"
         ss.source_files = 'FengYunJue/YYText/**/*.{h,m}'
         ss.public_header_files = 'FengYunJue/YYText/**/*.h'
         ss.frameworks = 'Accelerate', 'CoreFoundation','CoreText','MobileCoreServices','QuartzCore','UIKit'

@@ -32,7 +32,7 @@ static dispatch_queue_t url_session_manager_creation_queue() {
     static dispatch_queue_t kf_url_session_manager_creation_queue;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        kf_url_session_manager_creation_queue = dispatch_queue_create("com.alamofire.networking.session.manager.creation", DISPATCH_QUEUE_SERIAL);
+        kf_url_session_manager_creation_queue = dispatch_queue_create("com.kf5.networking.session.manager.creation", DISPATCH_QUEUE_SERIAL);
     });
 
     return kf_url_session_manager_creation_queue;
@@ -53,7 +53,7 @@ static dispatch_queue_t url_session_manager_processing_queue() {
     static dispatch_queue_t kf_url_session_manager_processing_queue;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        kf_url_session_manager_processing_queue = dispatch_queue_create("com.alamofire.networking.session.manager.processing", DISPATCH_QUEUE_CONCURRENT);
+        kf_url_session_manager_processing_queue = dispatch_queue_create("com.kf5.networking.session.manager.processing", DISPATCH_QUEUE_CONCURRENT);
     });
 
     return kf_url_session_manager_processing_queue;
@@ -69,19 +69,19 @@ static dispatch_group_t url_session_manager_completion_group() {
     return kf_url_session_manager_completion_group;
 }
 
-NSString * const AFNetworkingTaskDidResumeNotification = @"com.alamofire.networking.task.resume";
-NSString * const AFNetworkingTaskDidCompleteNotification = @"com.alamofire.networking.task.complete";
-NSString * const AFNetworkingTaskDidSuspendNotification = @"com.alamofire.networking.task.suspend";
-NSString * const AFURLSessionDidInvalidateNotification = @"com.alamofire.networking.session.invalidate";
-NSString * const AFURLSessionDownloadTaskDidFailToMoveFileNotification = @"com.alamofire.networking.session.download.file-manager-error";
+NSString * const AFNetworkingTaskDidResumeNotification = @"com.kf5.networking.task.resume";
+NSString * const AFNetworkingTaskDidCompleteNotification = @"com.kf5.networking.task.complete";
+NSString * const AFNetworkingTaskDidSuspendNotification = @"com.kf5.networking.task.suspend";
+NSString * const AFURLSessionDidInvalidateNotification = @"com.kf5.networking.session.invalidate";
+NSString * const AFURLSessionDownloadTaskDidFailToMoveFileNotification = @"com.kf5.networking.session.download.file-manager-error";
 
-NSString * const AFNetworkingTaskDidCompleteSerializedResponseKey = @"com.alamofire.networking.task.complete.serializedresponse";
-NSString * const AFNetworkingTaskDidCompleteResponseSerializerKey = @"com.alamofire.networking.task.complete.responseserializer";
-NSString * const AFNetworkingTaskDidCompleteResponseDataKey = @"com.alamofire.networking.complete.finish.responsedata";
-NSString * const AFNetworkingTaskDidCompleteErrorKey = @"com.alamofire.networking.task.complete.error";
-NSString * const AFNetworkingTaskDidCompleteAssetPathKey = @"com.alamofire.networking.task.complete.assetpath";
+NSString * const AFNetworkingTaskDidCompleteSerializedResponseKey = @"com.kf5.networking.task.complete.serializedresponse";
+NSString * const AFNetworkingTaskDidCompleteResponseSerializerKey = @"com.kf5.networking.task.complete.responseserializer";
+NSString * const AFNetworkingTaskDidCompleteResponseDataKey = @"com.kf5.networking.complete.finish.responsedata";
+NSString * const AFNetworkingTaskDidCompleteErrorKey = @"com.kf5.networking.task.complete.error";
+NSString * const AFNetworkingTaskDidCompleteAssetPathKey = @"com.kf5.networking.task.complete.assetpath";
 
-static NSString * const AFURLSessionManagerLockName = @"com.alamofire.networking.session.manager.lock";
+static NSString * const AFURLSessionManagerLockName = @"com.kf5.networking.session.manager.lock";
 
 static NSUInteger const AFMaximumNumberOfAttemptsToRecreateBackgroundSessionUploadTask = 3;
 
@@ -370,8 +370,8 @@ static inline BOOL kf_addMethod(Class theClass, SEL selector, Method method) {
     return class_addMethod(theClass, selector,  method_getImplementation(method),  method_getTypeEncoding(method));
 }
 
-static NSString * const AFNSURLSessionTaskDidResumeNotification  = @"com.alamofire.networking.nsurlsessiontask.resume";
-static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.alamofire.networking.nsurlsessiontask.suspend";
+static NSString * const AFNSURLSessionTaskDidResumeNotification  = @"com.kf5.networking.nsurlsessiontask.resume";
+static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.kf5.networking.nsurlsessiontask.suspend";
 
 @interface _AFURLSessionTaskSwizzling : NSObject
 

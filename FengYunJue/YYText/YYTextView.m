@@ -71,9 +71,9 @@ static double _YYDeviceSystemVersion() {
 #define kDefaultVerticalInset UIEdgeInsetsMake(4, 6, 4, 6)
 
 
-NSString *const YYTextViewTextDidBeginEditingNotification = @"YYTextViewTextDidBeginEditing";
-NSString *const YYTextViewTextDidChangeNotification = @"YYTextViewTextDidChange";
-NSString *const YYTextViewTextDidEndEditingNotification = @"YYTextViewTextDidEndEditing";
+NSString *const YYTextViewTextDidBeginEditingNotification = @"KFYYTextViewTextDidBeginEditing";
+NSString *const YYTextViewTextDidChangeNotification = @"KFYYTextViewTextDidChange";
+NSString *const YYTextViewTextDidEndEditingNotification = @"KFYYTextViewTextDidEndEditing";
 
 
 typedef NS_ENUM (NSUInteger, YYTextGrabberDirection) {

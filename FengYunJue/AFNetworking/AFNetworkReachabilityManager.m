@@ -28,7 +28,7 @@
 #import <ifaddrs.h>
 #import <netdb.h>
 
-NSString * const AFNetworkingReachabilityDidChangeNotification = @"com.alamofire.networking.reachability.change";
+NSString * const AFNetworkingReachabilityDidChangeNotification = @"com.kf5.networking.reachability.change";
 NSString * const AFNetworkingReachabilityNotificationStatusItem = @"AFNetworkingReachabilityNotificationStatusItem";
 
 typedef void (^AFNetworkReachabilityStatusBlock)(AFNetworkReachabilityStatus status);
