@@ -29,13 +29,13 @@
 #endif
 
 static dispatch_queue_t url_session_manager_creation_queue() {
-    static dispatch_queue_t af_url_session_manager_creation_queue;
+    static dispatch_queue_t kf_url_session_manager_creation_queue;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        af_url_session_manager_creation_queue = dispatch_queue_create("com.alamofire.networking.session.manager.creation", DISPATCH_QUEUE_SERIAL);
+        kf_url_session_manager_creation_queue = dispatch_queue_create("com.alamofire.networking.session.manager.creation", DISPATCH_QUEUE_SERIAL);
     });
 
-    return af_url_session_manager_creation_queue;
+    return kf_url_session_manager_creation_queue;
 }
 
 static void url_session_manager_create_task_safely(dispatch_block_t block) {
@@ -50,23 +50,23 @@ static void url_session_manager_create_task_safely(dispatch_block_t block) {
 }
 
 static dispatch_queue_t url_session_manager_processing_queue() {
-    static dispatch_queue_t af_url_session_manager_processing_queue;
+    static dispatch_queue_t kf_url_session_manager_processing_queue;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        af_url_session_manager_processing_queue = dispatch_queue_create("com.alamofire.networking.session.manager.processing", DISPATCH_QUEUE_CONCURRENT);
+        kf_url_session_manager_processing_queue = dispatch_queue_create("com.alamofire.networking.session.manager.processing", DISPATCH_QUEUE_CONCURRENT);
     });
 
-    return af_url_session_manager_processing_queue;
+    return kf_url_session_manager_processing_queue;
 }
 
 static dispatch_group_t url_session_manager_completion_group() {
-    static dispatch_group_t af_url_session_manager_completion_group;
+    static dispatch_group_t kf_url_session_manager_completion_group;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        af_url_session_manager_completion_group = dispatch_group_create();
+        kf_url_session_manager_completion_group = dispatch_group_create();
     });
 
-    return af_url_session_manager_completion_group;
+    return kf_url_session_manager_completion_group;
 }
 
 NSString * const AFNetworkingTaskDidResumeNotification = @"com.alamofire.networking.task.resume";
@@ -360,13 +360,13 @@ didFinishDownloadingToURL:(NSURL *)location
  *  - https://github.com/AFNetworking/AFNetworking/pull/2702
  */
 
-static inline void af_swizzleSelector(Class theClass, SEL originalSelector, SEL swizzledSelector) {
+static inline void kf_swizzleSelector(Class theClass, SEL originalSelector, SEL swizzledSelector) {
     Method originalMethod = class_getInstanceMethod(theClass, originalSelector);
     Method swizzledMethod = class_getInstanceMethod(theClass, swizzledSelector);
     method_exchangeImplementations(originalMethod, swizzledMethod);
 }
 
-static inline BOOL af_addMethod(Class theClass, SEL selector, Method method) {
+static inline BOOL kf_addMethod(Class theClass, SEL selector, Method method) {
     return class_addMethod(theClass, selector,  method_getImplementation(method),  method_getTypeEncoding(method));
 }
 
@@ -404,12 +404,12 @@ static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.alamofi
          
          The current solution:
             1) Grab an instance of `__NSCFLocalDataTask` by asking an instance of `NSURLSession` for a data task.
-            2) Grab a pointer to the original implementation of `af_resume`
+            2) Grab a pointer to the original implementation of `kf_resume`
             3) Check to see if the current class has an implementation of resume. If so, continue to step 4.
             4) Grab the super class of the current class.
             5) Grab a pointer for the current class to the current implementation of `resume`.
             6) Grab a pointer for the super class to the current implementation of `resume`.
-            7) If the current class implementation of `resume` is not equal to the super class implementation of `resume` AND the current implementation of `resume` is not equal to the original implementation of `af_resume`, THEN swizzle the methods
+            7) If the current class implementation of `resume` is not equal to the super class implementation of `resume` AND the current implementation of `resume` is not equal to the original implementation of `kf_resume`, THEN swizzle the methods
             8) Set the current class to the super class, and repeat steps 3-8
          */
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration ephemeralSessionConfiguration];
@@ -418,7 +418,7 @@ static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.alamofi
 #pragma GCC diagnostic ignored "-Wnonnull"
         NSURLSessionDataTask *localDataTask = [session dataTaskWithURL:nil];
 #pragma clang diagnostic pop
-        IMP originalAFResumeIMP = method_getImplementation(class_getInstanceMethod([self class], @selector(af_resume)));
+        IMP originalAFResumeIMP = method_getImplementation(class_getInstanceMethod([self class], @selector(kf_resume)));
         Class currentClass = [localDataTask class];
         
         while (class_getInstanceMethod(currentClass, @selector(resume))) {
@@ -438,15 +438,15 @@ static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.alamofi
 }
 
 + (void)swizzleResumeAndSuspendMethodForClass:(Class)theClass {
-    Method afResumeMethod = class_getInstanceMethod(self, @selector(af_resume));
-    Method afSuspendMethod = class_getInstanceMethod(self, @selector(af_suspend));
+    Method afResumeMethod = class_getInstanceMethod(self, @selector(kf_resume));
+    Method afSuspendMethod = class_getInstanceMethod(self, @selector(kf_suspend));
 
-    if (af_addMethod(theClass, @selector(af_resume), afResumeMethod)) {
-        af_swizzleSelector(theClass, @selector(resume), @selector(af_resume));
+    if (kf_addMethod(theClass, @selector(kf_resume), afResumeMethod)) {
+        kf_swizzleSelector(theClass, @selector(resume), @selector(kf_resume));
     }
 
-    if (af_addMethod(theClass, @selector(af_suspend), afSuspendMethod)) {
-        af_swizzleSelector(theClass, @selector(suspend), @selector(af_suspend));
+    if (kf_addMethod(theClass, @selector(kf_suspend), afSuspendMethod)) {
+        kf_swizzleSelector(theClass, @selector(suspend), @selector(kf_suspend));
     }
 }
 
@@ -455,20 +455,20 @@ static NSString * const AFNSURLSessionTaskDidSuspendNotification = @"com.alamofi
     return NSURLSessionTaskStateCanceling;
 }
 
-- (void)af_resume {
+- (void)kf_resume {
     NSAssert([self respondsToSelector:@selector(state)], @"Does not respond to state");
     NSURLSessionTaskState state = [self state];
-    [self af_resume];
+    [self kf_resume];
     
     if (state != NSURLSessionTaskStateRunning) {
         [[NSNotificationCenter defaultCenter] postNotificationName:AFNSURLSessionTaskDidResumeNotification object:self];
     }
 }
 
-- (void)af_suspend {
+- (void)kf_suspend {
     NSAssert([self respondsToSelector:@selector(state)], @"Does not respond to state");
     NSURLSessionTaskState state = [self state];
-    [self af_suspend];
+    [self kf_suspend];
     
     if (state != NSURLSessionTaskStateSuspended) {
         [[NSNotificationCenter defaultCenter] postNotificationName:AFNSURLSessionTaskDidSuspendNotification object:self];
