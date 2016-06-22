@@ -30,8 +30,8 @@
 #define MJRefreshLabelFont [UIFont boldSystemFontOfSize:14]
 
 // 图片路径
-#define MJRefreshSrcName(file) [@"MJRefresh.bundle" stringByAppendingPathComponent:file]
-#define MJRefreshFrameworkSrcName(file) [@"Frameworks/MJRefresh.framework/MJRefresh.bundle" stringByAppendingPathComponent:file]
+#define MJRefreshSrcName(file) [@"KF5SDK.bundle" stringByAppendingPathComponent:file]
+#define MJRefreshFrameworkSrcName(file) [@"Frameworks/KF5SDK.framework/KF5SDK.bundle" stringByAppendingPathComponent:file]
 
 // 常量
 UIKIT_EXTERN const CGFloat MJRefreshHeaderHeight;

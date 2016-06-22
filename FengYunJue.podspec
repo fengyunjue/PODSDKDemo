@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name              = "FengYunJue"
-    s.version           = "0.0.4"
+    s.version           = "0.0.5"
     s.summary           = "修改一些第三方库的分类的前缀"
 
     s.homepage          = "https://github.com/fengyunjue/PODSDKDemo"
@@ -36,7 +36,7 @@ Pod::Spec.new do |s|
 #ss.version = "3.1.0"
         ss.source_files = 'FengYunJue/MJRefresh/**/*.{h,m}'
         ss.public_header_files = 'FengYunJue/MJRefresh/**/*.h'
-        ss.resource = 'FengYunJue/MJRefresh/MJRefresh.bundle'
+        ss.resource = 'FengYunJue/MJRefresh/KF5SDK.bundle'
     end
 
     s.subspec 'SDWebImage' do |ss|

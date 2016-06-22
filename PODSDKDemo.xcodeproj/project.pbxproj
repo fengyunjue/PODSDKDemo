@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84BA25161D1A819F00ABB9EC /* KF5SDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84BA25151D1A819F00ABB9EC /* KF5SDK.bundle */; };
 		84FB36011CF857A700FAD89F /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB35521CF857A700FAD89F /* AFHTTPSessionManager.m */; };
 		84FB36021CF857A700FAD89F /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB35551CF857A700FAD89F /* AFNetworkReachabilityManager.m */; };
 		84FB36031CF857A700FAD89F /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB35571CF857A700FAD89F /* AFSecurityPolicy.m */; };
@@ -37,7 +38,6 @@
 		84FB361C1CF857A700FAD89F /* MJRefreshGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB35961CF857A700FAD89F /* MJRefreshGifHeader.m */; };
 		84FB361D1CF857A700FAD89F /* MJRefreshNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB35981CF857A700FAD89F /* MJRefreshNormalHeader.m */; };
 		84FB361E1CF857A700FAD89F /* MJRefreshStateHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB359A1CF857A700FAD89F /* MJRefreshStateHeader.m */; };
-		84FB361F1CF857A700FAD89F /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84FB359B1CF857A700FAD89F /* MJRefresh.bundle */; };
 		84FB36201CF857A700FAD89F /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB359E1CF857A700FAD89F /* MJRefreshConst.m */; };
 		84FB36211CF857A700FAD89F /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB35A01CF857A700FAD89F /* UIScrollView+MJExtension.m */; };
 		84FB36221CF857A700FAD89F /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FB35A21CF857A700FAD89F /* UIScrollView+MJRefresh.m */; };
@@ -93,6 +93,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84BA25151D1A819F00ABB9EC /* KF5SDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = KF5SDK.bundle; sourceTree = "<group>"; };
 		84FB35511CF857A700FAD89F /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		84FB35521CF857A700FAD89F /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		84FB35531CF857A700FAD89F /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
@@ -159,7 +160,6 @@
 		84FB35981CF857A700FAD89F /* MJRefreshNormalHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshNormalHeader.m; sourceTree = "<group>"; };
 		84FB35991CF857A700FAD89F /* MJRefreshStateHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshStateHeader.h; sourceTree = "<group>"; };
 		84FB359A1CF857A700FAD89F /* MJRefreshStateHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshStateHeader.m; sourceTree = "<group>"; };
-		84FB359B1CF857A700FAD89F /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		84FB359C1CF857A700FAD89F /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		84FB359D1CF857A700FAD89F /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConst.h; sourceTree = "<group>"; };
 		84FB359E1CF857A700FAD89F /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
@@ -346,9 +346,9 @@
 		84FB35781CF857A700FAD89F /* MJRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				84BA25151D1A819F00ABB9EC /* KF5SDK.bundle */,
 				84FB35791CF857A700FAD89F /* Base */,
 				84FB35841CF857A700FAD89F /* Custom */,
-				84FB359B1CF857A700FAD89F /* MJRefresh.bundle */,
 				84FB359C1CF857A700FAD89F /* MJRefresh.h */,
 				84FB359D1CF857A700FAD89F /* MJRefreshConst.h */,
 				84FB359E1CF857A700FAD89F /* MJRefreshConst.m */,
@@ -666,8 +666,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				84FDE8511CF8452F00939257 /* LaunchScreen.storyboard in Resources */,
+				84BA25161D1A819F00ABB9EC /* KF5SDK.bundle in Resources */,
 				84FDE84E1CF8452F00939257 /* Assets.xcassets in Resources */,
-				84FB361F1CF857A700FAD89F /* MJRefresh.bundle in Resources */,
 				84FDE84C1CF8452F00939257 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
