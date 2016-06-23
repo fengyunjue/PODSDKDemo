@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name              = "FengYunJue"
-    s.version           = "0.0.5"
+    s.version           = "0.0.6"
     s.summary           = "修改一些第三方库的分类的前缀"
 
     s.homepage          = "https://github.com/fengyunjue/PODSDKDemo"
@@ -33,7 +33,7 @@ Pod::Spec.new do |s|
     end
 
     s.subspec 'MJRefresh' do |ss|
-#ss.version = "3.1.0"
+#ss.version = "3.1.0"// 不需要更新了,新版本添加了语言本地化
         ss.source_files = 'FengYunJue/MJRefresh/**/*.{h,m}'
         ss.public_header_files = 'FengYunJue/MJRefresh/**/*.h'
         ss.resource = 'FengYunJue/MJRefresh/KF5SDK.bundle'

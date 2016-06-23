@@ -10,74 +10,74 @@
 #import "UIView+MJExtension.h"
 
 @implementation UIView (MJExtension)
-- (void)setKf_x:(CGFloat)kf_x
+- (void)setKf5_x:(CGFloat)kf5_x
 {
     CGRect frame = self.frame;
-    frame.origin.x = kf_x;
+    frame.origin.x = kf5_x;
     self.frame = frame;
 }
 
-- (CGFloat)kf_x
+- (CGFloat)kf5_x
 {
     return self.frame.origin.x;
 }
 
-- (void)setKf_y:(CGFloat)kf_y
+- (void)setKf5_y:(CGFloat)kf5_y
 {
     CGRect frame = self.frame;
-    frame.origin.y = kf_y;
+    frame.origin.y = kf5_y;
     self.frame = frame;
 }
 
-- (CGFloat)kf_y
+- (CGFloat)kf5_y
 {
     return self.frame.origin.y;
 }
 
-- (void)setKf_w:(CGFloat)kf_w
+- (void)setKf5_w:(CGFloat)kf5_w
 {
     CGRect frame = self.frame;
-    frame.size.width = kf_w;
+    frame.size.width = kf5_w;
     self.frame = frame;
 }
 
-- (CGFloat)kf_w
+- (CGFloat)kf5_w
 {
     return self.frame.size.width;
 }
 
-- (void)setKf_h:(CGFloat)kf_h
+- (void)setKf5_h:(CGFloat)kf5_h
 {
     CGRect frame = self.frame;
-    frame.size.height = kf_h;
+    frame.size.height = kf5_h;
     self.frame = frame;
 }
 
-- (CGFloat)kf_h
+- (CGFloat)kf5_h
 {
     return self.frame.size.height;
 }
 
-- (void)setKf_size:(CGSize)kf_size
+- (void)setKf5_size:(CGSize)kf5_size
 {
     CGRect frame = self.frame;
-    frame.size = kf_size;
+    frame.size = kf5_size;
     self.frame = frame;
 }
 
-- (CGSize)kf_size
+- (CGSize)kf5_size
 {
     return self.frame.size;
 }
 
-- (void)setKf_origin:(CGPoint)kf_origin
+- (void)setKf5_origin:(CGPoint)kf5_origin
 {
     CGRect frame = self.frame;
-    frame.origin = kf_origin;
+    frame.origin = kf5_origin;
     self.frame = frame;
 }
 
-- (CGPoint)kf_origin
+- (CGPoint)kf5_origin
 {
     return self.frame.origin;
 }

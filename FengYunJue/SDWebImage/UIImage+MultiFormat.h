@@ -10,6 +10,6 @@
 
 @interface UIImage (MultiFormat)
 
-+ (UIImage *)kf_imageWithData:(NSData *)data;
++ (UIImage *)kf5_imageWithData:(NSData *)data;
 
 @end

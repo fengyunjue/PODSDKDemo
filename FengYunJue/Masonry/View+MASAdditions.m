@@ -9,16 +9,16 @@
 #import "View+MASAdditions.h"
 #import <objc/runtime.h>
 
-@implementation kf_VIEW (MASAdditions)
+@implementation kf5_VIEW (MASAdditions)
 
-- (NSArray *)kf_makeConstraints:(void(^)(MASConstraintMaker *))block {
+- (NSArray *)kf5_makeConstraints:(void(^)(MASConstraintMaker *))block {
     self.translatesAutoresizingMaskIntoConstraints = NO;
     MASConstraintMaker *constraintMaker = [[MASConstraintMaker alloc] initWithView:self];
     block(constraintMaker);
     return [constraintMaker install];
 }
 
-- (NSArray *)kf_updateConstraints:(void(^)(MASConstraintMaker *))block {
+- (NSArray *)kf5_updateConstraints:(void(^)(MASConstraintMaker *))block {
     self.translatesAutoresizingMaskIntoConstraints = NO;
     MASConstraintMaker *constraintMaker = [[MASConstraintMaker alloc] initWithView:self];
     constraintMaker.updateExisting = YES;
@@ -26,7 +26,7 @@
     return [constraintMaker install];
 }
 
-- (NSArray *)kf_remakeConstraints:(void(^)(MASConstraintMaker *make))block {
+- (NSArray *)kf5_remakeConstraints:(void(^)(MASConstraintMaker *make))block {
     self.translatesAutoresizingMaskIntoConstraints = NO;
     MASConstraintMaker *constraintMaker = [[MASConstraintMaker alloc] initWithView:self];
     constraintMaker.removeExisting = YES;
@@ -36,51 +36,51 @@
 
 #pragma mark - NSLayoutAttribute properties
 
-- (MASViewAttribute *)kf_left {
+- (MASViewAttribute *)kf5_left {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeLeft];
 }
 
-- (MASViewAttribute *)kf_top {
+- (MASViewAttribute *)kf5_top {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeTop];
 }
 
-- (MASViewAttribute *)kf_right {
+- (MASViewAttribute *)kf5_right {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeRight];
 }
 
-- (MASViewAttribute *)kf_bottom {
+- (MASViewAttribute *)kf5_bottom {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeBottom];
 }
 
-- (MASViewAttribute *)kf_leading {
+- (MASViewAttribute *)kf5_leading {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeLeading];
 }
 
-- (MASViewAttribute *)kf_trailing {
+- (MASViewAttribute *)kf5_trailing {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeTrailing];
 }
 
-- (MASViewAttribute *)kf_width {
+- (MASViewAttribute *)kf5_width {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeWidth];
 }
 
-- (MASViewAttribute *)kf_height {
+- (MASViewAttribute *)kf5_height {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeHeight];
 }
 
-- (MASViewAttribute *)kf_centerX {
+- (MASViewAttribute *)kf5_centerX {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeCenterX];
 }
 
-- (MASViewAttribute *)kf_centerY {
+- (MASViewAttribute *)kf5_centerY {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeCenterY];
 }
 
-- (MASViewAttribute *)kf_baseline {
+- (MASViewAttribute *)kf5_baseline {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeBaseline];
 }
 
-- (MASViewAttribute *(^)(NSLayoutAttribute))kf_attribute
+- (MASViewAttribute *(^)(NSLayoutAttribute))kf5_attribute
 {
     return ^(NSLayoutAttribute attr) {
         return [[MASViewAttribute alloc] initWithView:self layoutAttribute:attr];
@@ -89,35 +89,35 @@
 
 #if TARGET_OS_IPHONE || TARGET_OS_TV
 
-- (MASViewAttribute *)kf_leftMargin {
+- (MASViewAttribute *)kf5_leftMargin {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeLeftMargin];
 }
 
-- (MASViewAttribute *)kf_rightMargin {
+- (MASViewAttribute *)kf5_rightMargin {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeRightMargin];
 }
 
-- (MASViewAttribute *)kf_topMargin {
+- (MASViewAttribute *)kf5_topMargin {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeTopMargin];
 }
 
-- (MASViewAttribute *)kf_bottomMargin {
+- (MASViewAttribute *)kf5_bottomMargin {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeBottomMargin];
 }
 
-- (MASViewAttribute *)kf_leadingMargin {
+- (MASViewAttribute *)kf5_leadingMargin {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeLeadingMargin];
 }
 
-- (MASViewAttribute *)kf_trailingMargin {
+- (MASViewAttribute *)kf5_trailingMargin {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeTrailingMargin];
 }
 
-- (MASViewAttribute *)kf_centerXWithinMargins {
+- (MASViewAttribute *)kf5_centerXWithinMargins {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeCenterXWithinMargins];
 }
 
-- (MASViewAttribute *)kf_centerYWithinMargins {
+- (MASViewAttribute *)kf5_centerYWithinMargins {
     return [[MASViewAttribute alloc] initWithView:self layoutAttribute:NSLayoutAttributeCenterYWithinMargins];
 }
 
@@ -125,22 +125,22 @@
 
 #pragma mark - associated properties
 
-- (id)kf_key {
-    return objc_getAssociatedObject(self, @selector(kf_key));
+- (id)kf5_key {
+    return objc_getAssociatedObject(self, @selector(kf5_key));
 }
 
-- (void)setKf_key:(id)key {
-    objc_setAssociatedObject(self, @selector(kf_key), key, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)setKf5_key:(id)key {
+    objc_setAssociatedObject(self, @selector(kf5_key), key, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - heirachy
 
-- (instancetype)kf_closestCommonSuperview:(kf_VIEW *)view {
-    kf_VIEW *closestCommonSuperview = nil;
+- (instancetype)kf5_closestCommonSuperview:(kf5_VIEW *)view {
+    kf5_VIEW *closestCommonSuperview = nil;
 
-    kf_VIEW *secondViewSuperview = view;
+    kf5_VIEW *secondViewSuperview = view;
     while (!closestCommonSuperview && secondViewSuperview) {
-        kf_VIEW *firstViewSuperview = self;
+        kf5_VIEW *firstViewSuperview = self;
         while (!closestCommonSuperview && firstViewSuperview) {
             if (secondViewSuperview == firstViewSuperview) {
                 closestCommonSuperview = secondViewSuperview;

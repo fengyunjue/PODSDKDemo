@@ -55,7 +55,7 @@ static double _YYDeviceSystemVersion() {
 
 @implementation NSAttributedString (YYText)
 
-- (NSData *)kf_archiveToData {
+- (NSData *)kf5_archiveToData {
     NSData *data = nil;
     @try {
         data = [YYTextArchiver archivedDataWithRootObject:self];
@@ -66,7 +66,7 @@ static double _YYDeviceSystemVersion() {
     return data;
 }
 
-+ (instancetype)kf_unarchiveFromData:(NSData *)data {
++ (instancetype)kf5_unarchiveFromData:(NSData *)data {
     NSAttributedString *one = nil;
     @try {
         one = [YYTextUnarchiver unarchiveObjectWithData:data];
@@ -77,27 +77,27 @@ static double _YYDeviceSystemVersion() {
     return one;
 }
 
-- (NSDictionary *)kf_attributesAtIndex:(NSUInteger)index {
+- (NSDictionary *)kf5_attributesAtIndex:(NSUInteger)index {
     if (self.length > 0 && index == self.length) index--;
     return [self attributesAtIndex:index effectiveRange:NULL];
 }
 
-- (id)kf_attribute:(NSString *)attributeName atIndex:(NSUInteger)index {
+- (id)kf5_attribute:(NSString *)attributeName atIndex:(NSUInteger)index {
     if (!attributeName) return nil;
     if (self.length == 0) return nil;
     if (self.length > 0 && index == self.length) index--;
     return [self attribute:attributeName atIndex:index effectiveRange:NULL];
 }
 
-- (NSDictionary *)kf_attributes {
-    return [self kf_attributesAtIndex:0];
+- (NSDictionary *)kf5_attributes {
+    return [self kf5_attributesAtIndex:0];
 }
 
-- (UIFont *)kf_font {
-    return [self kf_fontAtIndex:0];
+- (UIFont *)kf5_font {
+    return [self kf5_fontAtIndex:0];
 }
 
-- (UIFont *)kf_fontAtIndex:(NSUInteger)index {
+- (UIFont *)kf5_fontAtIndex:(NSUInteger)index {
     /*
      In iOS7 and later, UIFont is toll-free bridged to CTFontRef,
      although Apple does not mention it in documentation.
@@ -107,7 +107,7 @@ static double _YYDeviceSystemVersion() {
      
      We use UIFont for both CoreText and UIKit.
      */
-    UIFont *font = [self kf_attribute:NSFontAttributeName atIndex:index];
+    UIFont *font = [self kf5_attribute:NSFontAttributeName atIndex:index];
     if (kSystemVersion <= 6) {
         if (font) {
             if (CFGetTypeID((__bridge CFTypeRef)(font)) == CTFontGetTypeID()) {
@@ -126,22 +126,22 @@ static double _YYDeviceSystemVersion() {
     return font;
 }
 
-- (NSNumber *)kf_kern {
-    return [self kf_kernAtIndex:0];
+- (NSNumber *)kf5_kern {
+    return [self kf5_kernAtIndex:0];
 }
 
-- (NSNumber *)kf_kernAtIndex:(NSUInteger)index {
-    return [self kf_attribute:NSKernAttributeName atIndex:index];
+- (NSNumber *)kf5_kernAtIndex:(NSUInteger)index {
+    return [self kf5_attribute:NSKernAttributeName atIndex:index];
 }
 
-- (UIColor *)kf_color {
-    return [self kf_colorAtIndex:0];
+- (UIColor *)kf5_color {
+    return [self kf5_colorAtIndex:0];
 }
 
-- (UIColor *)kf_colorAtIndex:(NSUInteger)index {
-    UIColor *color = [self kf_attribute:NSForegroundColorAttributeName atIndex:index];
+- (UIColor *)kf5_colorAtIndex:(NSUInteger)index {
+    UIColor *color = [self kf5_attribute:NSForegroundColorAttributeName atIndex:index];
     if (!color) {
-        CGColorRef ref = (__bridge CGColorRef)([self kf_attribute:(NSString *)kCTForegroundColorAttributeName atIndex:index]);
+        CGColorRef ref = (__bridge CGColorRef)([self kf5_attribute:(NSString *)kCTForegroundColorAttributeName atIndex:index]);
         color = [UIColor colorWithCGColor:ref];
     }
     if (color && ![color isKindOfClass:[UIColor class]]) {
@@ -154,173 +154,173 @@ static double _YYDeviceSystemVersion() {
     return color;
 }
 
-- (UIColor *)kf_backgroundColor {
-    return [self kf_backgroundColorAtIndex:0];
+- (UIColor *)kf5_backgroundColor {
+    return [self kf5_backgroundColorAtIndex:0];
 }
 
-- (UIColor *)kf_backgroundColorAtIndex:(NSUInteger)index {
-    return [self kf_attribute:NSBackgroundColorAttributeName atIndex:index];
+- (UIColor *)kf5_backgroundColorAtIndex:(NSUInteger)index {
+    return [self kf5_attribute:NSBackgroundColorAttributeName atIndex:index];
 }
 
-- (NSNumber *)kf_strokeWidth {
-    return [self kf_strokeWidthAtIndex:0];
+- (NSNumber *)kf5_strokeWidth {
+    return [self kf5_strokeWidthAtIndex:0];
 }
 
-- (NSNumber *)kf_strokeWidthAtIndex:(NSUInteger)index {
-    return [self kf_attribute:NSStrokeWidthAttributeName atIndex:index];
+- (NSNumber *)kf5_strokeWidthAtIndex:(NSUInteger)index {
+    return [self kf5_attribute:NSStrokeWidthAttributeName atIndex:index];
 }
 
-- (UIColor *)kf_strokeColor {
-    return [self kf_strokeColorAtIndex:0];
+- (UIColor *)kf5_strokeColor {
+    return [self kf5_strokeColorAtIndex:0];
 }
 
-- (UIColor *)kf_strokeColorAtIndex:(NSUInteger)index {
-    UIColor *color = [self kf_attribute:NSStrokeColorAttributeName atIndex:index];
+- (UIColor *)kf5_strokeColorAtIndex:(NSUInteger)index {
+    UIColor *color = [self kf5_attribute:NSStrokeColorAttributeName atIndex:index];
     if (!color) {
-        CGColorRef ref = (__bridge CGColorRef)([self kf_attribute:(NSString *)kCTStrokeColorAttributeName atIndex:index]);
+        CGColorRef ref = (__bridge CGColorRef)([self kf5_attribute:(NSString *)kCTStrokeColorAttributeName atIndex:index]);
         color = [UIColor colorWithCGColor:ref];
     }
     return color;
 }
 
-- (NSShadow *)kf_shadow {
-    return [self kf_shadowAtIndex:0];
+- (NSShadow *)kf5_shadow {
+    return [self kf5_shadowAtIndex:0];
 }
 
-- (NSShadow *)kf_shadowAtIndex:(NSUInteger)index {
-    return [self kf_attribute:NSShadowAttributeName atIndex:index];
+- (NSShadow *)kf5_shadowAtIndex:(NSUInteger)index {
+    return [self kf5_attribute:NSShadowAttributeName atIndex:index];
 }
 
-- (NSUnderlineStyle)kf_strikethroughStyle {
-    return [self kf_strikethroughStyleAtIndex:0];
+- (NSUnderlineStyle)kf5_strikethroughStyle {
+    return [self kf5_strikethroughStyleAtIndex:0];
 }
 
-- (NSUnderlineStyle)kf_strikethroughStyleAtIndex:(NSUInteger)index {
-    NSNumber *style = [self kf_attribute:NSStrikethroughStyleAttributeName atIndex:index];
+- (NSUnderlineStyle)kf5_strikethroughStyleAtIndex:(NSUInteger)index {
+    NSNumber *style = [self kf5_attribute:NSStrikethroughStyleAttributeName atIndex:index];
     return style.integerValue;
 }
 
-- (UIColor *)kf_strikethroughColor {
-    return [self kf_strikethroughColorAtIndex:0];
+- (UIColor *)kf5_strikethroughColor {
+    return [self kf5_strikethroughColorAtIndex:0];
 }
 
-- (UIColor *)kf_strikethroughColorAtIndex:(NSUInteger)index {
+- (UIColor *)kf5_strikethroughColorAtIndex:(NSUInteger)index {
     if (kSystemVersion >= 7) {
-        return [self kf_attribute:NSStrikethroughColorAttributeName atIndex:index];
+        return [self kf5_attribute:NSStrikethroughColorAttributeName atIndex:index];
     }
     return nil;
 }
 
-- (NSUnderlineStyle)kf_underlineStyle {
-    return [self kf_underlineStyleAtIndex:0];
+- (NSUnderlineStyle)kf5_underlineStyle {
+    return [self kf5_underlineStyleAtIndex:0];
 }
 
-- (NSUnderlineStyle)kf_underlineStyleAtIndex:(NSUInteger)index {
-    NSNumber *style = [self kf_attribute:NSUnderlineStyleAttributeName atIndex:index];
+- (NSUnderlineStyle)kf5_underlineStyleAtIndex:(NSUInteger)index {
+    NSNumber *style = [self kf5_attribute:NSUnderlineStyleAttributeName atIndex:index];
     return style.integerValue;
 }
 
-- (UIColor *)kf_underlineColor {
-    return [self kf_underlineColorAtIndex:0];
+- (UIColor *)kf5_underlineColor {
+    return [self kf5_underlineColorAtIndex:0];
 }
 
-- (UIColor *)kf_underlineColorAtIndex:(NSUInteger)index {
+- (UIColor *)kf5_underlineColorAtIndex:(NSUInteger)index {
     UIColor *color = nil;
     if (kSystemVersion >= 7) {
-        color = [self kf_attribute:NSUnderlineColorAttributeName atIndex:index];
+        color = [self kf5_attribute:NSUnderlineColorAttributeName atIndex:index];
     }
     if (!color) {
-        CGColorRef ref = (__bridge CGColorRef)([self kf_attribute:(NSString *)kCTUnderlineColorAttributeName atIndex:index]);
+        CGColorRef ref = (__bridge CGColorRef)([self kf5_attribute:(NSString *)kCTUnderlineColorAttributeName atIndex:index]);
         color = [UIColor colorWithCGColor:ref];
     }
     return color;
 }
 
-- (NSNumber *)kf_ligature {
-    return [self kf_ligatureAtIndex:0];
+- (NSNumber *)kf5_ligature {
+    return [self kf5_ligatureAtIndex:0];
 }
 
-- (NSNumber *)kf_ligatureAtIndex:(NSUInteger)index {
-    return [self kf_attribute:NSLigatureAttributeName atIndex:index];
+- (NSNumber *)kf5_ligatureAtIndex:(NSUInteger)index {
+    return [self kf5_attribute:NSLigatureAttributeName atIndex:index];
 }
 
-- (NSString *)kf_textEffect {
-    return [self kf_textEffectAtIndex:0];
+- (NSString *)kf5_textEffect {
+    return [self kf5_textEffectAtIndex:0];
 }
 
-- (NSString *)kf_textEffectAtIndex:(NSUInteger)index {
+- (NSString *)kf5_textEffectAtIndex:(NSUInteger)index {
     if (kSystemVersion >= 7) {
-        return [self kf_attribute:NSTextEffectAttributeName atIndex:index];
+        return [self kf5_attribute:NSTextEffectAttributeName atIndex:index];
     }
     return nil;
 }
 
-- (NSNumber *)kf_obliqueness {
-    return [self kf_obliquenessAtIndex:0];
+- (NSNumber *)kf5_obliqueness {
+    return [self kf5_obliquenessAtIndex:0];
 }
 
-- (NSNumber *)kf_obliquenessAtIndex:(NSUInteger)index {
+- (NSNumber *)kf5_obliquenessAtIndex:(NSUInteger)index {
     if (kSystemVersion >= 7) {
-        return [self kf_attribute:NSObliquenessAttributeName atIndex:index];
+        return [self kf5_attribute:NSObliquenessAttributeName atIndex:index];
     }
     return nil;
 }
 
-- (NSNumber *)kf_expansion {
-    return [self kf_expansionAtIndex:0];
+- (NSNumber *)kf5_expansion {
+    return [self kf5_expansionAtIndex:0];
 }
 
-- (NSNumber *)kf_expansionAtIndex:(NSUInteger)index {
+- (NSNumber *)kf5_expansionAtIndex:(NSUInteger)index {
     if (kSystemVersion >= 7) {
-        return [self kf_attribute:NSExpansionAttributeName atIndex:index];
+        return [self kf5_attribute:NSExpansionAttributeName atIndex:index];
     }
     return nil;
 }
 
-- (NSNumber *)kf_baselineOffset {
-    return [self kf_baselineOffsetAtIndex:0];
+- (NSNumber *)kf5_baselineOffset {
+    return [self kf5_baselineOffsetAtIndex:0];
 }
 
-- (NSNumber *)kf_baselineOffsetAtIndex:(NSUInteger)index {
+- (NSNumber *)kf5_baselineOffsetAtIndex:(NSUInteger)index {
     if (kSystemVersion >= 7) {
-        return [self kf_attribute:NSBaselineOffsetAttributeName atIndex:index];
+        return [self kf5_attribute:NSBaselineOffsetAttributeName atIndex:index];
     }
     return nil;
 }
 
-- (BOOL)kf_verticalGlyphForm {
-    return [self kf_verticalGlyphFormAtIndex:0];
+- (BOOL)kf5_verticalGlyphForm {
+    return [self kf5_verticalGlyphFormAtIndex:0];
 }
 
-- (BOOL)kf_verticalGlyphFormAtIndex:(NSUInteger)index {
-    NSNumber *num = [self kf_attribute:NSVerticalGlyphFormAttributeName atIndex:index];
+- (BOOL)kf5_verticalGlyphFormAtIndex:(NSUInteger)index {
+    NSNumber *num = [self kf5_attribute:NSVerticalGlyphFormAttributeName atIndex:index];
     return num.boolValue;
 }
 
-- (NSString *)kf_language {
-    return [self kf_languageAtIndex:0];
+- (NSString *)kf5_language {
+    return [self kf5_languageAtIndex:0];
 }
 
-- (NSString *)kf_languageAtIndex:(NSUInteger)index {
+- (NSString *)kf5_languageAtIndex:(NSUInteger)index {
     if (kSystemVersion >= 7) {
-        return [self kf_attribute:(id)kCTLanguageAttributeName atIndex:index];
+        return [self kf5_attribute:(id)kCTLanguageAttributeName atIndex:index];
     }
     return nil;
 }
 
-- (NSArray *)kf_writingDirection {
-    return [self kf_writingDirectionAtIndex:0];
+- (NSArray *)kf5_writingDirection {
+    return [self kf5_writingDirectionAtIndex:0];
 }
 
-- (NSArray *)kf_writingDirectionAtIndex:(NSUInteger)index {
-    return [self kf_attribute:(id)kCTWritingDirectionAttributeName atIndex:index];
+- (NSArray *)kf5_writingDirectionAtIndex:(NSUInteger)index {
+    return [self kf5_attribute:(id)kCTWritingDirectionAttributeName atIndex:index];
 }
 
-- (NSParagraphStyle *)kf_paragraphStyle {
-    return [self kf_paragraphStyleAtIndex:0];
+- (NSParagraphStyle *)kf5_paragraphStyle {
+    return [self kf5_paragraphStyleAtIndex:0];
 }
 
-- (NSParagraphStyle *)kf_paragraphStyleAtIndex:(NSUInteger)index {
+- (NSParagraphStyle *)kf5_paragraphStyleAtIndex:(NSUInteger)index {
     /*
      NSParagraphStyle is NOT toll-free bridged to CTParagraphStyleRef.
      
@@ -329,145 +329,145 @@ static double _YYDeviceSystemVersion() {
      
      We use NSParagraphStyle in both CoreText and UIKit.
      */
-    NSParagraphStyle *style = [self kf_attribute:NSParagraphStyleAttributeName atIndex:index];
+    NSParagraphStyle *style = [self kf5_attribute:NSParagraphStyleAttributeName atIndex:index];
     if (style) {
         if (CFGetTypeID((__bridge CFTypeRef)(style)) == CTParagraphStyleGetTypeID()) { \
-            style = [NSParagraphStyle kf_styleWithCTStyle:(__bridge CTParagraphStyleRef)(style)];
+            style = [NSParagraphStyle kf5_styleWithCTStyle:(__bridge CTParagraphStyleRef)(style)];
         }
     }
     return style;
 }
 
 #define ParagraphAttribute(_attr_) \
-NSParagraphStyle *style = self.kf_paragraphStyle; \
+NSParagraphStyle *style = self.kf5_paragraphStyle; \
 if (!style) style = [NSParagraphStyle defaultParagraphStyle]; \
 return style. _attr_;
 
 #define ParagraphAttributeAtIndex(_attr_) \
-NSParagraphStyle *style = [self kf_paragraphStyleAtIndex:index]; \
+NSParagraphStyle *style = [self kf5_paragraphStyleAtIndex:index]; \
 if (!style) style = [NSParagraphStyle defaultParagraphStyle]; \
 return style. _attr_;
 
-- (NSTextAlignment)kf_alignment {
+- (NSTextAlignment)kf5_alignment {
     ParagraphAttribute(alignment);
 }
 
-- (NSLineBreakMode)kf_lineBreakMode {
+- (NSLineBreakMode)kf5_lineBreakMode {
     ParagraphAttribute(lineBreakMode);
 }
 
-- (CGFloat)kf_lineSpacing {
+- (CGFloat)kf5_lineSpacing {
     ParagraphAttribute(lineSpacing);
 }
 
-- (CGFloat)kf_paragraphSpacing {
+- (CGFloat)kf5_paragraphSpacing {
     ParagraphAttribute(paragraphSpacing);
 }
 
-- (CGFloat)kf_paragraphSpacingBefore {
+- (CGFloat)kf5_paragraphSpacingBefore {
     ParagraphAttribute(paragraphSpacingBefore);
 }
 
-- (CGFloat)kf_firstLineHeadIndent {
+- (CGFloat)kf5_firstLineHeadIndent {
     ParagraphAttribute(firstLineHeadIndent);
 }
 
-- (CGFloat)kf_headIndent {
+- (CGFloat)kf5_headIndent {
     ParagraphAttribute(headIndent);
 }
 
-- (CGFloat)kf_tailIndent {
+- (CGFloat)kf5_tailIndent {
     ParagraphAttribute(tailIndent);
 }
 
-- (CGFloat)kf_minimumLineHeight {
+- (CGFloat)kf5_minimumLineHeight {
     ParagraphAttribute(minimumLineHeight);
 }
 
-- (CGFloat)kf_maximumLineHeight {
+- (CGFloat)kf5_maximumLineHeight {
     ParagraphAttribute(maximumLineHeight);
 }
 
-- (CGFloat)kf_lineHeightMultiple {
+- (CGFloat)kf5_lineHeightMultiple {
     ParagraphAttribute(lineHeightMultiple);
 }
 
-- (NSWritingDirection)kf_baseWritingDirection {
+- (NSWritingDirection)kf5_baseWritingDirection {
     ParagraphAttribute(baseWritingDirection);
 }
 
-- (float)kf_hyphenationFactor {
+- (float)kf5_hyphenationFactor {
     ParagraphAttribute(hyphenationFactor);
 }
 
-- (CGFloat)kf_defaultTabInterval {
+- (CGFloat)kf5_defaultTabInterval {
     if (!kiOS7Later) return 0;
     ParagraphAttribute(defaultTabInterval);
 }
 
-- (NSArray *)kf_tabStops {
+- (NSArray *)kf5_tabStops {
     if (!kiOS7Later) return nil;
     ParagraphAttribute(tabStops);
 }
 
-- (NSTextAlignment)kf_alignmentAtIndex:(NSUInteger)index {
+- (NSTextAlignment)kf5_alignmentAtIndex:(NSUInteger)index {
     ParagraphAttributeAtIndex(alignment);
 }
 
-- (NSLineBreakMode)kf_lineBreakModeAtIndex:(NSUInteger)index {
+- (NSLineBreakMode)kf5_lineBreakModeAtIndex:(NSUInteger)index {
     ParagraphAttributeAtIndex(lineBreakMode);
 }
 
-- (CGFloat)kf_lineSpacingAtIndex:(NSUInteger)index {
+- (CGFloat)kf5_lineSpacingAtIndex:(NSUInteger)index {
     ParagraphAttributeAtIndex(lineSpacing);
 }
 
-- (CGFloat)kf_paragraphSpacingAtIndex:(NSUInteger)index {
+- (CGFloat)kf5_paragraphSpacingAtIndex:(NSUInteger)index {
     ParagraphAttributeAtIndex(paragraphSpacing);
 }
 
-- (CGFloat)kf_paragraphSpacingBeforeAtIndex:(NSUInteger)index {
+- (CGFloat)kf5_paragraphSpacingBeforeAtIndex:(NSUInteger)index {
     ParagraphAttributeAtIndex(paragraphSpacingBefore);
 }
 
-- (CGFloat)kf_firstLineHeadIndentAtIndex:(NSUInteger)index {
+- (CGFloat)kf5_firstLineHeadIndentAtIndex:(NSUInteger)index {
     ParagraphAttributeAtIndex(firstLineHeadIndent);
 }
 
-- (CGFloat)kf_headIndentAtIndex:(NSUInteger)index {
+- (CGFloat)kf5_headIndentAtIndex:(NSUInteger)index {
     ParagraphAttributeAtIndex(headIndent);
 }
 
-- (CGFloat)kf_tailIndentAtIndex:(NSUInteger)index {
+- (CGFloat)kf5_tailIndentAtIndex:(NSUInteger)index {
     ParagraphAttributeAtIndex(tailIndent);
 }
 
-- (CGFloat)kf_minimumLineHeightAtIndex:(NSUInteger)index {
+- (CGFloat)kf5_minimumLineHeightAtIndex:(NSUInteger)index {
     ParagraphAttributeAtIndex(minimumLineHeight);
 }
 
-- (CGFloat)kf_maximumLineHeightAtIndex:(NSUInteger)index {
+- (CGFloat)kf5_maximumLineHeightAtIndex:(NSUInteger)index {
     ParagraphAttributeAtIndex(maximumLineHeight);
 }
 
-- (CGFloat)kf_lineHeightMultipleAtIndex:(NSUInteger)index {
+- (CGFloat)kf5_lineHeightMultipleAtIndex:(NSUInteger)index {
     ParagraphAttributeAtIndex(lineHeightMultiple);
 }
 
-- (NSWritingDirection)kf_baseWritingDirectionAtIndex:(NSUInteger)index {
+- (NSWritingDirection)kf5_baseWritingDirectionAtIndex:(NSUInteger)index {
     ParagraphAttributeAtIndex(baseWritingDirection);
 }
 
-- (float)kf_hyphenationFactorAtIndex:(NSUInteger)index {
+- (float)kf5_hyphenationFactorAtIndex:(NSUInteger)index {
     ParagraphAttributeAtIndex(hyphenationFactor);
 }
 
-- (CGFloat)kf_defaultTabIntervalAtIndex:(NSUInteger)index {
+- (CGFloat)kf5_defaultTabIntervalAtIndex:(NSUInteger)index {
     if (!kiOS7Later) return 0;
     ParagraphAttributeAtIndex(defaultTabInterval);
 }
 
-- (NSArray *)kf_tabStopsAtIndex:(NSUInteger)index {
+- (NSArray *)kf5_tabStopsAtIndex:(NSUInteger)index {
     if (!kiOS7Later) return nil;
     ParagraphAttributeAtIndex(tabStops);
 }
@@ -475,65 +475,65 @@ return style. _attr_;
 #undef ParagraphAttribute
 #undef ParagraphAttributeAtIndex
 
-- (YYTextShadow *)kf_textShadow {
-    return [self kf_textShadowAtIndex:0];
+- (YYTextShadow *)kf5_textShadow {
+    return [self kf5_textShadowAtIndex:0];
 }
 
-- (YYTextShadow *)kf_textShadowAtIndex:(NSUInteger)index {
-    return [self kf_attribute:YYTextShadowAttributeName atIndex:index];
+- (YYTextShadow *)kf5_textShadowAtIndex:(NSUInteger)index {
+    return [self kf5_attribute:YYTextShadowAttributeName atIndex:index];
 }
 
-- (YYTextShadow *)kf_textInnerShadow {
-    return [self kf_textInnerShadowAtIndex:0];
+- (YYTextShadow *)kf5_textInnerShadow {
+    return [self kf5_textInnerShadowAtIndex:0];
 }
 
-- (YYTextShadow *)kf_textInnerShadowAtIndex:(NSUInteger)index {
-    return [self kf_attribute:YYTextInnerShadowAttributeName atIndex:index];
+- (YYTextShadow *)kf5_textInnerShadowAtIndex:(NSUInteger)index {
+    return [self kf5_attribute:YYTextInnerShadowAttributeName atIndex:index];
 }
 
-- (YYTextDecoration *)kf_textUnderline {
-    return [self kf_textUnderlineAtIndex:0];
+- (YYTextDecoration *)kf5_textUnderline {
+    return [self kf5_textUnderlineAtIndex:0];
 }
 
-- (YYTextDecoration *)kf_textUnderlineAtIndex:(NSUInteger)index {
-    return [self kf_attribute:YYTextUnderlineAttributeName atIndex:index];
+- (YYTextDecoration *)kf5_textUnderlineAtIndex:(NSUInteger)index {
+    return [self kf5_attribute:YYTextUnderlineAttributeName atIndex:index];
 }
 
-- (YYTextDecoration *)kf_textStrikethrough {
-    return [self kf_textStrikethroughAtIndex:0];
+- (YYTextDecoration *)kf5_textStrikethrough {
+    return [self kf5_textStrikethroughAtIndex:0];
 }
 
-- (YYTextDecoration *)kf_textStrikethroughAtIndex:(NSUInteger)index {
-    return [self kf_attribute:YYTextStrikethroughAttributeName atIndex:index];
+- (YYTextDecoration *)kf5_textStrikethroughAtIndex:(NSUInteger)index {
+    return [self kf5_attribute:YYTextStrikethroughAttributeName atIndex:index];
 }
 
-- (YYTextBorder *)kf_textBorder {
-    return [self kf_textBorderAtIndex:0];
+- (YYTextBorder *)kf5_textBorder {
+    return [self kf5_textBorderAtIndex:0];
 }
 
-- (YYTextBorder *)kf_textBorderAtIndex:(NSUInteger)index {
-    return [self kf_attribute:YYTextBorderAttributeName atIndex:index];
+- (YYTextBorder *)kf5_textBorderAtIndex:(NSUInteger)index {
+    return [self kf5_attribute:YYTextBorderAttributeName atIndex:index];
 }
 
-- (YYTextBorder *)kf_textBackgroundBorder {
-    return [self kf_textBackgroundBorderAtIndex:0];
+- (YYTextBorder *)kf5_textBackgroundBorder {
+    return [self kf5_textBackgroundBorderAtIndex:0];
 }
 
-- (YYTextBorder *)kf_textBackgroundBorderAtIndex:(NSUInteger)index {
-    return [self kf_attribute:YYTextBackedStringAttributeName atIndex:index];
+- (YYTextBorder *)kf5_textBackgroundBorderAtIndex:(NSUInteger)index {
+    return [self kf5_attribute:YYTextBackedStringAttributeName atIndex:index];
 }
 
-- (CGAffineTransform)kf_textGlyphTransform {
-    return [self kf_textGlyphTransformAtIndex:0];
+- (CGAffineTransform)kf5_textGlyphTransform {
+    return [self kf5_textGlyphTransformAtIndex:0];
 }
 
-- (CGAffineTransform)kf_textGlyphTransformAtIndex:(NSUInteger)index {
-    NSValue *value = [self kf_attribute:YYTextGlyphTransformAttributeName atIndex:index];
+- (CGAffineTransform)kf5_textGlyphTransformAtIndex:(NSUInteger)index {
+    NSValue *value = [self kf5_attribute:YYTextGlyphTransformAttributeName atIndex:index];
     if (!value) return CGAffineTransformIdentity;
     return [value CGAffineTransformValue];
 }
 
-- (NSString *)kf_plainTextForRange:(NSRange)range {
+- (NSString *)kf5_plainTextForRange:(NSRange)range {
     if (range.location == NSNotFound ||range.length == NSNotFound) return nil;
     NSMutableString *result = [NSMutableString string];
     if (range.length == 0) return result;
@@ -549,7 +549,7 @@ return style. _attr_;
     return result;
 }
 
-+ (NSMutableAttributedString *)kf_attachmentStringWithContent:(id)content
++ (NSMutableAttributedString *)kf5_attachmentStringWithContent:(id)content
                                                   contentMode:(UIViewContentMode)contentMode
                                                         width:(CGFloat)width
                                                        ascent:(CGFloat)ascent
@@ -559,20 +559,20 @@ return style. _attr_;
     YYTextAttachment *attach = [YYTextAttachment new];
     attach.content = content;
     attach.contentMode = contentMode;
-    [atr kf_setTextAttachment:attach range:NSMakeRange(0, atr.length)];
+    [atr kf5_setTextAttachment:attach range:NSMakeRange(0, atr.length)];
     
     YYTextRunDelegate *delegate = [YYTextRunDelegate new];
     delegate.width = width;
     delegate.ascent = ascent;
     delegate.descent = descent;
     CTRunDelegateRef delegateRef = delegate.CTRunDelegate;
-    [atr kf_setRunDelegate:delegateRef range:NSMakeRange(0, atr.length)];
+    [atr kf5_setRunDelegate:delegateRef range:NSMakeRange(0, atr.length)];
     if (delegate) CFRelease(delegateRef);
     
     return atr;
 }
 
-+ (NSMutableAttributedString *)kf_attachmentStringWithContent:(id)content
++ (NSMutableAttributedString *)kf5_attachmentStringWithContent:(id)content
                                                   contentMode:(UIViewContentMode)contentMode
                                                attachmentSize:(CGSize)attachmentSize
                                                   alignToFont:(UIFont *)font
@@ -582,7 +582,7 @@ return style. _attr_;
     YYTextAttachment *attach = [YYTextAttachment new];
     attach.content = content;
     attach.contentMode = contentMode;
-    [atr kf_setTextAttachment:attach range:NSMakeRange(0, atr.length)];
+    [atr kf5_setTextAttachment:attach range:NSMakeRange(0, atr.length)];
     
     YYTextRunDelegate *delegate = [YYTextRunDelegate new];
     delegate.width = attachmentSize.width;
@@ -620,13 +620,13 @@ return style. _attr_;
     }
     
     CTRunDelegateRef delegateRef = delegate.CTRunDelegate;
-    [atr kf_setRunDelegate:delegateRef range:NSMakeRange(0, atr.length)];
+    [atr kf5_setRunDelegate:delegateRef range:NSMakeRange(0, atr.length)];
     if (delegate) CFRelease(delegateRef);
     
     return atr;
 }
 
-+ (NSMutableAttributedString *)kf_attachmentStringWithEmojiImage:(UIImage *)image
++ (NSMutableAttributedString *)kf5_attachmentStringWithEmojiImage:(UIImage *)image
                                                         fontSize:(CGFloat)fontSize {
     if (!image || fontSize <= 0) return nil;
     
@@ -664,22 +664,22 @@ return style. _attr_;
     }
     
     NSMutableAttributedString *atr = [[NSMutableAttributedString alloc] initWithString:YYTextAttachmentToken];
-    [atr kf_setTextAttachment:attachment range:NSMakeRange(0, atr.length)];
+    [atr kf5_setTextAttachment:attachment range:NSMakeRange(0, atr.length)];
     CTRunDelegateRef ctDelegate = delegate.CTRunDelegate;
-    [atr kf_setRunDelegate:ctDelegate range:NSMakeRange(0, atr.length)];
+    [atr kf5_setRunDelegate:ctDelegate range:NSMakeRange(0, atr.length)];
     if (ctDelegate) CFRelease(ctDelegate);
     
     return atr;
 }
 
-- (NSRange)kf_rangeOfAll {
+- (NSRange)kf5_rangeOfAll {
     return NSMakeRange(0, self.length);
 }
 
-- (BOOL)kf_isSharedAttributesInAllRange {
+- (BOOL)kf5_isSharedAttributesInAllRange {
     __block BOOL shared = YES;
     __block NSDictionary *firstAttrs = nil;
-    [self enumerateAttributesInRange:self.kf_rangeOfAll options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
+    [self enumerateAttributesInRange:self.kf5_rangeOfAll options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
         if (range.location == 0) {
             firstAttrs = attrs;
         } else {
@@ -697,7 +697,7 @@ return style. _attr_;
     return shared;
 }
 
-- (BOOL)kf_canDrawWithUIKit {
+- (BOOL)kf5_canDrawWithUIKit {
     static NSMutableSet *failSet;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -728,7 +728,7 @@ return style. _attr_;
     
 #define Fail { result = NO; *stop = YES; return; }
     __block BOOL result = YES;
-    [self enumerateAttributesInRange:self.kf_rangeOfAll options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
+    [self enumerateAttributesInRange:self.kf5_rangeOfAll options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
         if (attrs.count == 0) return;
         for (NSString *str in attrs.allKeys) {
             if ([failSet containsObject:str]) Fail;
@@ -754,35 +754,35 @@ return style. _attr_;
 
 @implementation NSMutableAttributedString (YYText)
 
-- (void)kf_setAttributes:(NSDictionary *)attributes {
-    [self setKf_attributes:attributes];
+- (void)kf5_setAttributes:(NSDictionary *)attributes {
+    [self setKf5_attributes:attributes];
 }
 
-- (void)setKf_attributes:(NSDictionary *)attributes {
+- (void)setKf5_attributes:(NSDictionary *)attributes {
     if (attributes == (id)[NSNull null]) attributes = nil;
     [self setAttributes:@{} range:NSMakeRange(0, self.length)];
     [attributes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [self kf_setAttribute:key value:obj];
+        [self kf5_setAttribute:key value:obj];
     }];
 }
 
-- (void)kf_setAttribute:(NSString *)name value:(id)value {
-    [self kf_setAttribute:name value:value range:NSMakeRange(0, self.length)];
+- (void)kf5_setAttribute:(NSString *)name value:(id)value {
+    [self kf5_setAttribute:name value:value range:NSMakeRange(0, self.length)];
 }
 
-- (void)kf_setAttribute:(NSString *)name value:(id)value range:(NSRange)range {
+- (void)kf5_setAttribute:(NSString *)name value:(id)value range:(NSRange)range {
     if (!name || [NSNull isEqual:name]) return;
     if (value && ![NSNull isEqual:value]) [self addAttribute:name value:value range:range];
     else [self removeAttribute:name range:range];
 }
 
-- (void)kf_removeAttributesInRange:(NSRange)range {
+- (void)kf5_removeAttributesInRange:(NSRange)range {
     [self setAttributes:nil range:range];
 }
 
 #pragma mark - Property Setter
 
-- (void)setKf_font:(UIFont *)font {
+- (void)setKf5_font:(UIFont *)font {
     /*
      In iOS7 and later, UIFont is toll-free bridged to CTFontRef,
      although Apple does not mention it in documentation.
@@ -792,82 +792,82 @@ return style. _attr_;
      
      We use UIFont for both CoreText and UIKit.
      */
-    [self kf_setFont:font range:NSMakeRange(0, self.length)];
+    [self kf5_setFont:font range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_kern:(NSNumber *)kern {
-    [self kf_setKern:kern range:NSMakeRange(0, self.length)];
+- (void)setKf5_kern:(NSNumber *)kern {
+    [self kf5_setKern:kern range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_color:(UIColor *)color {
-    [self kf_setColor:color range:NSMakeRange(0, self.length)];
+- (void)setKf5_color:(UIColor *)color {
+    [self kf5_setColor:color range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_backgroundColor:(UIColor *)backgroundColor {
-    [self kf_setBackgroundColor:backgroundColor range:NSMakeRange(0, self.length)];
+- (void)setKf5_backgroundColor:(UIColor *)backgroundColor {
+    [self kf5_setBackgroundColor:backgroundColor range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_strokeWidth:(NSNumber *)strokeWidth {
-    [self kf_setStrokeWidth:strokeWidth range:NSMakeRange(0, self.length)];
+- (void)setKf5_strokeWidth:(NSNumber *)strokeWidth {
+    [self kf5_setStrokeWidth:strokeWidth range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_strokeColor:(UIColor *)strokeColor {
-    [self kf_setStrokeColor:strokeColor range:NSMakeRange(0, self.length)];
+- (void)setKf5_strokeColor:(UIColor *)strokeColor {
+    [self kf5_setStrokeColor:strokeColor range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_shadow:(NSShadow *)shadow {
-    [self kf_setShadow:shadow range:NSMakeRange(0, self.length)];
+- (void)setKf5_shadow:(NSShadow *)shadow {
+    [self kf5_setShadow:shadow range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_strikethroughStyle:(NSUnderlineStyle)strikethroughStyle {
-    [self kf_setStrikethroughStyle:strikethroughStyle range:NSMakeRange(0, self.length)];
+- (void)setKf5_strikethroughStyle:(NSUnderlineStyle)strikethroughStyle {
+    [self kf5_setStrikethroughStyle:strikethroughStyle range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_strikethroughColor:(UIColor *)strikethroughColor {
-    [self kf_setStrokeColor:strikethroughColor range:NSMakeRange(0, self.length)];
+- (void)setKf5_strikethroughColor:(UIColor *)strikethroughColor {
+    [self kf5_setStrokeColor:strikethroughColor range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_underlineStyle:(NSUnderlineStyle)underlineStyle {
-    [self kf_setUnderlineStyle:underlineStyle range:NSMakeRange(0, self.length)];
+- (void)setKf5_underlineStyle:(NSUnderlineStyle)underlineStyle {
+    [self kf5_setUnderlineStyle:underlineStyle range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_underlineColor:(UIColor *)underlineColor {
-    [self kf_setUnderlineColor:underlineColor range:NSMakeRange(0, self.length)];
+- (void)setKf5_underlineColor:(UIColor *)underlineColor {
+    [self kf5_setUnderlineColor:underlineColor range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_ligature:(NSNumber *)ligature {
-    [self kf_setLigature:ligature range:NSMakeRange(0, self.length)];
+- (void)setKf5_ligature:(NSNumber *)ligature {
+    [self kf5_setLigature:ligature range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_textEffect:(NSString *)textEffect {
-    [self kf_setTextEffect:textEffect range:NSMakeRange(0, self.length)];
+- (void)setKf5_textEffect:(NSString *)textEffect {
+    [self kf5_setTextEffect:textEffect range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_obliqueness:(NSNumber *)obliqueness {
-    [self kf_setObliqueness:obliqueness range:NSMakeRange(0, self.length)];
+- (void)setKf5_obliqueness:(NSNumber *)obliqueness {
+    [self kf5_setObliqueness:obliqueness range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_expansion:(NSNumber *)expansion {
-    [self kf_setExpansion:expansion range:NSMakeRange(0, self.length)];
+- (void)setKf5_expansion:(NSNumber *)expansion {
+    [self kf5_setExpansion:expansion range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_baselineOffset:(NSNumber *)baselineOffset {
-    [self kf_setBaselineOffset:baselineOffset range:NSMakeRange(0, self.length)];
+- (void)setKf5_baselineOffset:(NSNumber *)baselineOffset {
+    [self kf5_setBaselineOffset:baselineOffset range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_verticalGlyphForm:(BOOL)verticalGlyphForm {
-    [self kf_setVerticalGlyphForm:verticalGlyphForm range:NSMakeRange(0, self.length)];
+- (void)setKf5_verticalGlyphForm:(BOOL)verticalGlyphForm {
+    [self kf5_setVerticalGlyphForm:verticalGlyphForm range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_language:(NSString *)language {
-    [self kf_setLanguage:language range:NSMakeRange(0, self.length)];
+- (void)setKf5_language:(NSString *)language {
+    [self kf5_setLanguage:language range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_writingDirection:(NSArray *)writingDirection {
-    [self kf_setWritingDirection:writingDirection range:NSMakeRange(0, self.length)];
+- (void)setKf5_writingDirection:(NSArray *)writingDirection {
+    [self kf5_setWritingDirection:writingDirection range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_paragraphStyle:(NSParagraphStyle *)paragraphStyle {
+- (void)setKf5_paragraphStyle:(NSParagraphStyle *)paragraphStyle {
     /*
      NSParagraphStyle is NOT toll-free bridged to CTParagraphStyleRef.
      
@@ -876,100 +876,100 @@ return style. _attr_;
      
      We use NSParagraphStyle in both CoreText and UIKit.
      */
-    [self kf_setParagraphStyle:paragraphStyle range:NSMakeRange(0, self.length)];
+    [self kf5_setParagraphStyle:paragraphStyle range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_alignment:(NSTextAlignment)alignment {
-    [self kf_setAlignment:alignment range:NSMakeRange(0, self.length)];
+- (void)setKf5_alignment:(NSTextAlignment)alignment {
+    [self kf5_setAlignment:alignment range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_baseWritingDirection:(NSWritingDirection)baseWritingDirection {
-    [self kf_setBaseWritingDirection:baseWritingDirection range:NSMakeRange(0, self.length)];
+- (void)setKf5_baseWritingDirection:(NSWritingDirection)baseWritingDirection {
+    [self kf5_setBaseWritingDirection:baseWritingDirection range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_lineSpacing:(CGFloat)lineSpacing {
-    [self kf_setLineSpacing:lineSpacing range:NSMakeRange(0, self.length)];
+- (void)setKf5_lineSpacing:(CGFloat)lineSpacing {
+    [self kf5_setLineSpacing:lineSpacing range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_paragraphSpacing:(CGFloat)paragraphSpacing {
-    [self kf_setParagraphSpacing:paragraphSpacing range:NSMakeRange(0, self.length)];
+- (void)setKf5_paragraphSpacing:(CGFloat)paragraphSpacing {
+    [self kf5_setParagraphSpacing:paragraphSpacing range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_paragraphSpacingBefore:(CGFloat)paragraphSpacingBefore {
-    [self kf_setParagraphSpacing:paragraphSpacingBefore range:NSMakeRange(0, self.length)];
+- (void)setKf5_paragraphSpacingBefore:(CGFloat)paragraphSpacingBefore {
+    [self kf5_setParagraphSpacing:paragraphSpacingBefore range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_firstLineHeadIndent:(CGFloat)firstLineHeadIndent {
-    [self kf_setFirstLineHeadIndent:firstLineHeadIndent range:NSMakeRange(0, self.length)];
+- (void)setKf5_firstLineHeadIndent:(CGFloat)firstLineHeadIndent {
+    [self kf5_setFirstLineHeadIndent:firstLineHeadIndent range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_headIndent:(CGFloat)headIndent {
-    [self kf_setHeadIndent:headIndent range:NSMakeRange(0, self.length)];
+- (void)setKf5_headIndent:(CGFloat)headIndent {
+    [self kf5_setHeadIndent:headIndent range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_tailIndent:(CGFloat)tailIndent {
-    [self kf_setTailIndent:tailIndent range:NSMakeRange(0, self.length)];
+- (void)setKf5_tailIndent:(CGFloat)tailIndent {
+    [self kf5_setTailIndent:tailIndent range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_lineBreakMode:(NSLineBreakMode)lineBreakMode {
-    [self kf_setLineBreakMode:lineBreakMode range:NSMakeRange(0, self.length)];
+- (void)setKf5_lineBreakMode:(NSLineBreakMode)lineBreakMode {
+    [self kf5_setLineBreakMode:lineBreakMode range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_minimumLineHeight:(CGFloat)minimumLineHeight {
-    [self kf_setMinimumLineHeight:minimumLineHeight range:NSMakeRange(0, self.length)];
+- (void)setKf5_minimumLineHeight:(CGFloat)minimumLineHeight {
+    [self kf5_setMinimumLineHeight:minimumLineHeight range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_maximumLineHeight:(CGFloat)maximumLineHeight {
-    [self kf_setMaximumLineHeight:maximumLineHeight range:NSMakeRange(0, self.length)];
+- (void)setKf5_maximumLineHeight:(CGFloat)maximumLineHeight {
+    [self kf5_setMaximumLineHeight:maximumLineHeight range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_lineHeightMultiple:(CGFloat)lineHeightMultiple {
-    [self kf_setLineHeightMultiple:lineHeightMultiple range:NSMakeRange(0, self.length)];
+- (void)setKf5_lineHeightMultiple:(CGFloat)lineHeightMultiple {
+    [self kf5_setLineHeightMultiple:lineHeightMultiple range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_hyphenationFactor:(float)hyphenationFactor {
-    [self kf_setHyphenationFactor:hyphenationFactor range:NSMakeRange(0, self.length)];
+- (void)setKf5_hyphenationFactor:(float)hyphenationFactor {
+    [self kf5_setHyphenationFactor:hyphenationFactor range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_defaultTabInterval:(CGFloat)defaultTabInterval {
-    [self kf_setDefaultTabInterval:defaultTabInterval range:NSMakeRange(0, self.length)];
+- (void)setKf5_defaultTabInterval:(CGFloat)defaultTabInterval {
+    [self kf5_setDefaultTabInterval:defaultTabInterval range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_tabStops:(NSArray *)tabStops {
-    [self kf_setTabStops:tabStops range:NSMakeRange(0, self.length)];
+- (void)setKf5_tabStops:(NSArray *)tabStops {
+    [self kf5_setTabStops:tabStops range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_textShadow:(YYTextShadow *)textShadow {
-    [self kf_setTextShadow:textShadow range:NSMakeRange(0, self.length)];
+- (void)setKf5_textShadow:(YYTextShadow *)textShadow {
+    [self kf5_setTextShadow:textShadow range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_textInnerShadow:(YYTextShadow *)textInnerShadow {
-    [self kf_setTextInnerShadow:textInnerShadow range:NSMakeRange(0, self.length)];
+- (void)setKf5_textInnerShadow:(YYTextShadow *)textInnerShadow {
+    [self kf5_setTextInnerShadow:textInnerShadow range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_textUnderline:(YYTextDecoration *)textUnderline {
-    [self kf_setTextUnderline:textUnderline range:NSMakeRange(0, self.length)];
+- (void)setKf5_textUnderline:(YYTextDecoration *)textUnderline {
+    [self kf5_setTextUnderline:textUnderline range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_textStrikethrough:(YYTextDecoration *)textStrikethrough {
-    [self kf_setTextStrikethrough:textStrikethrough range:NSMakeRange(0, self.length)];
+- (void)setKf5_textStrikethrough:(YYTextDecoration *)textStrikethrough {
+    [self kf5_setTextStrikethrough:textStrikethrough range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_textBorder:(YYTextBorder *)textBorder {
-    [self kf_setTextBorder:textBorder range:NSMakeRange(0, self.length)];
+- (void)setKf5_textBorder:(YYTextBorder *)textBorder {
+    [self kf5_setTextBorder:textBorder range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_textBackgroundBorder:(YYTextBorder *)textBackgroundBorder {
-    [self kf_setTextBackgroundBorder:textBackgroundBorder range:NSMakeRange(0, self.length)];
+- (void)setKf5_textBackgroundBorder:(YYTextBorder *)textBackgroundBorder {
+    [self kf5_setTextBackgroundBorder:textBackgroundBorder range:NSMakeRange(0, self.length)];
 }
 
-- (void)setKf_textGlyphTransform:(CGAffineTransform)textGlyphTransform {
-    [self kf_setTextGlyphTransform:textGlyphTransform range:NSMakeRange(0, self.length)];
+- (void)setKf5_textGlyphTransform:(CGAffineTransform)textGlyphTransform {
+    [self kf5_setTextGlyphTransform:textGlyphTransform range:NSMakeRange(0, self.length)];
 }
 
 #pragma mark - Range Setter
 
-- (void)kf_setFont:(UIFont *)font range:(NSRange)range {
+- (void)kf5_setFont:(UIFont *)font range:(NSRange)range {
     /*
      In iOS7 and later, UIFont is toll-free bridged to CTFontRef,
      although Apple does not mention it in documentation.
@@ -979,102 +979,102 @@ return style. _attr_;
      
      We use UIFont for both CoreText and UIKit.
      */
-    [self kf_setAttribute:NSFontAttributeName value:font range:range];
+    [self kf5_setAttribute:NSFontAttributeName value:font range:range];
 }
 
-- (void)kf_setKern:(NSNumber *)kern range:(NSRange)range {
-    [self kf_setAttribute:NSKernAttributeName value:kern range:range];
+- (void)kf5_setKern:(NSNumber *)kern range:(NSRange)range {
+    [self kf5_setAttribute:NSKernAttributeName value:kern range:range];
 }
 
-- (void)kf_setColor:(UIColor *)color range:(NSRange)range {
-    [self kf_setAttribute:(id)kCTForegroundColorAttributeName value:(id)color.CGColor range:range];
-    [self kf_setAttribute:NSForegroundColorAttributeName value:color range:range];
+- (void)kf5_setColor:(UIColor *)color range:(NSRange)range {
+    [self kf5_setAttribute:(id)kCTForegroundColorAttributeName value:(id)color.CGColor range:range];
+    [self kf5_setAttribute:NSForegroundColorAttributeName value:color range:range];
 }
 
-- (void)kf_setBackgroundColor:(UIColor *)backgroundColor range:(NSRange)range {
-    [self kf_setAttribute:NSBackgroundColorAttributeName value:backgroundColor range:range];
+- (void)kf5_setBackgroundColor:(UIColor *)backgroundColor range:(NSRange)range {
+    [self kf5_setAttribute:NSBackgroundColorAttributeName value:backgroundColor range:range];
 }
 
-- (void)kf_setStrokeWidth:(NSNumber *)strokeWidth range:(NSRange)range {
-    [self kf_setAttribute:NSStrokeWidthAttributeName value:strokeWidth range:range];
+- (void)kf5_setStrokeWidth:(NSNumber *)strokeWidth range:(NSRange)range {
+    [self kf5_setAttribute:NSStrokeWidthAttributeName value:strokeWidth range:range];
 }
 
-- (void)kf_setStrokeColor:(UIColor *)strokeColor range:(NSRange)range {
-    [self kf_setAttribute:(id)kCTStrokeColorAttributeName value:(id)strokeColor.CGColor range:range];
-    [self kf_setAttribute:NSStrokeColorAttributeName value:strokeColor range:range];
+- (void)kf5_setStrokeColor:(UIColor *)strokeColor range:(NSRange)range {
+    [self kf5_setAttribute:(id)kCTStrokeColorAttributeName value:(id)strokeColor.CGColor range:range];
+    [self kf5_setAttribute:NSStrokeColorAttributeName value:strokeColor range:range];
 }
 
-- (void)kf_setShadow:(NSShadow *)shadow range:(NSRange)range {
-    [self kf_setAttribute:NSShadowAttributeName value:shadow range:range];
+- (void)kf5_setShadow:(NSShadow *)shadow range:(NSRange)range {
+    [self kf5_setAttribute:NSShadowAttributeName value:shadow range:range];
 }
 
-- (void)kf_setStrikethroughStyle:(NSUnderlineStyle)strikethroughStyle range:(NSRange)range {
+- (void)kf5_setStrikethroughStyle:(NSUnderlineStyle)strikethroughStyle range:(NSRange)range {
     NSNumber *style = strikethroughStyle == 0 ? nil : @(strikethroughStyle);
-    [self kf_setAttribute:NSStrikethroughStyleAttributeName value:style range:range];
+    [self kf5_setAttribute:NSStrikethroughStyleAttributeName value:style range:range];
 }
 
-- (void)kf_setStrikethroughColor:(UIColor *)strikethroughColor range:(NSRange)range {
+- (void)kf5_setStrikethroughColor:(UIColor *)strikethroughColor range:(NSRange)range {
     if (kSystemVersion >= 7) {
-        [self kf_setAttribute:NSStrikethroughColorAttributeName value:strikethroughColor range:range];
+        [self kf5_setAttribute:NSStrikethroughColorAttributeName value:strikethroughColor range:range];
     }
 }
 
-- (void)kf_setUnderlineStyle:(NSUnderlineStyle)underlineStyle range:(NSRange)range {
+- (void)kf5_setUnderlineStyle:(NSUnderlineStyle)underlineStyle range:(NSRange)range {
     NSNumber *style = underlineStyle == 0 ? nil : @(underlineStyle);
-    [self kf_setAttribute:NSUnderlineStyleAttributeName value:style range:range];
+    [self kf5_setAttribute:NSUnderlineStyleAttributeName value:style range:range];
 }
 
-- (void)kf_setUnderlineColor:(UIColor *)underlineColor range:(NSRange)range {
-    [self kf_setAttribute:(id)kCTUnderlineColorAttributeName value:(id)underlineColor.CGColor range:range];
+- (void)kf5_setUnderlineColor:(UIColor *)underlineColor range:(NSRange)range {
+    [self kf5_setAttribute:(id)kCTUnderlineColorAttributeName value:(id)underlineColor.CGColor range:range];
     if (kSystemVersion >= 7) {
-        [self kf_setAttribute:NSUnderlineColorAttributeName value:underlineColor range:range];
+        [self kf5_setAttribute:NSUnderlineColorAttributeName value:underlineColor range:range];
     }
 }
 
-- (void)kf_setLigature:(NSNumber *)ligature range:(NSRange)range {
-    [self kf_setAttribute:NSLigatureAttributeName value:ligature range:range];
+- (void)kf5_setLigature:(NSNumber *)ligature range:(NSRange)range {
+    [self kf5_setAttribute:NSLigatureAttributeName value:ligature range:range];
 }
 
-- (void)kf_setTextEffect:(NSString *)textEffect range:(NSRange)range {
+- (void)kf5_setTextEffect:(NSString *)textEffect range:(NSRange)range {
     if (kSystemVersion >= 7) {
-        [self kf_setAttribute:NSTextEffectAttributeName value:textEffect range:range];
+        [self kf5_setAttribute:NSTextEffectAttributeName value:textEffect range:range];
     }
 }
 
-- (void)kf_setObliqueness:(NSNumber *)obliqueness range:(NSRange)range {
+- (void)kf5_setObliqueness:(NSNumber *)obliqueness range:(NSRange)range {
     if (kSystemVersion >= 7) {
-        [self kf_setAttribute:NSObliquenessAttributeName value:obliqueness range:range];
+        [self kf5_setAttribute:NSObliquenessAttributeName value:obliqueness range:range];
     }
 }
 
-- (void)kf_setExpansion:(NSNumber *)expansion range:(NSRange)range {
+- (void)kf5_setExpansion:(NSNumber *)expansion range:(NSRange)range {
     if (kSystemVersion >= 7) {
-        [self kf_setAttribute:NSExpansionAttributeName value:expansion range:range];
+        [self kf5_setAttribute:NSExpansionAttributeName value:expansion range:range];
     }
 }
 
-- (void)kf_setBaselineOffset:(NSNumber *)baselineOffset range:(NSRange)range {
+- (void)kf5_setBaselineOffset:(NSNumber *)baselineOffset range:(NSRange)range {
     if (kSystemVersion >= 7) {
-        [self kf_setAttribute:NSBaselineOffsetAttributeName value:baselineOffset range:range];
+        [self kf5_setAttribute:NSBaselineOffsetAttributeName value:baselineOffset range:range];
     }
 }
 
-- (void)kf_setVerticalGlyphForm:(BOOL)verticalGlyphForm range:(NSRange)range {
+- (void)kf5_setVerticalGlyphForm:(BOOL)verticalGlyphForm range:(NSRange)range {
     NSNumber *v = verticalGlyphForm ? @(YES) : nil;
-    [self kf_setAttribute:NSVerticalGlyphFormAttributeName value:v range:range];
+    [self kf5_setAttribute:NSVerticalGlyphFormAttributeName value:v range:range];
 }
 
-- (void)kf_setLanguage:(NSString *)language range:(NSRange)range {
+- (void)kf5_setLanguage:(NSString *)language range:(NSRange)range {
     if (kSystemVersion >= 7) {
-        [self kf_setAttribute:(id)kCTLanguageAttributeName value:language range:range];
+        [self kf5_setAttribute:(id)kCTLanguageAttributeName value:language range:range];
     }
 }
 
-- (void)kf_setWritingDirection:(NSArray *)writingDirection range:(NSRange)range {
-    [self kf_setAttribute:(id)kCTWritingDirectionAttributeName value:writingDirection range:range];
+- (void)kf5_setWritingDirection:(NSArray *)writingDirection range:(NSRange)range {
+    [self kf5_setAttribute:(id)kCTWritingDirectionAttributeName value:writingDirection range:range];
 }
 
-- (void)kf_setParagraphStyle:(NSParagraphStyle *)paragraphStyle range:(NSRange)range {
+- (void)kf5_setParagraphStyle:(NSParagraphStyle *)paragraphStyle range:(NSRange)range {
     /*
      NSParagraphStyle is NOT toll-free bridged to CTParagraphStyleRef.
      
@@ -1083,7 +1083,7 @@ return style. _attr_;
      
      We use NSParagraphStyle in both CoreText and UIKit.
      */
-    [self kf_setAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
+    [self kf5_setAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:range];
 }
 
 #define ParagraphStyleSet(_attr_) \
@@ -1094,7 +1094,7 @@ return style. _attr_;
                   NSMutableParagraphStyle *style = nil; \
                   if (value) { \
                       if (CFGetTypeID((__bridge CFTypeRef)(value)) == CTParagraphStyleGetTypeID()) { \
-                          value = [NSParagraphStyle kf_styleWithCTStyle:(__bridge CTParagraphStyleRef)(value)]; \
+                          value = [NSParagraphStyle kf5_styleWithCTStyle:(__bridge CTParagraphStyleRef)(value)]; \
                       } \
                       if (value. _attr_ == _attr_) return; \
                       if ([value isKindOfClass:[NSMutableParagraphStyle class]]) { \
@@ -1107,180 +1107,180 @@ return style. _attr_;
                       style = [NSParagraphStyle defaultParagraphStyle].mutableCopy; \
                   } \
                   style. _attr_ = _attr_; \
-                  [self kf_setParagraphStyle:style range:subRange]; \
+                  [self kf5_setParagraphStyle:style range:subRange]; \
               }];
 
-- (void)kf_setAlignment:(NSTextAlignment)alignment range:(NSRange)range {
+- (void)kf5_setAlignment:(NSTextAlignment)alignment range:(NSRange)range {
     ParagraphStyleSet(alignment);
 }
 
-- (void)kf_setBaseWritingDirection:(NSWritingDirection)baseWritingDirection range:(NSRange)range {
+- (void)kf5_setBaseWritingDirection:(NSWritingDirection)baseWritingDirection range:(NSRange)range {
     ParagraphStyleSet(baseWritingDirection);
 }
 
-- (void)kf_setLineSpacing:(CGFloat)lineSpacing range:(NSRange)range {
+- (void)kf5_setLineSpacing:(CGFloat)lineSpacing range:(NSRange)range {
     ParagraphStyleSet(lineSpacing);
 }
 
-- (void)kf_setParagraphSpacing:(CGFloat)paragraphSpacing range:(NSRange)range {
+- (void)kf5_setParagraphSpacing:(CGFloat)paragraphSpacing range:(NSRange)range {
     ParagraphStyleSet(paragraphSpacing);
 }
 
-- (void)kf_setParagraphSpacingBefore:(CGFloat)paragraphSpacingBefore range:(NSRange)range {
+- (void)kf5_setParagraphSpacingBefore:(CGFloat)paragraphSpacingBefore range:(NSRange)range {
     ParagraphStyleSet(paragraphSpacingBefore);
 }
 
-- (void)kf_setFirstLineHeadIndent:(CGFloat)firstLineHeadIndent range:(NSRange)range {
+- (void)kf5_setFirstLineHeadIndent:(CGFloat)firstLineHeadIndent range:(NSRange)range {
     ParagraphStyleSet(firstLineHeadIndent);
 }
 
-- (void)kf_setHeadIndent:(CGFloat)headIndent range:(NSRange)range {
+- (void)kf5_setHeadIndent:(CGFloat)headIndent range:(NSRange)range {
     ParagraphStyleSet(headIndent);
 }
 
-- (void)kf_setTailIndent:(CGFloat)tailIndent range:(NSRange)range {
+- (void)kf5_setTailIndent:(CGFloat)tailIndent range:(NSRange)range {
     ParagraphStyleSet(tailIndent);
 }
 
-- (void)kf_setLineBreakMode:(NSLineBreakMode)lineBreakMode range:(NSRange)range {
+- (void)kf5_setLineBreakMode:(NSLineBreakMode)lineBreakMode range:(NSRange)range {
     ParagraphStyleSet(lineBreakMode);
 }
 
-- (void)kf_setMinimumLineHeight:(CGFloat)minimumLineHeight range:(NSRange)range {
+- (void)kf5_setMinimumLineHeight:(CGFloat)minimumLineHeight range:(NSRange)range {
     ParagraphStyleSet(minimumLineHeight);
 }
 
-- (void)kf_setMaximumLineHeight:(CGFloat)maximumLineHeight range:(NSRange)range {
+- (void)kf5_setMaximumLineHeight:(CGFloat)maximumLineHeight range:(NSRange)range {
     ParagraphStyleSet(maximumLineHeight);
 }
 
-- (void)kf_setLineHeightMultiple:(CGFloat)lineHeightMultiple range:(NSRange)range {
+- (void)kf5_setLineHeightMultiple:(CGFloat)lineHeightMultiple range:(NSRange)range {
     ParagraphStyleSet(lineHeightMultiple);
 }
 
-- (void)kf_setHyphenationFactor:(float)hyphenationFactor range:(NSRange)range {
+- (void)kf5_setHyphenationFactor:(float)hyphenationFactor range:(NSRange)range {
     ParagraphStyleSet(hyphenationFactor);
 }
 
-- (void)kf_setDefaultTabInterval:(CGFloat)defaultTabInterval range:(NSRange)range {
+- (void)kf5_setDefaultTabInterval:(CGFloat)defaultTabInterval range:(NSRange)range {
     if (!kiOS7Later) return;
     ParagraphStyleSet(defaultTabInterval);
 }
 
-- (void)kf_setTabStops:(NSArray *)tabStops range:(NSRange)range {
+- (void)kf5_setTabStops:(NSArray *)tabStops range:(NSRange)range {
     if (!kiOS7Later) return;
     ParagraphStyleSet(tabStops);
 }
 
 #undef ParagraphStyleSet
 
-- (void)kf_setSuperscript:(NSNumber *)superscript range:(NSRange)range {
+- (void)kf5_setSuperscript:(NSNumber *)superscript range:(NSRange)range {
     if ([superscript isEqualToNumber:@(0)]) {
         superscript = nil;
     }
-    [self kf_setAttribute:(id)kCTSuperscriptAttributeName value:superscript range:range];
+    [self kf5_setAttribute:(id)kCTSuperscriptAttributeName value:superscript range:range];
 }
 
-- (void)kf_setGlyphInfo:(CTGlyphInfoRef)glyphInfo range:(NSRange)range {
-    [self kf_setAttribute:(id)kCTGlyphInfoAttributeName value:(__bridge id)glyphInfo range:range];
+- (void)kf5_setGlyphInfo:(CTGlyphInfoRef)glyphInfo range:(NSRange)range {
+    [self kf5_setAttribute:(id)kCTGlyphInfoAttributeName value:(__bridge id)glyphInfo range:range];
 }
 
-- (void)kf_setCharacterShape:(NSNumber *)characterShape range:(NSRange)range {
-    [self kf_setAttribute:(id)kCTCharacterShapeAttributeName value:characterShape range:range];
+- (void)kf5_setCharacterShape:(NSNumber *)characterShape range:(NSRange)range {
+    [self kf5_setAttribute:(id)kCTCharacterShapeAttributeName value:characterShape range:range];
 }
 
-- (void)kf_setRunDelegate:(CTRunDelegateRef)runDelegate range:(NSRange)range {
-    [self kf_setAttribute:(id)kCTRunDelegateAttributeName value:(__bridge id)runDelegate range:range];
+- (void)kf5_setRunDelegate:(CTRunDelegateRef)runDelegate range:(NSRange)range {
+    [self kf5_setAttribute:(id)kCTRunDelegateAttributeName value:(__bridge id)runDelegate range:range];
 }
 
-- (void)kf_setBaselineClass:(CFStringRef)baselineClass range:(NSRange)range {
-    [self kf_setAttribute:(id)kCTBaselineClassAttributeName value:(__bridge id)baselineClass range:range];
+- (void)kf5_setBaselineClass:(CFStringRef)baselineClass range:(NSRange)range {
+    [self kf5_setAttribute:(id)kCTBaselineClassAttributeName value:(__bridge id)baselineClass range:range];
 }
 
-- (void)kf_setBaselineInfo:(CFDictionaryRef)baselineInfo range:(NSRange)range {
-    [self kf_setAttribute:(id)kCTBaselineInfoAttributeName value:(__bridge id)baselineInfo range:range];
+- (void)kf5_setBaselineInfo:(CFDictionaryRef)baselineInfo range:(NSRange)range {
+    [self kf5_setAttribute:(id)kCTBaselineInfoAttributeName value:(__bridge id)baselineInfo range:range];
 }
 
-- (void)kf_setBaselineReferenceInfo:(CFDictionaryRef)referenceInfo range:(NSRange)range {
-    [self kf_setAttribute:(id)kCTBaselineReferenceInfoAttributeName value:(__bridge id)referenceInfo range:range];
+- (void)kf5_setBaselineReferenceInfo:(CFDictionaryRef)referenceInfo range:(NSRange)range {
+    [self kf5_setAttribute:(id)kCTBaselineReferenceInfoAttributeName value:(__bridge id)referenceInfo range:range];
 }
 
-- (void)kf_setRubyAnnotation:(CTRubyAnnotationRef)ruby range:(NSRange)range {
+- (void)kf5_setRubyAnnotation:(CTRubyAnnotationRef)ruby range:(NSRange)range {
     if (kSystemVersion >= 8) {
-        [self kf_setAttribute:(id)kCTRubyAnnotationAttributeName value:(__bridge id)ruby range:range];
+        [self kf5_setAttribute:(id)kCTRubyAnnotationAttributeName value:(__bridge id)ruby range:range];
     }
 }
 
-- (void)kf_setAttachment:(NSTextAttachment *)attachment range:(NSRange)range {
+- (void)kf5_setAttachment:(NSTextAttachment *)attachment range:(NSRange)range {
     if (kSystemVersion >= 7) {
-        [self kf_setAttribute:NSAttachmentAttributeName value:attachment range:range];
+        [self kf5_setAttribute:NSAttachmentAttributeName value:attachment range:range];
     }
 }
 
-- (void)kf_setLink:(id)link range:(NSRange)range {
+- (void)kf5_setLink:(id)link range:(NSRange)range {
     if (kSystemVersion >= 7) {
-        [self kf_setAttribute:NSLinkAttributeName value:link range:range];
+        [self kf5_setAttribute:NSLinkAttributeName value:link range:range];
     }
 }
 
-- (void)kf_setTextBackedString:(YYTextBackedString *)textBackedString range:(NSRange)range {
-    [self kf_setAttribute:YYTextBackedStringAttributeName value:textBackedString range:range];
+- (void)kf5_setTextBackedString:(YYTextBackedString *)textBackedString range:(NSRange)range {
+    [self kf5_setAttribute:YYTextBackedStringAttributeName value:textBackedString range:range];
 }
 
-- (void)kf_setTextBinding:(YYTextBinding *)textBinding range:(NSRange)range {
-    [self kf_setAttribute:YYTextBindingAttributeName value:textBinding range:range];
+- (void)kf5_setTextBinding:(YYTextBinding *)textBinding range:(NSRange)range {
+    [self kf5_setAttribute:YYTextBindingAttributeName value:textBinding range:range];
 }
 
-- (void)kf_setTextShadow:(YYTextShadow *)textShadow range:(NSRange)range {
-    [self kf_setAttribute:YYTextShadowAttributeName value:textShadow range:range];
+- (void)kf5_setTextShadow:(YYTextShadow *)textShadow range:(NSRange)range {
+    [self kf5_setAttribute:YYTextShadowAttributeName value:textShadow range:range];
 }
 
-- (void)kf_setTextInnerShadow:(YYTextShadow *)textInnerShadow range:(NSRange)range {
-    [self kf_setAttribute:YYTextInnerShadowAttributeName value:textInnerShadow range:range];
+- (void)kf5_setTextInnerShadow:(YYTextShadow *)textInnerShadow range:(NSRange)range {
+    [self kf5_setAttribute:YYTextInnerShadowAttributeName value:textInnerShadow range:range];
 }
 
-- (void)kf_setTextUnderline:(YYTextDecoration *)textUnderline range:(NSRange)range {
-    [self kf_setAttribute:YYTextUnderlineAttributeName value:textUnderline range:range];
+- (void)kf5_setTextUnderline:(YYTextDecoration *)textUnderline range:(NSRange)range {
+    [self kf5_setAttribute:YYTextUnderlineAttributeName value:textUnderline range:range];
 }
 
-- (void)kf_setTextStrikethrough:(YYTextDecoration *)textStrikethrough range:(NSRange)range {
-    [self kf_setAttribute:YYTextStrikethroughAttributeName value:textStrikethrough range:range];
+- (void)kf5_setTextStrikethrough:(YYTextDecoration *)textStrikethrough range:(NSRange)range {
+    [self kf5_setAttribute:YYTextStrikethroughAttributeName value:textStrikethrough range:range];
 }
 
-- (void)kf_setTextBorder:(YYTextBorder *)textBorder range:(NSRange)range {
-    [self kf_setAttribute:YYTextBorderAttributeName value:textBorder range:range];
+- (void)kf5_setTextBorder:(YYTextBorder *)textBorder range:(NSRange)range {
+    [self kf5_setAttribute:YYTextBorderAttributeName value:textBorder range:range];
 }
 
-- (void)kf_setTextBackgroundBorder:(YYTextBorder *)textBackgroundBorder range:(NSRange)range {
-    [self kf_setAttribute:YYTextBackgroundBorderAttributeName value:textBackgroundBorder range:range];
+- (void)kf5_setTextBackgroundBorder:(YYTextBorder *)textBackgroundBorder range:(NSRange)range {
+    [self kf5_setAttribute:YYTextBackgroundBorderAttributeName value:textBackgroundBorder range:range];
 }
 
-- (void)kf_setTextAttachment:(YYTextAttachment *)textAttachment range:(NSRange)range {
-    [self kf_setAttribute:YYTextAttachmentAttributeName value:textAttachment range:range];
+- (void)kf5_setTextAttachment:(YYTextAttachment *)textAttachment range:(NSRange)range {
+    [self kf5_setAttribute:YYTextAttachmentAttributeName value:textAttachment range:range];
 }
 
-- (void)kf_setTextHighlight:(YYTextHighlight *)textHighlight range:(NSRange)range {
-    [self kf_setAttribute:YYTextHighlightAttributeName value:textHighlight range:range];
+- (void)kf5_setTextHighlight:(YYTextHighlight *)textHighlight range:(NSRange)range {
+    [self kf5_setAttribute:YYTextHighlightAttributeName value:textHighlight range:range];
 }
 
-- (void)kf_setTextBlockBorder:(YYTextBorder *)textBlockBorder range:(NSRange)range {
-    [self kf_setAttribute:YYTextBlockBorderAttributeName value:textBlockBorder range:range];
+- (void)kf5_setTextBlockBorder:(YYTextBorder *)textBlockBorder range:(NSRange)range {
+    [self kf5_setAttribute:YYTextBlockBorderAttributeName value:textBlockBorder range:range];
 }
 
-- (void)kf_setTextRubyAnnotation:(YYTextRubyAnnotation *)ruby range:(NSRange)range {
+- (void)kf5_setTextRubyAnnotation:(YYTextRubyAnnotation *)ruby range:(NSRange)range {
     if (kiOS8Later) {
         CTRubyAnnotationRef rubyRef = [ruby CTRubyAnnotation];
-        [self kf_setRubyAnnotation:rubyRef range:range];
+        [self kf5_setRubyAnnotation:rubyRef range:range];
         if (rubyRef) CFRelease(rubyRef);
     }
 }
 
-- (void)kf_setTextGlyphTransform:(CGAffineTransform)textGlyphTransform range:(NSRange)range {
+- (void)kf5_setTextGlyphTransform:(CGAffineTransform)textGlyphTransform range:(NSRange)range {
     NSValue *value = CGAffineTransformIsIdentity(textGlyphTransform) ? nil : [NSValue valueWithCGAffineTransform:textGlyphTransform];
-    [self kf_setAttribute:YYTextGlyphTransformAttributeName value:value range:range];
+    [self kf5_setAttribute:YYTextGlyphTransformAttributeName value:value range:range];
 }
 
-- (void)kf_setTextHighlightRange:(NSRange)range
+- (void)kf5_setTextHighlightRange:(NSRange)range
                            color:(UIColor *)color
                  backgroundColor:(UIColor *)backgroundColor
                         userInfo:(NSDictionary *)userInfo
@@ -1290,15 +1290,15 @@ return style. _attr_;
     highlight.userInfo = userInfo;
     highlight.tapAction = tapAction;
     highlight.longPressAction = longPressAction;
-    if (color) [self kf_setColor:color range:range];
-    [self kf_setTextHighlight:highlight range:range];
+    if (color) [self kf5_setColor:color range:range];
+    [self kf5_setTextHighlight:highlight range:range];
 }
 
-- (void)kf_setTextHighlightRange:(NSRange)range
+- (void)kf5_setTextHighlightRange:(NSRange)range
                            color:(UIColor *)color
                  backgroundColor:(UIColor *)backgroundColor
                        tapAction:(YYTextAction)tapAction {
-    [self kf_setTextHighlightRange:range
+    [self kf5_setTextHighlightRange:range
                          color:color
                backgroundColor:backgroundColor
                       userInfo:nil
@@ -1306,11 +1306,11 @@ return style. _attr_;
                longPressAction:nil];
 }
 
-- (void)kf_setTextHighlightRange:(NSRange)range
+- (void)kf5_setTextHighlightRange:(NSRange)range
                            color:(UIColor *)color
                  backgroundColor:(UIColor *)backgroundColor
                         userInfo:(NSDictionary *)userInfo {
-    [self kf_setTextHighlightRange:range
+    [self kf5_setTextHighlightRange:range
                          color:color
                backgroundColor:backgroundColor
                       userInfo:userInfo
@@ -1318,18 +1318,18 @@ return style. _attr_;
                longPressAction:nil];
 }
 
-- (void)kf_insertString:(NSString *)string atIndex:(NSUInteger)location {
+- (void)kf5_insertString:(NSString *)string atIndex:(NSUInteger)location {
     [self replaceCharactersInRange:NSMakeRange(location, 0) withString:string];
-    [self kf_removeDiscontinuousAttributesInRange:NSMakeRange(location, string.length)];
+    [self kf5_removeDiscontinuousAttributesInRange:NSMakeRange(location, string.length)];
 }
 
-- (void)kf_appendString:(NSString *)string {
+- (void)kf5_appendString:(NSString *)string {
     NSUInteger length = self.length;
     [self replaceCharactersInRange:NSMakeRange(length, 0) withString:string];
-    [self kf_removeDiscontinuousAttributesInRange:NSMakeRange(length, string.length)];
+    [self kf5_removeDiscontinuousAttributesInRange:NSMakeRange(length, string.length)];
 }
 
-- (void)kf_setClearColorToJoinedEmoji {
+- (void)kf5_setClearColorToJoinedEmoji {
     NSString *str = self.string;
     if (str.length < 8) return;
     
@@ -1370,18 +1370,18 @@ return style. _attr_;
     
     UIColor *clear = [UIColor clearColor];
     [regex enumerateMatchesInString:str options:kNilOptions range:NSMakeRange(0, str.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-        [self kf_setColor:clear range:result.range];
+        [self kf5_setColor:clear range:result.range];
     }];
 }
 
-- (void)kf_removeDiscontinuousAttributesInRange:(NSRange)range {
-    NSArray *keys = [NSMutableAttributedString kf_allDiscontinuousAttributeKeys];
+- (void)kf5_removeDiscontinuousAttributesInRange:(NSRange)range {
+    NSArray *keys = [NSMutableAttributedString kf5_allDiscontinuousAttributeKeys];
     for (NSString *key in keys) {
         [self removeAttribute:key range:range];
     }
 }
 
-+ (NSArray *)kf_allDiscontinuousAttributeKeys {
++ (NSArray *)kf5_allDiscontinuousAttributeKeys {
     static NSMutableArray *keys;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

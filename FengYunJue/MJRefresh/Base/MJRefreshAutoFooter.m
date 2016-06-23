@@ -20,14 +20,14 @@
     
     if (newSuperview) { // 新的父控件
         if (self.hidden == NO) {
-            self.scrollView.kf_insetB += self.kf_h;
+            self.scrollView.kf5_insetB += self.kf5_h;
         }
         
         // 设置位置
-        self.kf_y = _scrollView.kf_contentH;
+        self.kf5_y = _scrollView.kf5_contentH;
     } else { // 被移除了
         if (self.hidden == NO) {
-            self.scrollView.kf_insetB -= self.kf_h;
+            self.scrollView.kf5_insetB -= self.kf5_h;
         }
     }
 }
@@ -49,18 +49,18 @@
     [super scrollViewContentSizeDidChange:change];
     
     // 设置位置
-    self.kf_y = self.scrollView.kf_contentH;
+    self.kf5_y = self.scrollView.kf5_contentH;
 }
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
 {
     [super scrollViewContentOffsetDidChange:change];
     
-    if (self.state != MJRefreshStateIdle || !self.automaticallyRefresh || self.kf_y == 0) return;
+    if (self.state != MJRefreshStateIdle || !self.automaticallyRefresh || self.kf5_y == 0) return;
     
-    if (_scrollView.kf_insetT + _scrollView.kf_contentH > _scrollView.kf_h) { // 内容超过一个屏幕
-        // 这里的_scrollView.kf_contentH替换掉self.kf_y更为合理
-        if (_scrollView.kf_offsetY >= _scrollView.kf_contentH - _scrollView.kf_h + self.kf_h * self.triggerAutomaticallyRefreshPercent + _scrollView.kf_insetB - self.kf_h) {
+    if (_scrollView.kf5_insetT + _scrollView.kf5_contentH > _scrollView.kf5_h) { // 内容超过一个屏幕
+        // 这里的_scrollView.kf5_contentH替换掉self.kf5_y更为合理
+        if (_scrollView.kf5_offsetY >= _scrollView.kf5_contentH - _scrollView.kf5_h + self.kf5_h * self.triggerAutomaticallyRefreshPercent + _scrollView.kf5_insetB - self.kf5_h) {
             // 防止手松开时连续调用
             CGPoint old = [change[@"old"] CGPointValue];
             CGPoint new = [change[@"new"] CGPointValue];
@@ -79,12 +79,12 @@
     if (self.state != MJRefreshStateIdle) return;
     
     if (_scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {// 手松开
-        if (_scrollView.kf_insetT + _scrollView.kf_contentH <= _scrollView.kf_h) {  // 不够一个屏幕
-            if (_scrollView.kf_offsetY >= - _scrollView.kf_insetT) { // 向上拽
+        if (_scrollView.kf5_insetT + _scrollView.kf5_contentH <= _scrollView.kf5_h) {  // 不够一个屏幕
+            if (_scrollView.kf5_offsetY >= - _scrollView.kf5_insetT) { // 向上拽
                 [self beginRefreshing];
             }
         } else { // 超出一个屏幕
-            if (_scrollView.kf_offsetY >= _scrollView.kf_contentH + _scrollView.kf_insetB - _scrollView.kf_h) {
+            if (_scrollView.kf5_offsetY >= _scrollView.kf5_contentH + _scrollView.kf5_insetB - _scrollView.kf5_h) {
                 [self beginRefreshing];
             }
         }
@@ -111,12 +111,12 @@
     if (!lastHidden && hidden) {
         self.state = MJRefreshStateIdle;
         
-        self.scrollView.kf_insetB -= self.kf_h;
+        self.scrollView.kf5_insetB -= self.kf5_h;
     } else if (lastHidden && !hidden) {
-        self.scrollView.kf_insetB += self.kf_h;
+        self.scrollView.kf5_insetB += self.kf5_h;
         
         // 设置位置
-        self.kf_y = _scrollView.kf_contentH;
+        self.kf5_y = _scrollView.kf5_contentH;
     }
 }
 @end

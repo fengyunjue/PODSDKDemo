@@ -29,9 +29,9 @@
 ///
 /// Default to NO, log by NSLog.
 ///
-@property (nonatomic, assign) BOOL kf_debugLogEnabled;
+@property (nonatomic, assign) BOOL kf5_debugLogEnabled;
 
-/// Debug log controlled by "kf_debugLogEnabled".
-- (void)kf_debugLog:(NSString *)message;
+/// Debug log controlled by "kf5_debugLogEnabled".
+- (void)kf5_debugLog:(NSString *)message;
 
 @end

@@ -11,48 +11,48 @@
 
 @implementation NSArray (MASAdditions)
 
-- (NSArray *)kf_makeConstraints:(void(^)(MASConstraintMaker *make))block {
+- (NSArray *)kf5_makeConstraints:(void(^)(MASConstraintMaker *make))block {
     NSMutableArray *constraints = [NSMutableArray array];
-    for (kf_VIEW *view in self) {
-        NSAssert([view isKindOfClass:[kf_VIEW class]], @"All objects in the array must be views");
-        [constraints addObjectsFromArray:[view kf_makeConstraints:block]];
+    for (kf5_VIEW *view in self) {
+        NSAssert([view isKindOfClass:[kf5_VIEW class]], @"All objects in the array must be views");
+        [constraints addObjectsFromArray:[view kf5_makeConstraints:block]];
     }
     return constraints;
 }
 
-- (NSArray *)kf_updateConstraints:(void(^)(MASConstraintMaker *make))block {
+- (NSArray *)kf5_updateConstraints:(void(^)(MASConstraintMaker *make))block {
     NSMutableArray *constraints = [NSMutableArray array];
-    for (kf_VIEW *view in self) {
-        NSAssert([view isKindOfClass:[kf_VIEW class]], @"All objects in the array must be views");
-        [constraints addObjectsFromArray:[view kf_updateConstraints:block]];
+    for (kf5_VIEW *view in self) {
+        NSAssert([view isKindOfClass:[kf5_VIEW class]], @"All objects in the array must be views");
+        [constraints addObjectsFromArray:[view kf5_updateConstraints:block]];
     }
     return constraints;
 }
 
-- (NSArray *)kf_remakeConstraints:(void(^)(MASConstraintMaker *make))block {
+- (NSArray *)kf5_remakeConstraints:(void(^)(MASConstraintMaker *make))block {
     NSMutableArray *constraints = [NSMutableArray array];
-    for (kf_VIEW *view in self) {
-        NSAssert([view isKindOfClass:[kf_VIEW class]], @"All objects in the array must be views");
-        [constraints addObjectsFromArray:[view kf_remakeConstraints:block]];
+    for (kf5_VIEW *view in self) {
+        NSAssert([view isKindOfClass:[kf5_VIEW class]], @"All objects in the array must be views");
+        [constraints addObjectsFromArray:[view kf5_remakeConstraints:block]];
     }
     return constraints;
 }
 
-- (void)kf_distributeViewsAlongAxis:(MASAxisType)axisType withFixedSpacing:(CGFloat)fixedSpacing leadSpacing:(CGFloat)leadSpacing tailSpacing:(CGFloat)tailSpacing {
+- (void)kf5_distributeViewsAlongAxis:(MASAxisType)axisType withFixedSpacing:(CGFloat)fixedSpacing leadSpacing:(CGFloat)leadSpacing tailSpacing:(CGFloat)tailSpacing {
     if (self.count < 2) {
         NSAssert(self.count>1,@"views to distribute need to bigger than one");
         return;
     }
     
-    kf_VIEW *tempSuperView = [self kf_commonSuperviewOfViews];
+    kf5_VIEW *tempSuperView = [self kf5_commonSuperviewOfViews];
     if (axisType == MASAxisTypeHorizontal) {
-        kf_VIEW *prev;
+        kf5_VIEW *prev;
         for (int i = 0; i < self.count; i++) {
-            kf_VIEW *v = self[i];
-            [v kf_makeConstraints:^(MASConstraintMaker *make) {
+            kf5_VIEW *v = self[i];
+            [v kf5_makeConstraints:^(MASConstraintMaker *make) {
                 if (prev) {
                     make.width.equalTo(prev);
-                    make.left.equalTo(prev.kf_right).offset(fixedSpacing);
+                    make.left.equalTo(prev.kf5_right).offset(fixedSpacing);
                     if (i == (CGFloat)self.count - 1) {//last one
                         make.right.equalTo(tempSuperView).offset(-tailSpacing);
                     }
@@ -66,13 +66,13 @@
         }
     }
     else {
-        kf_VIEW *prev;
+        kf5_VIEW *prev;
         for (int i = 0; i < self.count; i++) {
-            kf_VIEW *v = self[i];
-            [v kf_makeConstraints:^(MASConstraintMaker *make) {
+            kf5_VIEW *v = self[i];
+            [v kf5_makeConstraints:^(MASConstraintMaker *make) {
                 if (prev) {
                     make.height.equalTo(prev);
-                    make.top.equalTo(prev.kf_bottom).offset(fixedSpacing);
+                    make.top.equalTo(prev.kf5_bottom).offset(fixedSpacing);
                     if (i == (CGFloat)self.count - 1) {//last one
                         make.bottom.equalTo(tempSuperView).offset(-tailSpacing);
                     }                    
@@ -87,18 +87,18 @@
     }
 }
 
-- (void)kf_distributeViewsAlongAxis:(MASAxisType)axisType withFixedItemLength:(CGFloat)fixedItemLength leadSpacing:(CGFloat)leadSpacing tailSpacing:(CGFloat)tailSpacing {
+- (void)kf5_distributeViewsAlongAxis:(MASAxisType)axisType withFixedItemLength:(CGFloat)fixedItemLength leadSpacing:(CGFloat)leadSpacing tailSpacing:(CGFloat)tailSpacing {
     if (self.count < 2) {
         NSAssert(self.count>1,@"views to distribute need to bigger than one");
         return;
     }
     
-    kf_VIEW *tempSuperView = [self kf_commonSuperviewOfViews];
+    kf5_VIEW *tempSuperView = [self kf5_commonSuperviewOfViews];
     if (axisType == MASAxisTypeHorizontal) {
-        kf_VIEW *prev;
+        kf5_VIEW *prev;
         for (int i = 0; i < self.count; i++) {
-            kf_VIEW *v = self[i];
-            [v kf_makeConstraints:^(MASConstraintMaker *make) {
+            kf5_VIEW *v = self[i];
+            [v kf5_makeConstraints:^(MASConstraintMaker *make) {
                 if (prev) {
                     CGFloat offset = (1-(i/((CGFloat)self.count-1)))*(fixedItemLength+leadSpacing)-i*tailSpacing/(((CGFloat)self.count-1));
                     make.width.equalTo(@(fixedItemLength));
@@ -118,10 +118,10 @@
         }
     }
     else {
-        kf_VIEW *prev;
+        kf5_VIEW *prev;
         for (int i = 0; i < self.count; i++) {
-            kf_VIEW *v = self[i];
-            [v kf_makeConstraints:^(MASConstraintMaker *make) {
+            kf5_VIEW *v = self[i];
+            [v kf5_makeConstraints:^(MASConstraintMaker *make) {
                 if (prev) {
                     CGFloat offset = (1-(i/((CGFloat)self.count-1)))*(fixedItemLength+leadSpacing)-i*tailSpacing/(((CGFloat)self.count-1));
                     make.height.equalTo(@(fixedItemLength));
@@ -142,15 +142,15 @@
     }
 }
 
-- (kf_VIEW *)kf_commonSuperviewOfViews
+- (kf5_VIEW *)kf5_commonSuperviewOfViews
 {
-    kf_VIEW *commonSuperview = nil;
-    kf_VIEW *previousView = nil;
+    kf5_VIEW *commonSuperview = nil;
+    kf5_VIEW *previousView = nil;
     for (id object in self) {
-        if ([object isKindOfClass:[kf_VIEW class]]) {
-            kf_VIEW *view = (kf_VIEW *)object;
+        if ([object isKindOfClass:[kf5_VIEW class]]) {
+            kf5_VIEW *view = (kf5_VIEW *)object;
             if (previousView) {
-                commonSuperview = [view kf_closestCommonSuperview:commonSuperview];
+                commonSuperview = [view kf5_closestCommonSuperview:commonSuperview];
             } else {
                 commonSuperview = view;
             }

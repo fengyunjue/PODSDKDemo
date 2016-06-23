@@ -381,7 +381,7 @@ NSString *const SDWebImageDownloadFinishNotification = @"KFSDWebImageDownloadFin
         if (self.options & SDWebImageDownloaderIgnoreCachedResponse && responseFromCached) {
             completionBlock(nil, nil, nil, YES);
         } else if (self.imageData) {
-            UIImage *image = [UIImage kf_imageWithData:self.imageData];
+            UIImage *image = [UIImage kf5_imageWithData:self.imageData];
             NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:self.request.URL];
             image = [self scaledImageForKey:key image:image];
             

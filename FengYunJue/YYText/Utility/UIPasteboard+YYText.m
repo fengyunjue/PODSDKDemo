@@ -39,49 +39,49 @@ NSString *const YYTextUTTypeWEBP = @"com.google.webp";
 @implementation UIPasteboard (YYText)
 
 
-- (void)setKf_PNGData:(NSData *)PNGData {
+- (void)setKf5_PNGData:(NSData *)PNGData {
     [self setData:PNGData forPasteboardType:(id)kUTTypePNG];
 }
 
-- (NSData *)kf_PNGData {
+- (NSData *)kf5_PNGData {
     return [self dataForPasteboardType:(id)kUTTypePNG];
 }
 
-- (void)setKf_JPEGData:(NSData *)JPEGData {
+- (void)setKf5_JPEGData:(NSData *)JPEGData {
     [self setData:JPEGData forPasteboardType:(id)kUTTypeJPEG];
 }
 
-- (NSData *)kf_JPEGData {
+- (NSData *)kf5_JPEGData {
     return [self dataForPasteboardType:(id)kUTTypeJPEG];
 }
 
-- (void)setKf_GIFData:(NSData *)GIFData {
+- (void)setKf5_GIFData:(NSData *)GIFData {
     [self setData:GIFData forPasteboardType:(id)kUTTypeGIF];
 }
 
-- (NSData *)kf_GIFData {
+- (NSData *)kf5_GIFData {
     return [self dataForPasteboardType:(id)kUTTypeGIF];
 }
 
-- (void)setKf_WEBPData:(NSData *)WEBPData {
+- (void)setKf5_WEBPData:(NSData *)WEBPData {
     [self setData:WEBPData forPasteboardType:YYTextUTTypeWEBP];
 }
 
-- (NSData *)kf_WEBPData {
+- (NSData *)kf5_WEBPData {
     return [self dataForPasteboardType:YYTextUTTypeWEBP];
 }
 
-- (void)setKf_ImageData:(NSData *)imageData {
+- (void)setKf5_ImageData:(NSData *)imageData {
     [self setData:imageData forPasteboardType:(id)kUTTypeImage];
 }
 
-- (NSData *)kf_ImageData {
+- (NSData *)kf5_ImageData {
     return [self dataForPasteboardType:(id)kUTTypeImage];
 }
 
-- (void)setKf_AttributedString:(NSAttributedString *)attributedString {
-    self.string = [attributedString kf_plainTextForRange:NSMakeRange(0, attributedString.length)];
-    NSData *data = [attributedString kf_archiveToData];
+- (void)setKf5_AttributedString:(NSAttributedString *)attributedString {
+    self.string = [attributedString kf5_plainTextForRange:NSMakeRange(0, attributedString.length)];
+    NSData *data = [attributedString kf5_archiveToData];
     if (data) {
         NSDictionary *item = @{YYTextPasteboardTypeAttributedString : data};
         [self addItems:@[item]];
@@ -133,11 +133,11 @@ NSString *const YYTextUTTypeWEBP = @"com.google.webp";
     }];
 }
 
-- (NSAttributedString *)kf_AttributedString {
+- (NSAttributedString *)kf5_AttributedString {
     for (NSDictionary *items in self.items) {
         NSData *data = items[YYTextPasteboardTypeAttributedString];
         if (data) {
-            return [NSAttributedString kf_unarchiveFromData:data];
+            return [NSAttributedString kf5_unarchiveFromData:data];
         }
     }
     return nil;

@@ -14,7 +14,7 @@ static char imageURLStorageKey;
 
 @implementation UIButton (WebCache)
 
-- (NSURL *)kf_currentImageURL {
+- (NSURL *)kf5_currentImageURL {
     NSURL *url = self.imageURLStorage[@(self.state)];
 
     if (!url) {
@@ -24,34 +24,34 @@ static char imageURLStorageKey;
     return url;
 }
 
-- (NSURL *)kf_imageURLForState:(UIControlState)state {
+- (NSURL *)kf5_imageURLForState:(UIControlState)state {
     return self.imageURLStorage[@(state)];
 }
 
-- (void)kf_setImageWithURL:(NSURL *)url forState:(UIControlState)state {
-    [self kf_setImageWithURL:url forState:state placeholderImage:nil options:0 completed:nil];
+- (void)kf5_setImageWithURL:(NSURL *)url forState:(UIControlState)state {
+    [self kf5_setImageWithURL:url forState:state placeholderImage:nil options:0 completed:nil];
 }
 
-- (void)kf_setImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder {
-    [self kf_setImageWithURL:url forState:state placeholderImage:placeholder options:0 completed:nil];
+- (void)kf5_setImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder {
+    [self kf5_setImageWithURL:url forState:state placeholderImage:placeholder options:0 completed:nil];
 }
 
-- (void)kf_setImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options {
-    [self kf_setImageWithURL:url forState:state placeholderImage:placeholder options:options completed:nil];
+- (void)kf5_setImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options {
+    [self kf5_setImageWithURL:url forState:state placeholderImage:placeholder options:options completed:nil];
 }
 
-- (void)kf_setImageWithURL:(NSURL *)url forState:(UIControlState)state completed:(SDWebImageCompletionBlock)completedBlock {
-    [self kf_setImageWithURL:url forState:state placeholderImage:nil options:0 completed:completedBlock];
+- (void)kf5_setImageWithURL:(NSURL *)url forState:(UIControlState)state completed:(SDWebImageCompletionBlock)completedBlock {
+    [self kf5_setImageWithURL:url forState:state placeholderImage:nil options:0 completed:completedBlock];
 }
 
-- (void)kf_setImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder completed:(SDWebImageCompletionBlock)completedBlock {
-    [self kf_setImageWithURL:url forState:state placeholderImage:placeholder options:0 completed:completedBlock];
+- (void)kf5_setImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder completed:(SDWebImageCompletionBlock)completedBlock {
+    [self kf5_setImageWithURL:url forState:state placeholderImage:placeholder options:0 completed:completedBlock];
 }
 
-- (void)kf_setImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options completed:(SDWebImageCompletionBlock)completedBlock {
+- (void)kf5_setImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options completed:(SDWebImageCompletionBlock)completedBlock {
 
     [self setImage:placeholder forState:state];
-    [self kf_cancelImageLoadForState:state];
+    [self kf5_cancelImageLoadForState:state];
     
     if (!url) {
         [self.imageURLStorage removeObjectForKey:@(state)];
@@ -87,31 +87,31 @@ static char imageURLStorageKey;
             }
         });
     }];
-    [self kf_setImageLoadOperation:operation forState:state];
+    [self kf5_setImageLoadOperation:operation forState:state];
 }
 
-- (void)kf_setBackgroundImageWithURL:(NSURL *)url forState:(UIControlState)state {
-    [self kf_setBackgroundImageWithURL:url forState:state placeholderImage:nil options:0 completed:nil];
+- (void)kf5_setBackgroundImageWithURL:(NSURL *)url forState:(UIControlState)state {
+    [self kf5_setBackgroundImageWithURL:url forState:state placeholderImage:nil options:0 completed:nil];
 }
 
-- (void)kf_setBackgroundImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder {
-    [self kf_setBackgroundImageWithURL:url forState:state placeholderImage:placeholder options:0 completed:nil];
+- (void)kf5_setBackgroundImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder {
+    [self kf5_setBackgroundImageWithURL:url forState:state placeholderImage:placeholder options:0 completed:nil];
 }
 
-- (void)kf_setBackgroundImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options {
-    [self kf_setBackgroundImageWithURL:url forState:state placeholderImage:placeholder options:options completed:nil];
+- (void)kf5_setBackgroundImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options {
+    [self kf5_setBackgroundImageWithURL:url forState:state placeholderImage:placeholder options:options completed:nil];
 }
 
-- (void)kf_setBackgroundImageWithURL:(NSURL *)url forState:(UIControlState)state completed:(SDWebImageCompletionBlock)completedBlock {
-    [self kf_setBackgroundImageWithURL:url forState:state placeholderImage:nil options:0 completed:completedBlock];
+- (void)kf5_setBackgroundImageWithURL:(NSURL *)url forState:(UIControlState)state completed:(SDWebImageCompletionBlock)completedBlock {
+    [self kf5_setBackgroundImageWithURL:url forState:state placeholderImage:nil options:0 completed:completedBlock];
 }
 
-- (void)kf_setBackgroundImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder completed:(SDWebImageCompletionBlock)completedBlock {
-    [self kf_setBackgroundImageWithURL:url forState:state placeholderImage:placeholder options:0 completed:completedBlock];
+- (void)kf5_setBackgroundImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder completed:(SDWebImageCompletionBlock)completedBlock {
+    [self kf5_setBackgroundImageWithURL:url forState:state placeholderImage:placeholder options:0 completed:completedBlock];
 }
 
-- (void)kf_setBackgroundImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options completed:(SDWebImageCompletionBlock)completedBlock {
-    [self kf_cancelBackgroundImageLoadForState:state];
+- (void)kf5_setBackgroundImageWithURL:(NSURL *)url forState:(UIControlState)state placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options completed:(SDWebImageCompletionBlock)completedBlock {
+    [self kf5_cancelBackgroundImageLoadForState:state];
 
     [self setBackgroundImage:placeholder forState:state];
 
@@ -135,7 +135,7 @@ static char imageURLStorageKey;
                 }
             });
         }];
-        [self kf_setBackgroundImageLoadOperation:operation forState:state];
+        [self kf5_setBackgroundImageLoadOperation:operation forState:state];
     } else {
         dispatch_main_async_safe(^{
             NSError *error = [NSError errorWithDomain:SDWebImageErrorDomain code:-1 userInfo:@{NSLocalizedDescriptionKey : @"Trying to load a nil url"}];
@@ -146,20 +146,20 @@ static char imageURLStorageKey;
     }
 }
 
-- (void)kf_setImageLoadOperation:(id<SDWebImageOperation>)operation forState:(UIControlState)state {
-    [self kf_setImageLoadOperation:operation forKey:[NSString stringWithFormat:@"UIButtonImageOperation%@", @(state)]];
+- (void)kf5_setImageLoadOperation:(id<SDWebImageOperation>)operation forState:(UIControlState)state {
+    [self kf5_setImageLoadOperation:operation forKey:[NSString stringWithFormat:@"UIButtonImageOperation%@", @(state)]];
 }
 
-- (void)kf_cancelImageLoadForState:(UIControlState)state {
-    [self kf_cancelImageLoadOperationWithKey:[NSString stringWithFormat:@"UIButtonImageOperation%@", @(state)]];
+- (void)kf5_cancelImageLoadForState:(UIControlState)state {
+    [self kf5_cancelImageLoadOperationWithKey:[NSString stringWithFormat:@"UIButtonImageOperation%@", @(state)]];
 }
 
-- (void)kf_setBackgroundImageLoadOperation:(id<SDWebImageOperation>)operation forState:(UIControlState)state {
-    [self kf_setImageLoadOperation:operation forKey:[NSString stringWithFormat:@"UIButtonBackgroundImageOperation%@", @(state)]];
+- (void)kf5_setBackgroundImageLoadOperation:(id<SDWebImageOperation>)operation forState:(UIControlState)state {
+    [self kf5_setImageLoadOperation:operation forKey:[NSString stringWithFormat:@"UIButtonBackgroundImageOperation%@", @(state)]];
 }
 
-- (void)kf_cancelBackgroundImageLoadForState:(UIControlState)state {
-    [self kf_cancelImageLoadOperationWithKey:[NSString stringWithFormat:@"UIButtonBackgroundImageOperation%@", @(state)]];
+- (void)kf5_cancelBackgroundImageLoadForState:(UIControlState)state {
+    [self kf5_cancelImageLoadOperationWithKey:[NSString stringWithFormat:@"UIButtonBackgroundImageOperation%@", @(state)]];
 }
 
 - (NSMutableDictionary *)imageURLStorage {

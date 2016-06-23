@@ -10,19 +10,19 @@
 #import "MASConstraintMaker.h"
 #import "MASViewAttribute.h"
 
-#ifdef kf_VIEW_CONTROLLER
+#ifdef kf5_VIEW_CONTROLLER
 
-@interface kf_VIEW_CONTROLLER (MASAdditions)
+@interface kf5_VIEW_CONTROLLER (MASAdditions)
 
 /**
  *	following properties return a new MASViewAttribute with appropriate UILayoutGuide and NSLayoutAttribute
  */
-@property (nonatomic, strong, readonly) MASViewAttribute *kf_topLayoutGuide;
-@property (nonatomic, strong, readonly) MASViewAttribute *kf_bottomLayoutGuide;
-@property (nonatomic, strong, readonly) MASViewAttribute *kf_topLayoutGuideTop;
-@property (nonatomic, strong, readonly) MASViewAttribute *kf_topLayoutGuideBottom;
-@property (nonatomic, strong, readonly) MASViewAttribute *kf_bottomLayoutGuideTop;
-@property (nonatomic, strong, readonly) MASViewAttribute *kf_bottomLayoutGuideBottom;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf5_topLayoutGuide;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf5_bottomLayoutGuide;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf5_topLayoutGuideTop;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf5_topLayoutGuideBottom;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf5_bottomLayoutGuideTop;
+@property (nonatomic, strong, readonly) MASViewAttribute *kf5_bottomLayoutGuideBottom;
 
 
 @end

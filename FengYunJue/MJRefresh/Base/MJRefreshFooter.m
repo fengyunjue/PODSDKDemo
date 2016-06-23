@@ -34,7 +34,7 @@
     [super prepare];
     
     // 设置自己的高度
-    self.kf_h = MJRefreshFooterHeight;
+    self.kf5_h = MJRefreshFooterHeight;
     
     // 默认不会自动隐藏
     self.automaticallyHidden = NO;
@@ -47,7 +47,7 @@
     if (newSuperview) {
         // 监听scrollView数据的变化
         if ([self.scrollView isKindOfClass:[UITableView class]] || [self.scrollView isKindOfClass:[UICollectionView class]]) {
-            [self.scrollView setKf_reloadDataBlock:^(NSInteger totalDataCount) {
+            [self.scrollView setKf5_reloadDataBlock:^(NSInteger totalDataCount) {
                 if (self.isAutomaticallyHidden) {
                     self.hidden = (totalDataCount == 0);
                 }

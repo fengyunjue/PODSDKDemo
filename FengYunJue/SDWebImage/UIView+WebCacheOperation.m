@@ -23,13 +23,13 @@ static char loadOperationKey;
     return operations;
 }
 
-- (void)kf_setImageLoadOperation:(id)operation forKey:(NSString *)key {
-    [self kf_cancelImageLoadOperationWithKey:key];
+- (void)kf5_setImageLoadOperation:(id)operation forKey:(NSString *)key {
+    [self kf5_cancelImageLoadOperationWithKey:key];
     NSMutableDictionary *operationDictionary = [self operationDictionary];
     [operationDictionary setObject:operation forKey:key];
 }
 
-- (void)kf_cancelImageLoadOperationWithKey:(NSString *)key {
+- (void)kf5_cancelImageLoadOperationWithKey:(NSString *)key {
     // Cancel in progress downloader from queue
     NSMutableDictionary *operationDictionary = [self operationDictionary];
     id operations = [operationDictionary objectForKey:key];
@@ -47,7 +47,7 @@ static char loadOperationKey;
     }
 }
 
-- (void)kf_removeImageLoadOperationWithKey:(NSString *)key {
+- (void)kf5_removeImageLoadOperationWithKey:(NSString *)key {
     NSMutableDictionary *operationDictionary = [self operationDictionary];
     [operationDictionary removeObjectForKey:key];
 }

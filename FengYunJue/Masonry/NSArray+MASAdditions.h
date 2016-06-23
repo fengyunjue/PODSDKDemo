@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, MASAxisType) {
  *
  *  @return Array of created MASConstraints
  */
-- (NSArray *)kf_makeConstraints:(void (^)(MASConstraintMaker *make))block;
+- (NSArray *)kf5_makeConstraints:(void (^)(MASConstraintMaker *make))block;
 
 /**
  *  Creates a MASConstraintMaker with each view in the callee.
@@ -36,7 +36,7 @@ typedef NS_ENUM(NSUInteger, MASAxisType) {
  *
  *  @return Array of created/updated MASConstraints
  */
-- (NSArray *)kf_updateConstraints:(void (^)(MASConstraintMaker *make))block;
+- (NSArray *)kf5_updateConstraints:(void (^)(MASConstraintMaker *make))block;
 
 /**
  *  Creates a MASConstraintMaker with each view in the callee.
@@ -47,7 +47,7 @@ typedef NS_ENUM(NSUInteger, MASAxisType) {
  *
  *  @return Array of created/updated MASConstraints
  */
-- (NSArray *)kf_remakeConstraints:(void (^)(MASConstraintMaker *make))block;
+- (NSArray *)kf5_remakeConstraints:(void (^)(MASConstraintMaker *make))block;
 
 /**
  *  distribute with fixed spacing
@@ -57,7 +57,7 @@ typedef NS_ENUM(NSUInteger, MASAxisType) {
  *  @param leadSpacing  the spacing before the first item and the container
  *  @param tailSpacing  the spacing after the last item and the container
  */
-- (void)kf_distributeViewsAlongAxis:(MASAxisType)axisType withFixedSpacing:(CGFloat)fixedSpacing leadSpacing:(CGFloat)leadSpacing tailSpacing:(CGFloat)tailSpacing;
+- (void)kf5_distributeViewsAlongAxis:(MASAxisType)axisType withFixedSpacing:(CGFloat)fixedSpacing leadSpacing:(CGFloat)leadSpacing tailSpacing:(CGFloat)tailSpacing;
 
 /**
  *  distribute with fixed item size
@@ -67,6 +67,6 @@ typedef NS_ENUM(NSUInteger, MASAxisType) {
  *  @param leadSpacing     the spacing before the first item and the container
  *  @param tailSpacing     the spacing after the last item and the container
  */
-- (void)kf_distributeViewsAlongAxis:(MASAxisType)axisType withFixedItemLength:(CGFloat)fixedItemLength leadSpacing:(CGFloat)leadSpacing tailSpacing:(CGFloat)tailSpacing;
+- (void)kf5_distributeViewsAlongAxis:(MASAxisType)axisType withFixedItemLength:(CGFloat)fixedItemLength leadSpacing:(CGFloat)leadSpacing tailSpacing:(CGFloat)tailSpacing;
 
 @end

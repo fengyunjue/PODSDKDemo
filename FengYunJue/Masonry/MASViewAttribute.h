@@ -17,7 +17,7 @@
 /**
  *  The view which the reciever relates to. Can be nil if item is not a view.
  */
-@property (nonatomic, weak, readonly) kf_VIEW *view;
+@property (nonatomic, weak, readonly) kf5_VIEW *view;
 
 /**
  *  The item which the reciever relates to.
@@ -32,12 +32,12 @@
 /**
  *  Convenience initializer.
  */
-- (id)initWithView:(kf_VIEW *)view layoutAttribute:(NSLayoutAttribute)layoutAttribute;
+- (id)initWithView:(kf5_VIEW *)view layoutAttribute:(NSLayoutAttribute)layoutAttribute;
 
 /**
  *  The designated initializer.
  */
-- (id)initWithView:(kf_VIEW *)view item:(id)item layoutAttribute:(NSLayoutAttribute)layoutAttribute;
+- (id)initWithView:(kf5_VIEW *)view item:(id)item layoutAttribute:(NSLayoutAttribute)layoutAttribute;
 
 /**
  *	Determine whether the layoutAttribute is a size attribute

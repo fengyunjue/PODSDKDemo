@@ -10,10 +10,10 @@
 #import <UIKit/UIKit.h>
 
 @interface UIView (MJExtension)
-@property (assign, nonatomic) CGFloat kf_x;
-@property (assign, nonatomic) CGFloat kf_y;
-@property (assign, nonatomic) CGFloat kf_w;
-@property (assign, nonatomic) CGFloat kf_h;
-@property (assign, nonatomic) CGSize kf_size;
-@property (assign, nonatomic) CGPoint kf_origin;
+@property (assign, nonatomic) CGFloat kf5_x;
+@property (assign, nonatomic) CGFloat kf5_y;
+@property (assign, nonatomic) CGFloat kf5_w;
+@property (assign, nonatomic) CGFloat kf5_h;
+@property (assign, nonatomic) CGSize kf5_size;
+@property (assign, nonatomic) CGPoint kf5_origin;
 @end

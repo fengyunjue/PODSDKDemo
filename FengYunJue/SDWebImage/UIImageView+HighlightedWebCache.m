@@ -13,24 +13,24 @@
 
 @implementation UIImageView (HighlightedWebCache)
 
-- (void)kf_setHighlightedImageWithURL:(NSURL *)url {
-    [self kf_setHighlightedImageWithURL:url options:0 progress:nil completed:nil];
+- (void)kf5_setHighlightedImageWithURL:(NSURL *)url {
+    [self kf5_setHighlightedImageWithURL:url options:0 progress:nil completed:nil];
 }
 
-- (void)kf_setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options {
-    [self kf_setHighlightedImageWithURL:url options:options progress:nil completed:nil];
+- (void)kf5_setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options {
+    [self kf5_setHighlightedImageWithURL:url options:options progress:nil completed:nil];
 }
 
-- (void)kf_setHighlightedImageWithURL:(NSURL *)url completed:(SDWebImageCompletionBlock)completedBlock {
-    [self kf_setHighlightedImageWithURL:url options:0 progress:nil completed:completedBlock];
+- (void)kf5_setHighlightedImageWithURL:(NSURL *)url completed:(SDWebImageCompletionBlock)completedBlock {
+    [self kf5_setHighlightedImageWithURL:url options:0 progress:nil completed:completedBlock];
 }
 
-- (void)kf_setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options completed:(SDWebImageCompletionBlock)completedBlock {
-    [self kf_setHighlightedImageWithURL:url options:options progress:nil completed:completedBlock];
+- (void)kf5_setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options completed:(SDWebImageCompletionBlock)completedBlock {
+    [self kf5_setHighlightedImageWithURL:url options:options progress:nil completed:completedBlock];
 }
 
-- (void)kf_setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletionBlock)completedBlock {
-    [self kf_cancelCurrentHighlightedImageLoad];
+- (void)kf5_setHighlightedImageWithURL:(NSURL *)url options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletionBlock)completedBlock {
+    [self kf5_cancelCurrentHighlightedImageLoad];
 
     if (url) {
         __weak __typeof(self)wself = self;
@@ -53,7 +53,7 @@
                                          }
                                      });
         }];
-        [self kf_setImageLoadOperation:operation forKey:UIImageViewHighlightedWebCacheOperationKey];
+        [self kf5_setImageLoadOperation:operation forKey:UIImageViewHighlightedWebCacheOperationKey];
     } else {
         dispatch_main_async_safe(^{
             NSError *error = [NSError errorWithDomain:SDWebImageErrorDomain code:-1 userInfo:@{NSLocalizedDescriptionKey : @"Trying to load a nil url"}];
@@ -64,8 +64,8 @@
     }
 }
 
-- (void)kf_cancelCurrentHighlightedImageLoad {
-    [self kf_cancelImageLoadOperationWithKey:UIImageViewHighlightedWebCacheOperationKey];
+- (void)kf5_cancelCurrentHighlightedImageLoad {
+    [self kf5_cancelImageLoadOperationWithKey:UIImageViewHighlightedWebCacheOperationKey];
 }
 
 @end

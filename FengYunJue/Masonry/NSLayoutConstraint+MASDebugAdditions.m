@@ -93,8 +93,8 @@
 #pragma mark - description override
 
 + (NSString *)descriptionForObject:(id)obj {
-    if ([obj respondsToSelector:@selector(kf_key)] && [obj kf_key]) {
-        return [NSString stringWithFormat:@"%@:%@", [obj class], [obj kf_key]];
+    if ([obj respondsToSelector:@selector(kf5_key)] && [obj kf5_key]) {
+        return [NSString stringWithFormat:@"%@:%@", [obj class], [obj kf5_key]];
     }
     return [NSString stringWithFormat:@"%@:%p", [obj class], obj];
 }

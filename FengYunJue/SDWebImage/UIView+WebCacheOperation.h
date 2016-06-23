@@ -17,20 +17,20 @@
  *  @param operation the operation
  *  @param key       key for storing the operation
  */
-- (void)kf_setImageLoadOperation:(id)operation forKey:(NSString *)key;
+- (void)kf5_setImageLoadOperation:(id)operation forKey:(NSString *)key;
 
 /**
  *  Cancel all operations for the current UIView and key
  *
  *  @param key key for identifying the operations
  */
-- (void)kf_cancelImageLoadOperationWithKey:(NSString *)key;
+- (void)kf5_cancelImageLoadOperationWithKey:(NSString *)key;
 
 /**
  *  Just remove the operations corresponding to the current UIView and key without cancelling them
  *
  *  @param key key for identifying the operations
  */
-- (void)kf_removeImageLoadOperationWithKey:(NSString *)key;
+- (void)kf5_removeImageLoadOperationWithKey:(NSString *)key;
 
 @end

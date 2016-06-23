@@ -14,6 +14,6 @@
  *
  *  @return the content type as string (i.e. image/jpeg, image/gif)
  */
-+ (NSString *)kf_contentTypeForImageData:(NSData *)data;
++ (NSString *)kf5_contentTypeForImageData:(NSData *)data;
 
 @end

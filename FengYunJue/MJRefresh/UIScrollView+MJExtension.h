@@ -10,14 +10,14 @@
 #import <UIKit/UIKit.h>
 
 @interface UIScrollView (MJExtension)
-@property (assign, nonatomic) CGFloat kf_insetT;
-@property (assign, nonatomic) CGFloat kf_insetB;
-@property (assign, nonatomic) CGFloat kf_insetL;
-@property (assign, nonatomic) CGFloat kf_insetR;
+@property (assign, nonatomic) CGFloat kf5_insetT;
+@property (assign, nonatomic) CGFloat kf5_insetB;
+@property (assign, nonatomic) CGFloat kf5_insetL;
+@property (assign, nonatomic) CGFloat kf5_insetR;
 
-@property (assign, nonatomic) CGFloat kf_offsetX;
-@property (assign, nonatomic) CGFloat kf_offsetY;
+@property (assign, nonatomic) CGFloat kf5_offsetX;
+@property (assign, nonatomic) CGFloat kf5_offsetY;
 
-@property (assign, nonatomic) CGFloat kf_contentW;
-@property (assign, nonatomic) CGFloat kf_contentH;
+@property (assign, nonatomic) CGFloat kf5_contentW;
+@property (assign, nonatomic) CGFloat kf5_contentH;
 @end

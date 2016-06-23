@@ -13,8 +13,8 @@
 #if TARGET_OS_IPHONE || TARGET_OS_TV
 
     #import <UIKit/UIKit.h>
-    #define kf_VIEW UIView
-    #define kf_VIEW_CONTROLLER UIViewController
+    #define kf5_VIEW UIView
+    #define kf5_VIEW_CONTROLLER UIViewController
     #define MASEdgeInsets UIEdgeInsets
 
     typedef UILayoutPriority MASLayoutPriority;
@@ -27,7 +27,7 @@
 #elif TARGET_OS_MAC
 
     #import <AppKit/AppKit.h>
-    #define kf_VIEW NSView
+    #define kf5_VIEW NSView
     #define MASEdgeInsets NSEdgeInsets
 
     typedef NSLayoutPriority MASLayoutPriority;
@@ -45,7 +45,7 @@
 /**
  *	Allows you to attach keys to objects matching the variable names passed.
  *
- *  view1.kf_key = @"view1", view2.kf_key = @"view2";
+ *  view1.kf5_key = @"view1", view2.kf5_key = @"view2";
  *
  *  is equivalent to:
  *
@@ -56,9 +56,9 @@
         NSDictionary *keyPairs = NSDictionaryOfVariableBindings(__VA_ARGS__);     \
         for (id key in keyPairs.allKeys) {                                        \
             id obj = keyPairs[key];                                               \
-            NSAssert([obj respondsToSelector:@selector(setKf_key:)],             \
-                     @"Cannot attach kf_key to %@", obj);                        \
-            [obj setKf_key:key];                                                 \
+            NSAssert([obj respondsToSelector:@selector(setKf5_key:)],             \
+                     @"Cannot attach kf5_key to %@", obj);                        \
+            [obj setKf5_key:key];                                                 \
         }                                                                         \
     }
 
@@ -66,8 +66,8 @@
  *  Used to create object hashes
  *  Based on http://www.mikeash.com/pyblog/friday-qa-2010-06-18-implementing-equality-and-hashing.html
  */
-#define kf_NSUINT_BIT (CHAR_BIT * sizeof(NSUInteger))
-#define kf_NSUINTROTATE(val, howmuch) ((((NSUInteger)val) << howmuch) | (((NSUInteger)val) >> (kf_NSUINT_BIT - howmuch)))
+#define kf5_NSUINT_BIT (CHAR_BIT * sizeof(NSUInteger))
+#define kf5_NSUINTROTATE(val, howmuch) ((((NSUInteger)val) << howmuch) | (((NSUInteger)val) >> (kf5_NSUINT_BIT - howmuch)))
 
 /**
  *  Given a scalar or struct value, wraps it in NSValue

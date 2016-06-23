@@ -204,7 +204,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
         NSMutableAttributedString *hiText = _innerText.mutableCopy;
         NSDictionary *newAttrs = _highlight.attributes;
         [newAttrs enumerateKeysAndObjectsUsingBlock:^(NSString *key, id value, BOOL *stop) {
-            [hiText kf_setAttribute:key value:value range:_highlightRange];
+            [hiText kf5_setAttribute:key value:value range:_highlightRange];
         }];
         _highlightLayout = [YYTextLayout layoutWithContainer:_innerContainer text:hiText];
         _shrinkHighlightLayout = [YYLabel _shrinkLayoutWithLayout:_highlightLayout];
@@ -329,19 +329,19 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
             default:break;
         }
     } else {
-        _lineBreakMode = _innerText.kf_lineBreakMode;
+        _lineBreakMode = _innerText.kf5_lineBreakMode;
     }
 }
 
 - (void)_updateOuterTextProperties {
-    _text = [_innerText kf_plainTextForRange:NSMakeRange(0, _innerText.length)];
-    _font = _innerText.kf_font;
+    _text = [_innerText kf5_plainTextForRange:NSMakeRange(0, _innerText.length)];
+    _font = _innerText.kf5_font;
     if (!_font) _font = [self _defaultFont];
-    _textColor = _innerText.kf_color;
+    _textColor = _innerText.kf5_color;
     if (!_textColor) _textColor = [UIColor blackColor];
-    _textAlignment = _innerText.kf_alignment;
-    _lineBreakMode = _innerText.kf_lineBreakMode;
-    NSShadow *shadow = _innerText.kf_shadow;
+    _textAlignment = _innerText.kf5_alignment;
+    _lineBreakMode = _innerText.kf5_lineBreakMode;
+    NSShadow *shadow = _innerText.kf5_shadow;
     _shadowColor = shadow.shadowColor;
 #if !TARGET_INTERFACE_BUILDER
     _shadowOffset = shadow.shadowOffset;
@@ -497,7 +497,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
 }
 
 - (NSString *)accessibilityLabel {
-    return [_innerLayout.text kf_plainTextForRange:_innerLayout.text.kf_rangeOfAll];
+    return [_innerLayout.text kf5_plainTextForRange:_innerLayout.text.kf5_rangeOfAll];
 }
 
 #pragma mark - NSCoding
@@ -640,22 +640,22 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     _text = text.copy;
     BOOL needAddAttributes = _innerText.length == 0 && text.length > 0;
     [_innerText replaceCharactersInRange:NSMakeRange(0, _innerText.length) withString:text ? text : @""];
-    [_innerText kf_removeDiscontinuousAttributesInRange:NSMakeRange(0, _innerText.length)];
+    [_innerText kf5_removeDiscontinuousAttributesInRange:NSMakeRange(0, _innerText.length)];
     if (needAddAttributes) {
-        _innerText.kf_font = _font;
-        _innerText.kf_color = _textColor;
-        _innerText.kf_shadow = [self _shadowFromProperties];
-        _innerText.kf_alignment = _textAlignment;
+        _innerText.kf5_font = _font;
+        _innerText.kf5_color = _textColor;
+        _innerText.kf5_shadow = [self _shadowFromProperties];
+        _innerText.kf5_alignment = _textAlignment;
         switch (_lineBreakMode) {
             case NSLineBreakByWordWrapping:
             case NSLineBreakByCharWrapping:
             case NSLineBreakByClipping: {
-                _innerText.kf_lineBreakMode = _lineBreakMode;
+                _innerText.kf5_lineBreakMode = _lineBreakMode;
             } break;
             case NSLineBreakByTruncatingHead:
             case NSLineBreakByTruncatingTail:
             case NSLineBreakByTruncatingMiddle: {
-                _innerText.kf_lineBreakMode = NSLineBreakByWordWrapping;
+                _innerText.kf5_lineBreakMode = NSLineBreakByWordWrapping;
             } break;
             default: break;
         }
@@ -679,7 +679,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     }
     if (_font == font || [_font isEqual:font]) return;
     _font = font;
-    _innerText.kf_font = _font;
+    _innerText.kf5_font = _font;
     if (_innerText.length && !_ignoreCommonProperties) {
         if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
@@ -696,7 +696,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
     }
     if (_textColor == textColor || [_textColor isEqual:textColor]) return;
     _textColor = textColor;
-    _innerText.kf_color = textColor;
+    _innerText.kf5_color = textColor;
     if (_innerText.length && !_ignoreCommonProperties) {
         if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
@@ -708,7 +708,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
 - (void)setShadowColor:(UIColor *)shadowColor {
     if (_shadowColor == shadowColor || [_shadowColor isEqual:shadowColor]) return;
     _shadowColor = shadowColor;
-    _innerText.kf_shadow = [self _shadowFromProperties];
+    _innerText.kf5_shadow = [self _shadowFromProperties];
     if (_innerText.length && !_ignoreCommonProperties) {
         if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
@@ -721,7 +721,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
 - (void)setShadowOffset:(CGSize)shadowOffset {
     if (CGSizeEqualToSize(_shadowOffset, shadowOffset)) return;
     _shadowOffset = shadowOffset;
-    _innerText.kf_shadow = [self _shadowFromProperties];
+    _innerText.kf5_shadow = [self _shadowFromProperties];
     if (_innerText.length && !_ignoreCommonProperties) {
         if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
@@ -733,7 +733,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
 - (void)setShadowOffset:(CGPoint)shadowOffset {
     if (CGPointEqualToPoint(_shadowOffset, shadowOffset)) return;
     _shadowOffset = shadowOffset;
-    _innerText.kf_shadow = [self _shadowFromProperties];
+    _innerText.kf5_shadow = [self _shadowFromProperties];
     if (_innerText.length && !_ignoreCommonProperties) {
         if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
@@ -746,7 +746,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
 - (void)setShadowBlurRadius:(CGFloat)shadowBlurRadius {
     if (_shadowBlurRadius == shadowBlurRadius) return;
     _shadowBlurRadius = shadowBlurRadius;
-    _innerText.kf_shadow = [self _shadowFromProperties];
+    _innerText.kf5_shadow = [self _shadowFromProperties];
     if (_innerText.length && !_ignoreCommonProperties) {
         if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
@@ -758,7 +758,7 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
 - (void)setTextAlignment:(NSTextAlignment)textAlignment {
     if (_textAlignment == textAlignment) return;
     _textAlignment = textAlignment;
-    _innerText.kf_alignment = textAlignment;
+    _innerText.kf5_alignment = textAlignment;
     if (_innerText.length && !_ignoreCommonProperties) {
         if (_displaysAsynchronously && _clearContentsBeforeAsynchronouslyDisplay) {
             [self _clearContents];
@@ -772,26 +772,26 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
 - (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode {
     if (_lineBreakMode == lineBreakMode) return;
     _lineBreakMode = lineBreakMode;
-    _innerText.kf_lineBreakMode = lineBreakMode;
+    _innerText.kf5_lineBreakMode = lineBreakMode;
     // allow multi-line break
     switch (lineBreakMode) {
         case NSLineBreakByWordWrapping:
         case NSLineBreakByCharWrapping:
         case NSLineBreakByClipping: {
             _innerContainer.truncationType = YYTextTruncationTypeNone;
-            _innerText.kf_lineBreakMode = lineBreakMode;
+            _innerText.kf5_lineBreakMode = lineBreakMode;
         } break;
         case NSLineBreakByTruncatingHead:{
             _innerContainer.truncationType = YYTextTruncationTypeStart;
-            _innerText.kf_lineBreakMode = NSLineBreakByWordWrapping;
+            _innerText.kf5_lineBreakMode = NSLineBreakByWordWrapping;
         } break;
         case NSLineBreakByTruncatingTail:{
             _innerContainer.truncationType = YYTextTruncationTypeEnd;
-            _innerText.kf_lineBreakMode = NSLineBreakByWordWrapping;
+            _innerText.kf5_lineBreakMode = NSLineBreakByWordWrapping;
         } break;
         case NSLineBreakByTruncatingMiddle: {
             _innerContainer.truncationType = YYTextTruncationTypeMiddle;
-            _innerText.kf_lineBreakMode = NSLineBreakByWordWrapping;
+            _innerText.kf5_lineBreakMode = NSLineBreakByWordWrapping;
         } break;
         default: break;
     }
@@ -853,12 +853,12 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
             case NSLineBreakByWordWrapping:
             case NSLineBreakByCharWrapping:
             case NSLineBreakByClipping: {
-                _innerText.kf_lineBreakMode = _lineBreakMode;
+                _innerText.kf5_lineBreakMode = _lineBreakMode;
             } break;
             case NSLineBreakByTruncatingHead:
             case NSLineBreakByTruncatingTail:
             case NSLineBreakByTruncatingMiddle: {
-                _innerText.kf_lineBreakMode = NSLineBreakByWordWrapping;
+                _innerText.kf5_lineBreakMode = NSLineBreakByWordWrapping;
             } break;
             default: break;
         }

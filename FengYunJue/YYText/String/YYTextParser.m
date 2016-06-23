@@ -163,9 +163,9 @@
 
 - (BOOL)parseText:(NSMutableAttributedString *)text selectedRange:(NSRangePointer)range {
     if (text.length == 0) return NO;
-    [text kf_removeAttributesInRange:NSMakeRange(0, text.length)];
-    text.kf_font = _font;
-    text.kf_color = _textColor;
+    [text kf5_removeAttributesInRange:NSMakeRange(0, text.length)];
+    text.kf5_font = _font;
+    text.kf5_color = _textColor;
     
     NSMutableString *str = text.string.mutableCopy;
     [_regexEscape replaceMatchesInString:str options:kNilOptions range:NSMakeRange(0, str.length) withTemplate:@"@@"];
@@ -175,18 +175,18 @@
         NSUInteger whiteLen = [self lenghOfBeginWhiteInString:str withRange:r];
         NSUInteger sharpLen = [self lenghOfBeginChar:'#' inString:str withRange:NSMakeRange(r.location + whiteLen, r.length - whiteLen)];
         if (sharpLen > 6) sharpLen = 6;
-        [text kf_setColor:_controlTextColor range:NSMakeRange(r.location, whiteLen + sharpLen)];
-        [text kf_setColor:_headerTextColor range:NSMakeRange(r.location + whiteLen + sharpLen, r.length - whiteLen - sharpLen)];
-        [text kf_setFont:_headerFonts[sharpLen - 1] range:result.range];
+        [text kf5_setColor:_controlTextColor range:NSMakeRange(r.location, whiteLen + sharpLen)];
+        [text kf5_setColor:_headerTextColor range:NSMakeRange(r.location + whiteLen + sharpLen, r.length - whiteLen - sharpLen)];
+        [text kf5_setFont:_headerFonts[sharpLen - 1] range:result.range];
     }];
     
     [_regexH1 enumerateMatchesInString:str options:0 range:NSMakeRange(0, str.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
         NSRange r = result.range;
         NSRange linebreak = [str rangeOfString:@"\n" options:0 range:result.range locale:nil];
         if (linebreak.location != NSNotFound) {
-            [text kf_setColor:_headerTextColor range:NSMakeRange(r.location, linebreak.location - r.location)];
-            [text kf_setFont:_headerFonts[0] range:NSMakeRange(r.location, linebreak.location - r.location + 1)];
-            [text kf_setColor:_controlTextColor range:NSMakeRange(linebreak.location + linebreak.length, r.location + r.length - linebreak.location - linebreak.length)];
+            [text kf5_setColor:_headerTextColor range:NSMakeRange(r.location, linebreak.location - r.location)];
+            [text kf5_setFont:_headerFonts[0] range:NSMakeRange(r.location, linebreak.location - r.location + 1)];
+            [text kf5_setColor:_controlTextColor range:NSMakeRange(linebreak.location + linebreak.length, r.location + r.length - linebreak.location - linebreak.length)];
         }
     }];
     
@@ -194,79 +194,79 @@
         NSRange r = result.range;
         NSRange linebreak = [str rangeOfString:@"\n" options:0 range:result.range locale:nil];
         if (linebreak.location != NSNotFound) {
-            [text kf_setColor:_headerTextColor range:NSMakeRange(r.location, linebreak.location - r.location)];
-            [text kf_setFont:_headerFonts[1] range:NSMakeRange(r.location, linebreak.location - r.location + 1)];
-            [text kf_setColor:_controlTextColor range:NSMakeRange(linebreak.location + linebreak.length, r.location + r.length - linebreak.location - linebreak.length)];
+            [text kf5_setColor:_headerTextColor range:NSMakeRange(r.location, linebreak.location - r.location)];
+            [text kf5_setFont:_headerFonts[1] range:NSMakeRange(r.location, linebreak.location - r.location + 1)];
+            [text kf5_setColor:_controlTextColor range:NSMakeRange(linebreak.location + linebreak.length, r.location + r.length - linebreak.location - linebreak.length)];
         }
     }];
     
     [_regexBreakline enumerateMatchesInString:str options:0 range:NSMakeRange(0, str.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
-        [text kf_setColor:_controlTextColor range:result.range];
+        [text kf5_setColor:_controlTextColor range:result.range];
     }];
     
     [_regexEmphasis enumerateMatchesInString:str options:0 range:NSMakeRange(0, str.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
         NSRange r = result.range;
-        [text kf_setColor:_controlTextColor range:NSMakeRange(r.location, 1)];
-        [text kf_setColor:_controlTextColor range:NSMakeRange(r.location + r.length - 1, 1)];
-        [text kf_setFont:_italicFont range:NSMakeRange(r.location + 1, r.length - 2)];
+        [text kf5_setColor:_controlTextColor range:NSMakeRange(r.location, 1)];
+        [text kf5_setColor:_controlTextColor range:NSMakeRange(r.location + r.length - 1, 1)];
+        [text kf5_setFont:_italicFont range:NSMakeRange(r.location + 1, r.length - 2)];
     }];
     
     [_regexStrong enumerateMatchesInString:str options:0 range:NSMakeRange(0, str.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
         NSRange r = result.range;
-        [text kf_setColor:_controlTextColor range:NSMakeRange(r.location, 2)];
-        [text kf_setColor:_controlTextColor range:NSMakeRange(r.location + r.length - 2, 2)];
-        [text kf_setFont:_boldFont range:NSMakeRange(r.location + 2, r.length - 4)];
+        [text kf5_setColor:_controlTextColor range:NSMakeRange(r.location, 2)];
+        [text kf5_setColor:_controlTextColor range:NSMakeRange(r.location + r.length - 2, 2)];
+        [text kf5_setFont:_boldFont range:NSMakeRange(r.location + 2, r.length - 4)];
     }];
     
     [_regexStrongEmphasis enumerateMatchesInString:str options:0 range:NSMakeRange(0, str.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
         NSRange r = result.range;
-        [text kf_setColor:_controlTextColor range:NSMakeRange(r.location, 3)];
-        [text kf_setColor:_controlTextColor range:NSMakeRange(r.location + r.length - 3, 3)];
-        [text kf_setFont:_boldItalicFont range:NSMakeRange(r.location + 3, r.length - 6)];
+        [text kf5_setColor:_controlTextColor range:NSMakeRange(r.location, 3)];
+        [text kf5_setColor:_controlTextColor range:NSMakeRange(r.location + r.length - 3, 3)];
+        [text kf5_setFont:_boldItalicFont range:NSMakeRange(r.location + 3, r.length - 6)];
     }];
     
     [_regexUnderline enumerateMatchesInString:str options:0 range:NSMakeRange(0, str.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
         NSRange r = result.range;
-        [text kf_setColor:_controlTextColor range:NSMakeRange(r.location, 2)];
-        [text kf_setColor:_controlTextColor range:NSMakeRange(r.location + r.length - 2, 2)];
-        [text kf_setTextUnderline:[YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@1 color:nil] range:NSMakeRange(r.location + 2, r.length - 4)];
+        [text kf5_setColor:_controlTextColor range:NSMakeRange(r.location, 2)];
+        [text kf5_setColor:_controlTextColor range:NSMakeRange(r.location + r.length - 2, 2)];
+        [text kf5_setTextUnderline:[YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@1 color:nil] range:NSMakeRange(r.location + 2, r.length - 4)];
     }];
     
     [_regexStrikethrough enumerateMatchesInString:str options:0 range:NSMakeRange(0, str.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
         NSRange r = result.range;
-        [text kf_setColor:_controlTextColor range:NSMakeRange(r.location, 2)];
-        [text kf_setColor:_controlTextColor range:NSMakeRange(r.location + r.length - 2, 2)];
-        [text kf_setTextStrikethrough:[YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@1 color:nil] range:NSMakeRange(r.location + 2, r.length - 4)];
+        [text kf5_setColor:_controlTextColor range:NSMakeRange(r.location, 2)];
+        [text kf5_setColor:_controlTextColor range:NSMakeRange(r.location + r.length - 2, 2)];
+        [text kf5_setTextStrikethrough:[YYTextDecoration decorationWithStyle:YYTextLineStyleSingle width:@1 color:nil] range:NSMakeRange(r.location + 2, r.length - 4)];
     }];
     
     [_regexInlineCode enumerateMatchesInString:str options:0 range:NSMakeRange(0, str.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
         NSRange r = result.range;
         NSUInteger len = [self lenghOfBeginChar:'`' inString:str withRange:r];
-        [text kf_setColor:_controlTextColor range:NSMakeRange(r.location, len)];
-        [text kf_setColor:_controlTextColor range:NSMakeRange(r.location + r.length - len, len)];
-        [text kf_setColor:_inlineTextColor range:NSMakeRange(r.location + len, r.length - 2 * len)];
-        [text kf_setFont:_monospaceFont range:r];
-        [text kf_setTextBorder:_border.copy range:r];
+        [text kf5_setColor:_controlTextColor range:NSMakeRange(r.location, len)];
+        [text kf5_setColor:_controlTextColor range:NSMakeRange(r.location + r.length - len, len)];
+        [text kf5_setColor:_inlineTextColor range:NSMakeRange(r.location + len, r.length - 2 * len)];
+        [text kf5_setFont:_monospaceFont range:r];
+        [text kf5_setTextBorder:_border.copy range:r];
     }];
     
     [_regexLink enumerateMatchesInString:str options:0 range:NSMakeRange(0, str.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
         NSRange r = result.range;
-        [text kf_setColor:_linkTextColor range:r];
+        [text kf5_setColor:_linkTextColor range:r];
     }];
     
     [_regexLinkRefer enumerateMatchesInString:str options:0 range:NSMakeRange(0, str.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
         NSRange r = result.range;
-        [text kf_setColor:_controlTextColor range:r];
+        [text kf5_setColor:_controlTextColor range:r];
     }];
     
     [_regexList enumerateMatchesInString:str options:0 range:NSMakeRange(0, str.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
         NSRange r = result.range;
-        [text kf_setColor:_controlTextColor range:r];
+        [text kf5_setColor:_controlTextColor range:r];
     }];
     
     [_regexBlockQuote enumerateMatchesInString:str options:0 range:NSMakeRange(0, str.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
         NSRange r = result.range;
-        [text kf_setColor:_controlTextColor range:r];
+        [text kf5_setColor:_controlTextColor range:r];
     }];
     
     [_regexCodeBlock enumerateMatchesInString:str options:0 range:NSMakeRange(0, str.length) usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
@@ -276,8 +276,8 @@
         NSUInteger lenEnd = [self lenghOfEndWhiteInString:str withRange:r];
         if (lenStart + lenEnd < r.length) {
             NSRange codeR = NSMakeRange(r.location + lenStart, r.length - lenStart - lenEnd);
-            [text kf_setColor:_codeTextColor range:codeR];
-            [text kf_setFont:_monospaceFont range:codeR];
+            [text kf5_setColor:_codeTextColor range:codeR];
+            [text kf5_setFont:_monospaceFont range:codeR];
             YYTextBorder *border = [YYTextBorder new];
             border.lineStyle = YYTextLineStyleSingle;
             border.fillColor = [UIColor colorWithWhite:0.184 alpha:0.090];
@@ -285,7 +285,7 @@
             border.insets = UIEdgeInsetsMake(-1, 0, -1, 0);
             border.cornerRadius = 3;
             border.strokeWidth = YYTextCGFloatFromPixel(2);
-            [text kf_setTextBlockBorder:_border.copy range:codeR];
+            [text kf5_setTextBlockBorder:_border.copy range:codeR];
         }
     }];
     
@@ -400,13 +400,13 @@ dispatch_semaphore_signal(_lock);
         if (!emoticon) continue;
         
         CGFloat fontSize = 12; // CoreText default value
-        CTFontRef font = (__bridge CTFontRef)([text kf_attribute:NSFontAttributeName atIndex:oneRange.location]);
+        CTFontRef font = (__bridge CTFontRef)([text kf5_attribute:NSFontAttributeName atIndex:oneRange.location]);
         if (font) fontSize = CTFontGetSize(font);
-        NSMutableAttributedString *atr = [NSAttributedString kf_attachmentStringWithEmojiImage:emoticon fontSize:fontSize];
-        [atr kf_setTextBackedString:[YYTextBackedString stringWithString:subStr] range:NSMakeRange(0, atr.length)];
+        NSMutableAttributedString *atr = [NSAttributedString kf5_attachmentStringWithEmojiImage:emoticon fontSize:fontSize];
+        [atr kf5_setTextBackedString:[YYTextBackedString stringWithString:subStr] range:NSMakeRange(0, atr.length)];
         [text replaceCharactersInRange:oneRange withString:atr.string];
-        [text kf_removeDiscontinuousAttributesInRange:NSMakeRange(oneRange.location, atr.length)];
-        [text addAttributes:atr.kf_attributes range:NSMakeRange(oneRange.location, atr.length)];
+        [text kf5_removeDiscontinuousAttributesInRange:NSMakeRange(oneRange.location, atr.length)];
+        [text addAttributes:atr.kf5_attributes range:NSMakeRange(oneRange.location, atr.length)];
         selectedRange = [self _replaceTextInRange:oneRange withLength:atr.length selectedRange:selectedRange];
         cutLength += oneRange.length - 1;
     }

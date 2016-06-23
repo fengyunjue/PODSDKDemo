@@ -17,6 +17,6 @@
 /**
  *	a key to associate with this constraint
  */
-@property (nonatomic, strong) id kf_key;
+@property (nonatomic, strong) id kf5_key;
 
 @end

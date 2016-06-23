@@ -58,16 +58,16 @@
     [super placeSubviews];
     
     // 箭头的中心点
-    CGFloat arrowCenterX = self.kf_w * 0.5;
+    CGFloat arrowCenterX = self.kf5_w * 0.5;
     if (!self.stateLabel.hidden) {
         arrowCenterX -= 100;
     }
-    CGFloat arrowCenterY = self.kf_h * 0.5;
+    CGFloat arrowCenterY = self.kf5_h * 0.5;
     CGPoint arrowCenter = CGPointMake(arrowCenterX, arrowCenterY);
     
     // 箭头
     if (self.arrowView.constraints.count == 0) {
-        self.arrowView.kf_size = self.arrowView.image.size;
+        self.arrowView.kf5_size = self.arrowView.image.size;
         self.arrowView.center = arrowCenter;
     }
     

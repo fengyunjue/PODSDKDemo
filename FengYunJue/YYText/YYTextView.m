@@ -243,15 +243,15 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
         _delectedText = nil;
     }
     [text replaceCharactersInRange:NSMakeRange(text.length, 0) withString:@"\r"]; // add for nextline caret
-    [text kf_removeDiscontinuousAttributesInRange:NSMakeRange(_innerText.length, 1)];
+    [text kf5_removeDiscontinuousAttributesInRange:NSMakeRange(_innerText.length, 1)];
     [text removeAttribute:YYTextBorderAttributeName range:NSMakeRange(_innerText.length, 1)];
     [text removeAttribute:YYTextBackgroundBorderAttributeName range:NSMakeRange(_innerText.length, 1)];
     if (_innerText.length == 0) {
-        [text kf_setAttributes:_typingAttributesHolder.kf_attributes]; // add for empty text caret
+        [text kf5_setAttributes:_typingAttributesHolder.kf5_attributes]; // add for empty text caret
     }
     if (_selectedTextRange.end.offset == _innerText.length) {
-        [_typingAttributesHolder.kf_attributes enumerateKeysAndObjectsUsingBlock:^(NSString *key, id value, BOOL *stop) {
-            [text kf_setAttribute:key value:value range:NSMakeRange(_innerText.length, 1)];
+        [_typingAttributesHolder.kf5_attributes enumerateKeysAndObjectsUsingBlock:^(NSString *key, id value, BOOL *stop) {
+            [text kf5_setAttribute:key value:value range:NSMakeRange(_innerText.length, 1)];
         }];
     }
     [self willChangeValueForKey:@"textLayout"];
@@ -670,7 +670,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
         NSMutableAttributedString *hiText = (_delectedText ? _delectedText : _innerText).mutableCopy;
         NSDictionary *newAttrs = _highlight.attributes;
         [newAttrs enumerateKeysAndObjectsUsingBlock:^(NSString *key, id value, BOOL *stop) {
-            [hiText kf_setAttribute:key value:value range:_highlightRange];
+            [hiText kf5_setAttribute:key value:value range:_highlightRange];
         }];
         _highlightLayout = [YYTextLayout layoutWithContainer:_innerContainer text:hiText];
         if (!_highlightLayout) _highlight = nil;
@@ -1053,7 +1053,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
 /// update the selection dot in window.
 - (void)_fixSelectionDot {
     if (YYTextIsAppExtension()) return;
-    CGPoint origin = [self kf_convertPoint:CGPointZero toViewOrWindow:[YYTextEffectWindow sharedWindow]];
+    CGPoint origin = [self kf5_convertPoint:CGPointZero toViewOrWindow:[YYTextEffectWindow sharedWindow]];
     if (!CGPointEqualToPoint(origin, _previousOriginInWindow)) {
         _previousOriginInWindow = origin;
         [[YYTextEffectWindow sharedWindow] hideSelectionDot:_selectionView];
@@ -1271,12 +1271,12 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     if (pasteboard.string.length > 0) {
         return YES;
     }
-    if (pasteboard.kf_AttributedString.length > 0) {
+    if (pasteboard.kf5_AttributedString.length > 0) {
         if (_allowsPasteAttributedString) {
             return YES;
         }
     }
-    if (pasteboard.image || pasteboard.kf_ImageData.length > 0) {
+    if (pasteboard.image || pasteboard.kf5_ImageData.length > 0) {
         if (_allowsPasteImage) {
             return YES;
         }
@@ -1289,10 +1289,10 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     if (_allowsCopyAttributedString) {
         NSAttributedString *text = [_innerText attributedSubstringFromRange:_selectedTextRange.asRange];
         if (text.length) {
-            [UIPasteboard generalPasteboard].kf_AttributedString = text;
+            [UIPasteboard generalPasteboard].kf5_AttributedString = text;
         }
     } else {
-        NSString *string = [_innerText kf_plainTextForRange:_selectedTextRange.asRange];
+        NSString *string = [_innerText kf5_plainTextForRange:_selectedTextRange.asRange];
         if (string.length) {
             [UIPasteboard generalPasteboard].string = string;
         }
@@ -1469,7 +1469,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     if (notify) [_inputDelegate textWillChange:self];
     NSRange newRange = NSMakeRange(range.asRange.location, text.length);
     [_innerText replaceCharactersInRange:range.asRange withString:text];
-    [_innerText kf_removeDiscontinuousAttributesInRange:newRange];
+    [_innerText kf5_removeDiscontinuousAttributesInRange:newRange];
     if (notify) [_inputDelegate textDidChange:self];
 }
 
@@ -1477,10 +1477,10 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
 - (void)_updateAttributesHolder {
     if (_innerText.length > 0) {
         NSUInteger index = _selectedTextRange.end.offset == 0 ? 0 : _selectedTextRange.end.offset - 1;
-        NSDictionary *attributes = [_innerText kf_attributesAtIndex:index];
+        NSDictionary *attributes = [_innerText kf5_attributesAtIndex:index];
         if (!attributes) attributes = @{};
-        _typingAttributesHolder.kf_attributes = attributes;
-        [_typingAttributesHolder kf_removeDiscontinuousAttributesInRange:NSMakeRange(0, _typingAttributesHolder.length)];
+        _typingAttributesHolder.kf5_attributes = attributes;
+        [_typingAttributesHolder kf5_removeDiscontinuousAttributesInRange:NSMakeRange(0, _typingAttributesHolder.length)];
         [_typingAttributesHolder removeAttribute:YYTextBorderAttributeName range:NSMakeRange(0, _typingAttributesHolder.length)];
         [_typingAttributesHolder removeAttribute:YYTextBackgroundBorderAttributeName range:NSMakeRange(0, _typingAttributesHolder.length)];
     }
@@ -1489,24 +1489,24 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
 /// Update outer properties from current inner data.
 - (void)_updateOuterProperties {
     [self _updateAttributesHolder];
-    NSParagraphStyle *style = _innerText.kf_paragraphStyle;
-    if (!style) style = _typingAttributesHolder.kf_paragraphStyle;
+    NSParagraphStyle *style = _innerText.kf5_paragraphStyle;
+    if (!style) style = _typingAttributesHolder.kf5_paragraphStyle;
     if (!style) style = [NSParagraphStyle defaultParagraphStyle];
     
-    UIFont *font = _innerText.kf_font;
-    if (!font) font = _typingAttributesHolder.kf_font;
+    UIFont *font = _innerText.kf5_font;
+    if (!font) font = _typingAttributesHolder.kf5_font;
     if (!font) font = [self _defaultFont];
     
-    UIColor *color = _innerText.kf_color;
-    if (!color) color = _typingAttributesHolder.kf_color;
+    UIColor *color = _innerText.kf5_color;
+    if (!color) color = _typingAttributesHolder.kf5_color;
     if (!color) color = [UIColor blackColor];
     
-    [self _setText:[_innerText kf_plainTextForRange:NSMakeRange(0, _innerText.length)]];
+    [self _setText:[_innerText kf5_plainTextForRange:NSMakeRange(0, _innerText.length)]];
     [self _setFont:font];
     [self _setTextColor:color];
     [self _setTextAlignment:style.alignment];
     [self _setSelectedRange:_selectedTextRange.asRange];
-    [self _setTypingAttributes:_typingAttributesHolder.kf_attributes];
+    [self _setTypingAttributes:_typingAttributesHolder.kf5_attributes];
     [self _setAttributedText:_innerText];
 }
 
@@ -1558,11 +1558,11 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
                 detected = YES;
                 if (_highlightTextAttributes.count) {
                     YYTextHighlight *highlight = [YYTextHighlight highlightWithAttributes:_highlightTextAttributes];
-                    [text kf_setTextHighlight:highlight range:result.range];
+                    [text kf5_setTextHighlight:highlight range:result.range];
                 }
                 if (_linkTextAttributes.count) {
                     [_linkTextAttributes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-                        [text kf_setAttribute:key value:obj range:result.range];
+                        [text kf5_setAttribute:key value:obj range:result.range];
                     }];
                 }
             } break;
@@ -1579,7 +1579,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     UIApplication *app = YYTextSharedApplication();
     if (!ctrl) ctrl = app.keyWindow.rootViewController;
     if (!ctrl) ctrl = [app.windows.firstObject rootViewController];
-    if (!ctrl) ctrl = self.kf_viewController;
+    if (!ctrl) ctrl = self.kf5_viewController;
     if (!ctrl) return nil;
     
     while (!ctrl.view.window && ctrl.presentedViewController) {
@@ -2076,8 +2076,8 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     [self _setFont:font];
     
     _state.typingAttributesOnce = NO;
-    _typingAttributesHolder.kf_font = font;
-    _innerText.kf_font = font;
+    _typingAttributesHolder.kf5_font = font;
+    _innerText.kf5_font = font;
     [self _resetUndoAndRedoStack];
     [self _commitUpdate];
 }
@@ -2087,8 +2087,8 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     [self _setTextColor:textColor];
     
     _state.typingAttributesOnce = NO;
-    _typingAttributesHolder.kf_color = textColor;
-    _innerText.kf_color = textColor;
+    _typingAttributesHolder.kf5_color = textColor;
+    _innerText.kf5_color = textColor;
     [self _resetUndoAndRedoStack];
     [self _commitUpdate];
 }
@@ -2097,8 +2097,8 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     if (_textAlignment == textAlignment) return;
     [self _setTextAlignment:textAlignment];
     
-    _typingAttributesHolder.kf_alignment = textAlignment;
-    _innerText.kf_alignment = textAlignment;
+    _typingAttributesHolder.kf5_alignment = textAlignment;
+    _innerText.kf5_alignment = textAlignment;
     [self _resetUndoAndRedoStack];
     [self _commitUpdate];
 }
@@ -2142,7 +2142,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     [self _setTypingAttributes:typingAttributes];
     _state.typingAttributesOnce = YES;
     [typingAttributes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        [_typingAttributesHolder kf_setAttribute:key value:obj];
+        [_typingAttributesHolder kf5_setAttribute:key value:obj];
     }];
     [self _commitUpdate];
 }
@@ -2177,7 +2177,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     
     [self _setAttributedText:text];
     if (_innerText.length > 0) {
-        _typingAttributesHolder.kf_attributes = [_innerText kf_attributesAtIndex:_innerText.length - 1];
+        _typingAttributesHolder.kf5_attributes = [_innerText kf5_attributesAtIndex:_innerText.length - 1];
     }
     
     [self _updateOuterProperties];
@@ -2351,16 +2351,16 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
         } else {
             [((NSMutableAttributedString *)_placeholderAttributedText) replaceCharactersInRange:NSMakeRange(0, _placeholderAttributedText.length) withString:@""];
         }
-        ((NSMutableAttributedString *)_placeholderAttributedText).kf_font = _placeholderFont;
-        ((NSMutableAttributedString *)_placeholderAttributedText).kf_color = _placeholderTextColor;
+        ((NSMutableAttributedString *)_placeholderAttributedText).kf5_font = _placeholderFont;
+        ((NSMutableAttributedString *)_placeholderAttributedText).kf5_color = _placeholderTextColor;
     } else {
         if (placeholderText.length > 0) {
             NSMutableAttributedString *atr = [[NSMutableAttributedString alloc] initWithString:placeholderText];
             if (!_placeholderFont) _placeholderFont = _font;
             if (!_placeholderFont) _placeholderFont = [self _defaultFont];
             if (!_placeholderTextColor) _placeholderTextColor = [self _defaultPlaceholderColor];
-            atr.kf_font = _placeholderFont;
-            atr.kf_color = _placeholderTextColor;
+            atr.kf5_font = _placeholderFont;
+            atr.kf5_color = _placeholderTextColor;
             _placeholderAttributedText = atr;
         }
     }
@@ -2369,21 +2369,21 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
 
 - (void)setPlaceholderFont:(UIFont *)placeholderFont {
     _placeholderFont = placeholderFont;
-    ((NSMutableAttributedString *)_placeholderAttributedText).kf_font = _placeholderFont;
+    ((NSMutableAttributedString *)_placeholderAttributedText).kf5_font = _placeholderFont;
     [self _commitPlaceholderUpdate];
 }
 
 - (void)setPlaceholderTextColor:(UIColor *)placeholderTextColor {
     _placeholderTextColor = placeholderTextColor;
-    ((NSMutableAttributedString *)_placeholderAttributedText).kf_color = _placeholderTextColor;
+    ((NSMutableAttributedString *)_placeholderAttributedText).kf5_color = _placeholderTextColor;
     [self _commitPlaceholderUpdate];
 }
 
 - (void)setPlaceholderAttributedText:(NSAttributedString *)placeholderAttributedText {
     _placeholderAttributedText = placeholderAttributedText.mutableCopy;
-    _placeholderText = [_placeholderAttributedText kf_plainTextForRange:NSMakeRange(0, _placeholderAttributedText.length)];
-    _placeholderFont = _placeholderAttributedText.kf_font;
-    _placeholderTextColor = _placeholderAttributedText.kf_color;
+    _placeholderText = [_placeholderAttributedText kf5_plainTextForRange:NSMakeRange(0, _placeholderAttributedText.length)];
+    _placeholderFont = _placeholderAttributedText.kf5_font;
+    _placeholderTextColor = _placeholderAttributedText.kf5_color;
     [self _commitPlaceholderUpdate];
 }
 
@@ -2807,7 +2807,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
         if (_markedTextRange) {
             _markedTextRange = nil;
             [self _parseText];
-            [self _setText:[_innerText kf_plainTextForRange:NSMakeRange(0, _innerText.length)]];
+            [self _setText:[_innerText kf5_plainTextForRange:NSMakeRange(0, _innerText.length)]];
         }
         _state.selectedWithoutEdit = NO;
         if ([self _shouldDetectText]) {
@@ -2915,7 +2915,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     NSAttributedString *atr = nil;
     
     if (_allowsPasteAttributedString) {
-        atr = p.kf_AttributedString;
+        atr = p.kf5_AttributedString;
         if (atr.length == 0) atr = nil;
     }
     if (!atr && _allowsPasteImage) {
@@ -2925,14 +2925,14 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
         if (cls) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
-            if (p.kf_GIFData) {
-                img = [(id)cls performSelector:@selector(imageWithData:scale:) withObject:p.kf_GIFData withObject:nil];
+            if (p.kf5_GIFData) {
+                img = [(id)cls performSelector:@selector(imageWithData:scale:) withObject:p.kf5_GIFData withObject:nil];
             }
-            if (!img && p.kf_PNGData) {
-                img = [(id)cls performSelector:@selector(imageWithData:scale:) withObject:p.kf_PNGData withObject:nil];
+            if (!img && p.kf5_PNGData) {
+                img = [(id)cls performSelector:@selector(imageWithData:scale:) withObject:p.kf5_PNGData withObject:nil];
             }
-            if (!img && p.kf_WEBPData) {
-                img = [(id)cls performSelector:@selector(imageWithData:scale:) withObject:p.kf_WEBPData withObject:nil];
+            if (!img && p.kf5_WEBPData) {
+                img = [(id)cls performSelector:@selector(imageWithData:scale:) withObject:p.kf5_WEBPData withObject:nil];
             }
 #pragma clang diagnostic pop
         }
@@ -2940,8 +2940,8 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
         if (!img) {
             img = p.image;
         }
-        if (!img && p.kf_ImageData) {
-            img = [UIImage imageWithData:p.kf_ImageData scale:YYTextScreenScale()];
+        if (!img && p.kf5_ImageData) {
+            img = [UIImage imageWithData:p.kf5_ImageData scale:YYTextScreenScale()];
         }
         if (img && img.size.width > 1 && img.size.height > 1) {
             id content = img;
@@ -2970,8 +2970,8 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
                 }
             }
             
-            NSMutableAttributedString *attText = [NSAttributedString kf_attachmentStringWithContent:content contentMode:UIViewContentModeScaleToFill width:img.size.width ascent:img.size.height descent:0];
-            NSDictionary *attrs = _typingAttributesHolder.kf_attributes;
+            NSMutableAttributedString *attText = [NSAttributedString kf5_attachmentStringWithContent:content contentMode:UIViewContentModeScaleToFill width:img.size.width ascent:img.size.height descent:0];
+            NSDictionary *attrs = _typingAttributesHolder.kf5_attributes;
             if (attrs) [attText addAttributes:attrs range:NSMakeRange(0, attText.length)];
             atr = attText;
         }
@@ -3032,7 +3032,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
 - (void)_define:(id)sender {
     [self _hideMenu];
     
-    NSString *string = [_innerText kf_plainTextForRange:_selectedTextRange.asRange];
+    NSString *string = [_innerText kf5_plainTextForRange:_selectedTextRange.asRange];
     if (string.length == 0) return;
     BOOL resign = [self resignFirstResponder];
     if (!resign) return;
@@ -3358,9 +3358,9 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
         _markedTextRange = nil;
     } else {
         if (needApplyHolderAttribute) {
-            [_innerText setAttributes:_typingAttributesHolder.kf_attributes range:_markedTextRange.asRange];
+            [_innerText setAttributes:_typingAttributesHolder.kf5_attributes range:_markedTextRange.asRange];
         }
-        [_innerText kf_removeDiscontinuousAttributesInRange:_markedTextRange.asRange];
+        [_innerText kf5_removeDiscontinuousAttributesInRange:_markedTextRange.asRange];
     }
     
     [_inputDelegate selectionDidChange:self];
@@ -3406,9 +3406,9 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     if (_innerText.length > 0) {
         if (range.start.offset == 0 && range.end.offset == _innerText.length) {
             if (text.length == 0) {
-                NSMutableDictionary *attrs = [_innerText kf_attributesAtIndex:0].mutableCopy;
-                [attrs removeObjectsForKeys:[NSMutableAttributedString kf_allDiscontinuousAttributeKeys]];
-                _typingAttributesHolder.kf_attributes = attrs;
+                NSMutableDictionary *attrs = [_innerText kf5_attributesAtIndex:0].mutableCopy;
+                [attrs removeObjectsForKeys:[NSMutableAttributedString kf5_allDiscontinuousAttributeKeys]];
+                _typingAttributesHolder.kf5_attributes = attrs;
             }
         }
     } else { // no text
@@ -3431,11 +3431,11 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     
     [self _replaceRange:range withText:text notifyToDelegate:YES];
     if (useInnerAttributes) {
-        [_innerText kf_setAttributes:_typingAttributesHolder.kf_attributes];
+        [_innerText kf5_setAttributes:_typingAttributesHolder.kf5_attributes];
     } else if (applyTypingAttributes) {
         NSRange newRange = NSMakeRange(range.asRange.location, text.length);
-        [_typingAttributesHolder.kf_attributes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-            [_innerText kf_setAttribute:key value:obj range:newRange];
+        [_typingAttributesHolder.kf5_attributes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            [_innerText kf5_setAttribute:key value:obj range:newRange];
         }];
     }
     [self _parseText];
@@ -3457,7 +3457,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
 - (void)setBaseWritingDirection:(UITextWritingDirection)writingDirection forRange:(YYTextRange *)range {
     if (!range) return;
     range = [self _correctedTextRange:range];
-    [_innerText kf_setBaseWritingDirection:(NSWritingDirection)writingDirection range:range.asRange];
+    [_innerText kf5_setBaseWritingDirection:(NSWritingDirection)writingDirection range:range.asRange];
     [self _commitUpdate];
 }
 
@@ -3475,7 +3475,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
     NSUInteger idx = position.offset;
     if (idx == _innerText.length) idx--;
     
-    NSDictionary *attrs = [_innerText kf_attributesAtIndex:idx];
+    NSDictionary *attrs = [_innerText kf5_attributesAtIndex:idx];
     CTParagraphStyleRef paraStyle = (__bridge CFTypeRef)(attrs[NSParagraphStyleAttributeName]);
     if (paraStyle) {
         CTWritingDirection baseWritingDirection;
@@ -3660,7 +3660,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
 
 - (NSDictionary *)textStylingAtPosition:(YYTextPosition *)position inDirection:(UITextStorageDirection)direction {
     if (!position) return nil;
-    if (_innerText.length == 0) return _typingAttributesHolder.kf_attributes;
+    if (_innerText.length == 0) return _typingAttributesHolder.kf5_attributes;
     NSDictionary *attrs = nil;
     if (0 <= position.offset  && position.offset <= _innerText.length) {
         NSUInteger ofs = position.offset;

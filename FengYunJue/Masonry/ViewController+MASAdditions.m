@@ -8,27 +8,27 @@
 
 #import "ViewController+MASAdditions.h"
 
-#ifdef kf_VIEW_CONTROLLER
+#ifdef kf5_VIEW_CONTROLLER
 
-@implementation kf_VIEW_CONTROLLER (MASAdditions)
+@implementation kf5_VIEW_CONTROLLER (MASAdditions)
 
-- (MASViewAttribute *)kf_topLayoutGuide {
+- (MASViewAttribute *)kf5_topLayoutGuide {
     return [[MASViewAttribute alloc] initWithView:self.view item:self.topLayoutGuide layoutAttribute:NSLayoutAttributeBottom];
 }
-- (MASViewAttribute *)kf_topLayoutGuideTop {
+- (MASViewAttribute *)kf5_topLayoutGuideTop {
     return [[MASViewAttribute alloc] initWithView:self.view item:self.topLayoutGuide layoutAttribute:NSLayoutAttributeTop];
 }
-- (MASViewAttribute *)kf_topLayoutGuideBottom {
+- (MASViewAttribute *)kf5_topLayoutGuideBottom {
     return [[MASViewAttribute alloc] initWithView:self.view item:self.topLayoutGuide layoutAttribute:NSLayoutAttributeBottom];
 }
 
-- (MASViewAttribute *)kf_bottomLayoutGuide {
+- (MASViewAttribute *)kf5_bottomLayoutGuide {
     return [[MASViewAttribute alloc] initWithView:self.view item:self.bottomLayoutGuide layoutAttribute:NSLayoutAttributeTop];
 }
-- (MASViewAttribute *)kf_bottomLayoutGuideTop {
+- (MASViewAttribute *)kf5_bottomLayoutGuideTop {
     return [[MASViewAttribute alloc] initWithView:self.view item:self.bottomLayoutGuide layoutAttribute:NSLayoutAttributeTop];
 }
-- (MASViewAttribute *)kf_bottomLayoutGuideBottom {
+- (MASViewAttribute *)kf5_bottomLayoutGuideBottom {
     return [[MASViewAttribute alloc] initWithView:self.view item:self.bottomLayoutGuide layoutAttribute:NSLayoutAttributeBottom];
 }
 

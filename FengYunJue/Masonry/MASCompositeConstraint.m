@@ -11,7 +11,7 @@
 
 @interface MASCompositeConstraint () <MASConstraintDelegate>
 
-@property (nonatomic, strong) id kf_key;
+@property (nonatomic, strong) id kf5_key;
 @property (nonatomic, strong) NSMutableArray *childConstraints;
 
 @end
@@ -112,7 +112,7 @@
 
 - (MASConstraint * (^)(id))key {
     return ^id(id key) {
-        self.kf_key = key;
+        self.kf5_key = key;
         int i = 0;
         for (MASConstraint *constraint in self.childConstraints) {
             constraint.key([NSString stringWithFormat:@"%@[%d]", key, i++]);

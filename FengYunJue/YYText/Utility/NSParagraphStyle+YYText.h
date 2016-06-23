@@ -25,12 +25,12 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return a new NSParagraphStyle
  */
-+ (nullable NSParagraphStyle *)kf_styleWithCTStyle:(CTParagraphStyleRef)CTStyle;
++ (nullable NSParagraphStyle *)kf5_styleWithCTStyle:(CTParagraphStyleRef)CTStyle;
 
 /**
  Creates and returns a CoreText Paragraph Style. (need call CFRelease() after used)
  */
-- (nullable CTParagraphStyleRef)kf_CTStyle CF_RETURNS_RETAINED;
+- (nullable CTParagraphStyleRef)kf5_CTStyle CF_RETURNS_RETAINED;
 
 @end
 

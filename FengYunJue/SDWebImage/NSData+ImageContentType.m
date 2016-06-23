@@ -8,7 +8,7 @@
 
 @implementation NSData (ImageContentType)
 
-+ (NSString *)kf_contentTypeForImageData:(NSData *)data {
++ (NSString *)kf5_contentTypeForImageData:(NSData *)data {
     uint8_t c;
     [data getBytes:&c length:1];
     switch (c) {

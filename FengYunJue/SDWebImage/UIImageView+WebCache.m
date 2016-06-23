@@ -17,32 +17,32 @@ static char TAG_ACTIVITY_SHOW;
 
 @implementation UIImageView (WebCache)
 
-- (void)kf_setImageWithURL:(NSURL *)url {
-    [self kf_setImageWithURL:url placeholderImage:nil options:0 progress:nil completed:nil];
+- (void)kf5_setImageWithURL:(NSURL *)url {
+    [self kf5_setImageWithURL:url placeholderImage:nil options:0 progress:nil completed:nil];
 }
 
-- (void)kf_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder {
-    [self kf_setImageWithURL:url placeholderImage:placeholder options:0 progress:nil completed:nil];
+- (void)kf5_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder {
+    [self kf5_setImageWithURL:url placeholderImage:placeholder options:0 progress:nil completed:nil];
 }
 
-- (void)kf_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options {
-    [self kf_setImageWithURL:url placeholderImage:placeholder options:options progress:nil completed:nil];
+- (void)kf5_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options {
+    [self kf5_setImageWithURL:url placeholderImage:placeholder options:options progress:nil completed:nil];
 }
 
-- (void)kf_setImageWithURL:(NSURL *)url completed:(SDWebImageCompletionBlock)completedBlock {
-    [self kf_setImageWithURL:url placeholderImage:nil options:0 progress:nil completed:completedBlock];
+- (void)kf5_setImageWithURL:(NSURL *)url completed:(SDWebImageCompletionBlock)completedBlock {
+    [self kf5_setImageWithURL:url placeholderImage:nil options:0 progress:nil completed:completedBlock];
 }
 
-- (void)kf_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder completed:(SDWebImageCompletionBlock)completedBlock {
-    [self kf_setImageWithURL:url placeholderImage:placeholder options:0 progress:nil completed:completedBlock];
+- (void)kf5_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder completed:(SDWebImageCompletionBlock)completedBlock {
+    [self kf5_setImageWithURL:url placeholderImage:placeholder options:0 progress:nil completed:completedBlock];
 }
 
-- (void)kf_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options completed:(SDWebImageCompletionBlock)completedBlock {
-    [self kf_setImageWithURL:url placeholderImage:placeholder options:options progress:nil completed:completedBlock];
+- (void)kf5_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options completed:(SDWebImageCompletionBlock)completedBlock {
+    [self kf5_setImageWithURL:url placeholderImage:placeholder options:options progress:nil completed:completedBlock];
 }
 
-- (void)kf_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletionBlock)completedBlock {
-    [self kf_cancelCurrentImageLoad];
+- (void)kf5_setImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletionBlock)completedBlock {
+    [self kf5_cancelCurrentImageLoad];
     objc_setAssociatedObject(self, &imageURLKey, url, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
     if (!(options & SDWebImageDelayPlaceholder)) {
@@ -83,7 +83,7 @@ static char TAG_ACTIVITY_SHOW;
                 }
             });
         }];
-        [self kf_setImageLoadOperation:operation forKey:@"UIImageViewImageLoad"];
+        [self kf5_setImageLoadOperation:operation forKey:@"UIImageViewImageLoad"];
     } else {
         dispatch_main_async_safe(^{
             [self removeActivityIndicator];
@@ -95,19 +95,19 @@ static char TAG_ACTIVITY_SHOW;
     }
 }
 
-- (void)kf_setImageWithPreviousCachedImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletionBlock)completedBlock {
+- (void)kf5_setImageWithPreviousCachedImageWithURL:(NSURL *)url placeholderImage:(UIImage *)placeholder options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock)progressBlock completed:(SDWebImageCompletionBlock)completedBlock {
     NSString *key = [[SDWebImageManager sharedManager] cacheKeyForURL:url];
     UIImage *lastPreviousCachedImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:key];
     
-    [self kf_setImageWithURL:url placeholderImage:lastPreviousCachedImage ?: placeholder options:options progress:progressBlock completed:completedBlock];    
+    [self kf5_setImageWithURL:url placeholderImage:lastPreviousCachedImage ?: placeholder options:options progress:progressBlock completed:completedBlock];    
 }
 
-- (NSURL *)kf_imageURL {
+- (NSURL *)kf5_imageURL {
     return objc_getAssociatedObject(self, &imageURLKey);
 }
 
-- (void)kf_setAnimationImagesWithURLs:(NSArray *)arrayOfURLs {
-    [self kf_cancelCurrentAnimationImagesLoad];
+- (void)kf5_setAnimationImagesWithURLs:(NSArray *)arrayOfURLs {
+    [self kf5_cancelCurrentAnimationImagesLoad];
     __weak __typeof(self)wself = self;
 
     NSMutableArray *operationsArray = [[NSMutableArray alloc] init];
@@ -134,15 +134,15 @@ static char TAG_ACTIVITY_SHOW;
         [operationsArray addObject:operation];
     }
 
-    [self kf_setImageLoadOperation:[NSArray arrayWithArray:operationsArray] forKey:@"UIImageViewAnimationImages"];
+    [self kf5_setImageLoadOperation:[NSArray arrayWithArray:operationsArray] forKey:@"UIImageViewAnimationImages"];
 }
 
-- (void)kf_cancelCurrentImageLoad {
-    [self kf_cancelImageLoadOperationWithKey:@"UIImageViewImageLoad"];
+- (void)kf5_cancelCurrentImageLoad {
+    [self kf5_cancelImageLoadOperationWithKey:@"UIImageViewImageLoad"];
 }
 
-- (void)kf_cancelCurrentAnimationImagesLoad {
-    [self kf_cancelImageLoadOperationWithKey:@"UIImageViewAnimationImages"];
+- (void)kf5_cancelCurrentAnimationImagesLoad {
+    [self kf5_cancelImageLoadOperationWithKey:@"UIImageViewAnimationImages"];
 }
 
 

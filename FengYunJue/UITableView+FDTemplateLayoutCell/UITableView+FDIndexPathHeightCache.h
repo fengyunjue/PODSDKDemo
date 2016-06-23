@@ -38,12 +38,12 @@
 
 @interface UITableView (FDIndexPathHeightCache)
 /// Height cache by index path. Generally, you don't need to use it directly.
-@property (nonatomic, strong, readonly) FDIndexPathHeightCache *kf_indexPathHeightCache;
+@property (nonatomic, strong, readonly) FDIndexPathHeightCache *kf5_indexPathHeightCache;
 @end
 
 @interface UITableView (FDIndexPathHeightCacheInvalidation)
 /// Call this method when you want to reload data but don't want to invalidate
 /// all height cache by index path, for example, load more data at the bottom of
 /// table view.
-- (void)kf_reloadDataWithoutInvalidateIndexPathHeightCache;
+- (void)kf5_reloadDataWithoutInvalidateIndexPathHeightCache;
 @end

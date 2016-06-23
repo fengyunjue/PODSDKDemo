@@ -14,11 +14,11 @@
 
 @interface UIScrollView (MJRefresh)
 /** 下拉刷新控件 */
-@property (strong, nonatomic) MJRefreshHeader *kf_header;
+@property (strong, nonatomic) MJRefreshHeader *kf5_header;
 /** 上拉刷新控件 */
-@property (strong, nonatomic) MJRefreshFooter *kf_footer;
+@property (strong, nonatomic) MJRefreshFooter *kf5_footer;
 
 #pragma mark - other
-- (NSInteger)kf_totalDataCount;
-@property (copy, nonatomic) void (^kf_reloadDataBlock)(NSInteger totalDataCount);
+- (NSInteger)kf5_totalDataCount;
+@property (copy, nonatomic) void (^kf5_reloadDataBlock)(NSInteger totalDataCount);
 @end

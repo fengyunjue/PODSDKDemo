@@ -37,7 +37,7 @@
     self.lastUpdatedTimeKey = MJRefreshHeaderLastUpdatedTimeKey;
     
     // 设置高度
-    self.kf_h = MJRefreshHeaderHeight;
+    self.kf5_h = MJRefreshHeaderHeight;
 }
 
 - (void)placeSubviews
@@ -45,7 +45,7 @@
     [super placeSubviews];
     
     // 设置y值(当自己的高度发生改变了，肯定要重新调整Y值，所以放到placeSubviews方法中设置y值)
-    self.kf_y = - self.kf_h - self.ignoredScrollViewContentInsetTop;
+    self.kf5_y = - self.kf5_h - self.ignoredScrollViewContentInsetTop;
 }
 
 - (void)scrollViewContentOffsetDidChange:(NSDictionary *)change
@@ -57,9 +57,9 @@
         if (self.window == nil) return;
         
         // sectionheader停留解决
-        CGFloat insetT = - self.scrollView.kf_offsetY > _scrollViewOriginalInset.top ? - self.scrollView.kf_offsetY : _scrollViewOriginalInset.top;
-        insetT = insetT > self.kf_h + _scrollViewOriginalInset.top ? self.kf_h + _scrollViewOriginalInset.top : insetT;
-        self.scrollView.kf_insetT = insetT;
+        CGFloat insetT = - self.scrollView.kf5_offsetY > _scrollViewOriginalInset.top ? - self.scrollView.kf5_offsetY : _scrollViewOriginalInset.top;
+        insetT = insetT > self.kf5_h + _scrollViewOriginalInset.top ? self.kf5_h + _scrollViewOriginalInset.top : insetT;
+        self.scrollView.kf5_insetT = insetT;
         
         self.insetTDelta = _scrollViewOriginalInset.top - insetT;
         return;
@@ -69,7 +69,7 @@
      _scrollViewOriginalInset = self.scrollView.contentInset;
     
     // 当前的contentOffset
-    CGFloat offsetY = self.scrollView.kf_offsetY;
+    CGFloat offsetY = self.scrollView.kf5_offsetY;
     // 头部控件刚好出现的offsetY
     CGFloat happenOffsetY = - self.scrollViewOriginalInset.top;
     
@@ -78,8 +78,8 @@
     if (offsetY > happenOffsetY) return;
     
     // 普通 和 即将刷新 的临界点
-    CGFloat normal2pullingOffsetY = happenOffsetY - self.kf_h;
-    CGFloat pullingPercent = (happenOffsetY - offsetY) / self.kf_h;
+    CGFloat normal2pullingOffsetY = happenOffsetY - self.kf5_h;
+    CGFloat pullingPercent = (happenOffsetY - offsetY) / self.kf5_h;
     
     if (self.scrollView.isDragging) { // 如果正在拖拽
         self.pullingPercent = pullingPercent;
@@ -112,7 +112,7 @@
         
         // 恢复inset和offset
         [UIView animateWithDuration:MJRefreshSlowAnimationDuration animations:^{
-            self.scrollView.kf_insetT += self.insetTDelta;
+            self.scrollView.kf5_insetT += self.insetTDelta;
             
             // 自动调整透明度
             if (self.isAutomaticallyChangeAlpha) self.alpha = 0.0;
@@ -122,11 +122,11 @@
     } else if (state == MJRefreshStateRefreshing) {
         [UIView animateWithDuration:MJRefreshFastAnimationDuration animations:^{
             // 增加滚动区域
-            CGFloat top = self.scrollViewOriginalInset.top + self.kf_h;
-            self.scrollView.kf_insetT = top;
+            CGFloat top = self.scrollViewOriginalInset.top + self.kf5_h;
+            self.scrollView.kf5_insetT = top;
             
             // 设置滚动位置
-            self.scrollView.kf_offsetY = - top;
+            self.scrollView.kf5_offsetY = - top;
         } completion:^(BOOL finished) {
             [self executeRefreshingCallback];
         }];

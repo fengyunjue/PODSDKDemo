@@ -407,7 +407,7 @@ dispatch_semaphore_signal(_lock);
         }
     });
     if (needFixJoinedEmojiBug) {
-        [((NSMutableAttributedString *)text) kf_setClearColorToJoinedEmoji];
+        [((NSMutableAttributedString *)text) kf5_setClearColorToJoinedEmoji];
     }
     
     layout = [[YYTextLayout alloc] _init];
@@ -661,7 +661,7 @@ dispatch_semaphore_signal(_lock);
                     CTRunRef run = CFArrayGetValueAtIndex(runs, runCount - 1);
                     attrs = (id)CTRunGetAttributes(run);
                     attrs = attrs ? attrs.mutableCopy : [NSMutableArray new];
-                    [attrs removeObjectsForKeys:[NSMutableAttributedString kf_allDiscontinuousAttributeKeys]];
+                    [attrs removeObjectsForKeys:[NSMutableAttributedString kf5_allDiscontinuousAttributeKeys]];
                     CTFontRef font = (__bridge CFTypeRef)attrs[(id)kCTFontAttributeName];
                     CGFloat fontSize = font ? CTFontGetSize(font) : 12.0;
                     UIFont *uiFont = [UIFont systemFontOfSize:fontSize * 0.9];
@@ -2633,7 +2633,7 @@ static void YYTextDrawBlockBorder(YYTextLayout *layout, CGContextRef context, CG
                 if (lineContinueIndex + 1 == lMax) break;
                 YYTextLine *next = lines[lineContinueIndex + 1];
                 if (next.row != lineContinueRow) {
-                    YYTextBorder *nextBorder = [layout.text kf_attribute:YYTextBlockBorderAttributeName atIndex:next.range.location];
+                    YYTextBorder *nextBorder = [layout.text kf5_attribute:YYTextBlockBorderAttributeName atIndex:next.range.location];
                     if ([nextBorder isEqual:border]) {
                         lineContinueRow++;
                     } else {
@@ -3205,8 +3205,8 @@ static void YYTextDrawDebug(YYTextLayout *layout, CGContextRef context, CGSize s
         if (op.CTLineNumberColor) {
             [op.CTLineNumberColor set];
             NSMutableAttributedString *num = [[NSMutableAttributedString alloc] initWithString:@(l).description];
-            num.kf_color = op.CTLineNumberColor;
-            num.kf_font = [UIFont systemFontOfSize:6];
+            num.kf5_color = op.CTLineNumberColor;
+            num.kf5_font = [UIFont systemFontOfSize:6];
             [num drawAtPoint:CGPointMake(line.position.x, line.position.y - (isVertical ? 1 : 6))];
         }
         if (op.CTRunFillColor || op.CTRunBorderColor || op.CTRunNumberColor || op.CGGlyphFillColor || op.CGGlyphBorderColor) {
@@ -3254,8 +3254,8 @@ static void YYTextDrawDebug(YYTextLayout *layout, CGContextRef context, CGSize s
                 if (op.CTRunNumberColor) {
                     [op.CTRunNumberColor set];
                     NSMutableAttributedString *num = [[NSMutableAttributedString alloc] initWithString:@(r).description];
-                    num.kf_color = op.CTRunNumberColor;
-                    num.kf_font = [UIFont systemFontOfSize:6];
+                    num.kf5_color = op.CTRunNumberColor;
+                    num.kf5_font = [UIFont systemFontOfSize:6];
                     [num drawAtPoint:CGPointMake(runTypoBounds.origin.x, runTypoBounds.origin.y - 1)];
                 }
                 if (op.CGGlyphBorderColor || op.CGGlyphFillColor) {

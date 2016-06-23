@@ -12,98 +12,98 @@
 
 @implementation UIScrollView (MJExtension)
 
-- (void)setKf_insetT:(CGFloat)kf_insetT
+- (void)setKf5_insetT:(CGFloat)kf5_insetT
 {
     UIEdgeInsets inset = self.contentInset;
-    inset.top = kf_insetT;
+    inset.top = kf5_insetT;
     self.contentInset = inset;
 }
 
-- (CGFloat)kf_insetT
+- (CGFloat)kf5_insetT
 {
     return self.contentInset.top;
 }
 
-- (void)setKf_insetB:(CGFloat)kf_insetB
+- (void)setKf5_insetB:(CGFloat)kf5_insetB
 {
     UIEdgeInsets inset = self.contentInset;
-    inset.bottom = kf_insetB;
+    inset.bottom = kf5_insetB;
     self.contentInset = inset;
 }
 
-- (CGFloat)kf_insetB
+- (CGFloat)kf5_insetB
 {
     return self.contentInset.bottom;
 }
 
-- (void)setKf_insetL:(CGFloat)kf_insetL
+- (void)setKf5_insetL:(CGFloat)kf5_insetL
 {
     UIEdgeInsets inset = self.contentInset;
-    inset.left = kf_insetL;
+    inset.left = kf5_insetL;
     self.contentInset = inset;
 }
 
-- (CGFloat)kf_insetL
+- (CGFloat)kf5_insetL
 {
     return self.contentInset.left;
 }
 
-- (void)setKf_insetR:(CGFloat)kf_insetR
+- (void)setKf5_insetR:(CGFloat)kf5_insetR
 {
     UIEdgeInsets inset = self.contentInset;
-    inset.right = kf_insetR;
+    inset.right = kf5_insetR;
     self.contentInset = inset;
 }
 
-- (CGFloat)kf_insetR
+- (CGFloat)kf5_insetR
 {
     return self.contentInset.right;
 }
 
-- (void)setKf_offsetX:(CGFloat)kf_offsetX
+- (void)setKf5_offsetX:(CGFloat)kf5_offsetX
 {
     CGPoint offset = self.contentOffset;
-    offset.x = kf_offsetX;
+    offset.x = kf5_offsetX;
     self.contentOffset = offset;
 }
 
-- (CGFloat)kf_offsetX
+- (CGFloat)kf5_offsetX
 {
     return self.contentOffset.x;
 }
 
-- (void)setKf_offsetY:(CGFloat)kf_offsetY
+- (void)setKf5_offsetY:(CGFloat)kf5_offsetY
 {
     CGPoint offset = self.contentOffset;
-    offset.y = kf_offsetY;
+    offset.y = kf5_offsetY;
     self.contentOffset = offset;
 }
 
-- (CGFloat)kf_offsetY
+- (CGFloat)kf5_offsetY
 {
     return self.contentOffset.y;
 }
 
-- (void)setKf_contentW:(CGFloat)kf_contentW
+- (void)setKf5_contentW:(CGFloat)kf5_contentW
 {
     CGSize size = self.contentSize;
-    size.width = kf_contentW;
+    size.width = kf5_contentW;
     self.contentSize = size;
 }
 
-- (CGFloat)kf_contentW
+- (CGFloat)kf5_contentW
 {
     return self.contentSize.width;
 }
 
-- (void)setKf_contentH:(CGFloat)kf_contentH
+- (void)setKf5_contentH:(CGFloat)kf5_contentH
 {
     CGSize size = self.contentSize;
-    size.height = kf_contentH;
+    size.height = kf5_contentH;
     self.contentSize = size;
 }
 
-- (CGFloat)kf_contentH
+- (CGFloat)kf5_contentH
 {
     return self.contentSize.height;
 }
